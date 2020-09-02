@@ -1,6 +1,6 @@
 # tiralabra-kurssin projekti: Pakkausalgoritmit
 
-[Ohjelman määrittelydokumentti] (https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
+[Ohjelman määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
 
 ## Viikkoraportit
 
