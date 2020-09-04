@@ -28,3 +28,12 @@ Aikavaativuus Huffman algoritmille on O(n log n) ja tähän aikavaativuuteen my�
 ## Lähteet (täydentyy myöhemmin...)
 
 - https://en.wikipedia.org/wiki/Huffman_coding
+- https://www.youtube.com/watch?v=dM6us854Jk0
+- https://www.youtube.com/watch?v=goOa3DGezUA
+- https://www.youtube.com/watch?v=Lto-ajuqW3w
+- https://www.youtube.com/watch?v=JsTptu56GM8
+- https://www.youtube.com/watch?v=NjhJJYHpYsg
+- https://www.youtube.com/watch?v=iiGZ947Tcck
+- https://www.youtube.com/watch?v=j2HSd3HCpDs
+- https://www.youtube.com/watch?v=RV5aUr8sZD0
+- https://www.cs.helsinki.fi/courses/582487/2012/k/k/1
