@@ -44,6 +44,7 @@ public class Main {
         // Datan lukeminen
         System.out.println("Luetaan tiedostoa...");
         String sisalto = tlukija.lueTiedosto("testi.txt");
+        System.out.println("Luettiin" + sisalto);
         System.out.println("Tiedoston sisältö luettu!");
 
         // Binääriformaattiin muuntaminen, lähinnä testailua varten tässä vaiheessa...
@@ -65,9 +66,9 @@ public class Main {
         double suhde = Math.round((pakattu * 1.0) / (alkuperainen * 1.0) * 100.0);
 
         // Debugausta varten...
-        //System.out.println("\n\n\nMerkkijono: " + mjono);
+        //System.out.println("\n\n\nMerkkijono: " + sisalto);
         //System.out.println("Binäärimuodossa: " + binaarimuoto);
-        System.out.println("Koodattuna: " + koodattu);
+        //System.out.println("Koodattuna: " + koodattu);
         System.out.println("");
         System.out.println("Koodaamattoman merkkijonon koko: " + alkuperainen + " bittiä");
         System.out.println("Koodatun merkkijonon koko: " + pakattu + " bittiä");

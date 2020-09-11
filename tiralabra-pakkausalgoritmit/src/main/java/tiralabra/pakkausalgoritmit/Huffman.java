@@ -16,7 +16,7 @@ public class Huffman {
     public void muodostaTaulu(String mj) {
         this.taulu = new HashMap<>();
         this.sisalto = mj;
-        System.out.println("Muodostetaan merkkitaulua...");
+        System.out.println("Muodostetaan merkkitaulua merkkijonolle " + this.sisalto + "...");
         for (int i = 0; i < this.sisalto.length(); i++) {
             char m = this.sisalto.charAt(i);
             //System.out.println("Käsitellään merkkiä: " + m);
@@ -60,6 +60,7 @@ public class Huffman {
         System.out.println("Koodataan tekstiä...");
         String koodattu = "";
         for (int i = 0; i < this.sisalto.length(); i++) {
+            //System.out.println("Koodi on nyt " + koodattu);
             char m = this.sisalto.charAt(i);
             //System.out.println("Käsitellään merkkiä: " + m);
             if (!this.taulu.containsKey(m)) {
@@ -75,6 +76,7 @@ public class Huffman {
             }
         }
         System.out.println("Koodaus valmis!");
+        //System.out.println("Koodi on nyt " + koodattu);
         return koodattu;
     }
     
