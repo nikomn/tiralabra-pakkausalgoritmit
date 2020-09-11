@@ -19,6 +19,8 @@
 - Yksikkötestien kirjoittaminen
 - Dokumentaation täydentäminen
 
+## Raportti
+
 Perehdyin tällä viikolla kurssin ohjeisiin ja seurasin aloitusluentoa. Ehdotetuista aiheista päädyin valitsemaan pakkausalgoritmit, koska aihe tuntui kiinnostavalta ja selkeältä. Aloin myös perehtyä pakkausalgoritmien toteutuksiin lukemalla muutamia artikkeleita aiheesta ja katsomalla joitakin videoita aiheeseen liittyen. Ohjelman/projekti on edistynyt käytännössä tällä viikolla siten, että loin githhubiin repositorion ja kirjoitin alustavan määrittelydokumentin.
 
 Opin tällä viikolla alustavalla tasolla ymmärtämään pakkausalgoritmien toimintaa. Tämän hetkinen käsitykseni on, että Huffman algoritmi koodaa merkit siten, että sen sijaan, että jokainen merkki käyttää saman verran tilaa, niin pakatussa muodossa useimmien käytetyt merkit vievät vähiten tilaa ja vähinten käytetyt eniten tilaa. LZ algoritmissa taas muodostetaan pakkauksen ja purkamisen yhteydessä "sanakirja", jossa käytetään viittauksia aikaisemmin havaittuihin merkkeihin tai merkkijonojen sarjoihin.
