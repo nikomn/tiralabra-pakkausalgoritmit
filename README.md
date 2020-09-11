@@ -5,3 +5,5 @@
 ## Viikkoraportit
 
 [Viikkoraportti 1](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti1.md)
+
+[Viikkoraportti 2](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti2.md)
