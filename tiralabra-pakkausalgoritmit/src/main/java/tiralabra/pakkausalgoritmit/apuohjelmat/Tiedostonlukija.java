@@ -28,7 +28,34 @@ public class Tiedostonlukija {
         return mjono;
     }
 
-    public String lueKoodattuTiedosto(String tiedosto) throws Exception {
+    public String[] erotteleKentat(String merkkijono) {
+        String[] kentat = new String[5];
+        String taulunPituus = merkkijono.substring(0, 24);
+        System.out.println("Taulunpituus: " + taulunPituus);
+        int taulunpituusNumerona = Integer.parseInt(taulunPituus, 2);
+        kentat[0] = taulunPituus;
+
+        merkkijono = merkkijono.substring(24, merkkijono.length());
+        String ylihypattavat = merkkijono.substring(0, 24);
+        kentat[1] = ylihypattavat;
+
+        merkkijono = merkkijono.substring(24, merkkijono.length());
+        String puunjuuri = merkkijono.substring(0, 120);
+        kentat[2] = puunjuuri;
+
+        merkkijono = merkkijono.substring(120, merkkijono.length());
+        System.out.println("Taulunpituus: " + taulunpituusNumerona);
+        String taulu = merkkijono.substring(0, taulunpituusNumerona);
+        kentat[3] = taulu;
+
+        merkkijono = merkkijono.substring(120 + taulunpituusNumerona, merkkijono.length() - 1);
+        String data = merkkijono;
+        kentat[4] = data;
+
+        return kentat;
+    }
+
+    public String[] lueKoodattuTiedosto(String tiedosto) throws Exception {
         String mjono = "";
         try {
             byte[] bitit = Files.readAllBytes(Paths.get(tiedosto));
@@ -43,7 +70,9 @@ public class Tiedostonlukija {
             mjono = "-1";
         }
 
-        return mjono;
+        String[] kentat = erotteleKentat(mjono);
+
+        return kentat;
     }
 
 }

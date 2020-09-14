@@ -10,16 +10,14 @@ import tiralabra.pakkausalgoritmit.Huffman;
  */
 public class TestiHuffman {
 
-    @Test
-    public void testNothing() {
-        assertTrue(true);
-    }
+//    @Test
+//    public void testNothing() {
+//        assertTrue(true);
+//    }
 
     @Test
     public void koodauksenLopputulosOikein() {
-        String syote = "abcdabcd";
-        //String syote = "huffman";
-        //System.out.println("Testinki...");
+        String syote = "abcdabcd\n";
         Huffman h = new Huffman();
         h.muodostaTaulu(syote);
         h.muodostaPuu();

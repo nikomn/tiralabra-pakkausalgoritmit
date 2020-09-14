@@ -41,15 +41,31 @@ public class HuffmanSolmu implements Comparable {
     
     public String muunnaBinaariEsitysmuotoon() {
         // String.format("%16s", Integer.toBinaryString(1)).replace(' ', '0')
-        String m = String.format("%24s", Integer.toBinaryString(this.merkki)).replace(' ', '0');
+        Character tmpMerkki = '-'; 
+        if (this.merkki != null) {
+            tmpMerkki = this.merkki;
+        }
+        Character tmpVasen = '-'; 
+        if (this.vasen != null && this.vasen.merkki != null) {
+            tmpVasen = this.vasen.merkki;
+        }
+        Character tmpOikea = '-'; 
+        if (this.oikea != null && this.oikea.merkki != null) {
+            tmpOikea = this.oikea.merkki;
+        }
+        Character tmpVanhempi = '-'; 
+        if (this.vanhempi != null && this.vanhempi.merkki != null) {
+            tmpVanhempi = this.vanhempi.merkki;
+        }
+        String m = String.format("%24s", Integer.toBinaryString(tmpMerkki)).replace(' ', '0');
         //System.out.println("m: " + m);
         String t = String.format("%24s", Integer.toBinaryString(this.toistuvuus)).replace(' ', '0') ;
         //System.out.println("t: " + t);
-        String v = String.format("%24s", Integer.toBinaryString(this.vasen.merkki)).replace(' ', '0');
+        String v = String.format("%24s", Integer.toBinaryString(tmpVasen)).replace(' ', '0');
         //System.out.println("v: " + v);
-        String o = String.format("%24s", Integer.toBinaryString(this.oikea.merkki)).replace(' ', '0');
-        //System.out.println("o: " + o);
-        String V = String.format("%24s", Integer.toBinaryString(this.vanhempi.merkki)).replace(' ', '0');
+        String o = String.format("%24s", Integer.toBinaryString(tmpOikea)).replace(' ', '0');
+        //System.out.{println("o: " + o);
+        String V = String.format("%24s", Integer.toBinaryString(tmpVanhempi)).replace(' ', '0');
         //System.out.println("V: " + V);
         
         String binaariMerkkijono = m + t + v + o + V;

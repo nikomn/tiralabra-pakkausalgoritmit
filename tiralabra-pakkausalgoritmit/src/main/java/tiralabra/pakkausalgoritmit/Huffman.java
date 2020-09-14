@@ -26,8 +26,17 @@ public class Huffman {
                 this.taulu.get(m).toistuvuus++;
             }
         }
+        //System.out.println("Taulun pituus: " + this.taulu.size());
         System.out.println("Merkkitaulu muodostettu!");
 
+    }
+    
+    public int haeTaulunKoko() {
+        return this.taulu.size();
+    }
+    
+    public HuffmanSolmu haePuunjuuri() {
+        return this.puunjuuri;
     }
     
     public String etsiJuuri(HuffmanSolmu alku) {
