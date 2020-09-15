@@ -90,24 +90,26 @@ public class Main {
         //System.out.println("\n\n\nMerkkijono: " + sisalto);
         //System.out.println("Binäärimuodossa: " + binaarimuoto);
         System.out.println("Koodattuna: " + koodattu);
-        System.out.println("Koodattu sisältää " + koodattu.length() + " bittiä");
-        System.out.println("Tiedostoon kirjoittaminen tapahtuu tavuissa, joten täytebittejä tulee yhteensä...");
+        //System.out.println("Koodattu sisältää " + koodattu.length() + " bittiä");
+        //System.out.println("Tiedostoon kirjoittaminen tapahtuu tavuissa, joten täytebittejä tulee yhteensä...");
         Double tasan = Math.ceil(koodattu.length() / 8.0);
         //System.out.println(tasan);
         Double kpl = 8 * tasan - koodattu.length();
         int lkm = kpl.intValue();
-        System.out.println(lkm);
+        //System.out.println(lkm);
         System.out.println("Koodaamattoman merkkijonon koko: " + alkuperainen + " bittiä");
         System.out.println("Koodatun merkkijonon koko: " + pakattu + " bittiä");
 
         System.out.println("\nPakattu on n. " + suhde + "% alkuperäisestä.");
         
         System.out.println("Tiedostosta luettuna: ");
-        System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
+        //System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
         String[] luettu = tlukija.lueKoodattuTiedosto("huffman.dat");
-        String luettuKoodattu = luettu[4];
+        String luettuKoodattu = luettu[luettu.length - 1];
         String subString = luettuKoodattu.substring(lkm, luettuKoodattu.length());
+        //System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
         System.out.println(subString);
+        h.puraKoodattuTiedosto(luettu);
 
     }
 

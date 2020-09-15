@@ -6,13 +6,37 @@ import java.util.PriorityQueue;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Huffman {
+
     private HuffmanSolmu puunjuuri;
     private HashMap<Character, HuffmanSolmu> taulu;
     private String sisalto;
-    
-    
+
+    public void puraKoodattuTiedosto(String[] tiedostonSisalto) {
+        String[] testi = new String[8];
+        testi[0] = "100000000000000000000000";  // headeri
+        testi[1] = "000000000000000000000001";  // taulunpituus
+        testi[2] = "000000000000000000000011";  // skippibitit
+
+        testi[3] = "000000000000000001100001";  // merkki
+        testi[4] = "000000000000000000000010";  // toistuvuus
+        testi[5] = "000000000000000000101101";  // vasen
+        testi[5] = "000000000000000000101101";  // oikea
+        testi[6] = "000000000000000000101101";  // vanhempi
+        int tauluPituus = Integer.parseInt(testi[1], 2);
+        int skippiBitit = Integer.parseInt(testi[2], 2);
+        for (int i = 3; i < (tauluPituus * 5) + 3; i = i + 5) {
+            int merkkiNumero = Integer.parseInt(testi[i], 2);
+            Character merkki = (char) merkkiNumero;
+            System.out.println("Merkki: " + merkki);
+            int toistuvuus = Integer.parseInt(tiedostonSisalto[i + 1], 2);
+            // Character merkki, Integer toistuvuus, HuffmanSolmu vasen, HuffmanSolmu oikea
+            HuffmanSolmu hs = new HuffmanSolmu(merkki, toistuvuus, null, null);
+            System.out.println(hs.muunnaBinaariEsitysmuotoon());
+
+        }
+    }
+
     public void muodostaTaulu(String mj) {
         this.taulu = new HashMap<>();
         this.sisalto = mj;
@@ -30,15 +54,15 @@ public class Huffman {
         System.out.println("Merkkitaulu muodostettu!");
 
     }
-    
+
     public int haeTaulunKoko() {
         return this.taulu.size();
     }
-    
+
     public HuffmanSolmu haePuunjuuri() {
         return this.puunjuuri;
     }
-    
+
     public String etsiJuuri(HuffmanSolmu alku) {
         //System.out.println("Haku alkaa...");
         //System.out.println("Etsitään merkkiä " + haettavaMerkki);
@@ -64,7 +88,7 @@ public class Huffman {
         //System.out.println("Koodi on: " + koodi + " (alkuperäinen: " + alku.merkki + ")");
         return koodi;
     }
-    
+
     public String koodaa() {
         System.out.println("Koodataan tekstiä...");
         String koodattu = "";
@@ -88,7 +112,7 @@ public class Huffman {
         //System.out.println("Koodi on nyt " + koodattu);
         return koodattu;
     }
-    
+
     public void muodostaPuu() {
         PriorityQueue<HuffmanSolmu> jono = new PriorityQueue<>();
         //System.out.println("\nTaulu:");
@@ -98,7 +122,7 @@ public class Huffman {
         }
 
         int solmunSuuruus = 0;
-        
+
         while (solmunSuuruus != this.sisalto.length()) {
             HuffmanSolmu eka = jono.poll();
             if (eka.toistuvuus == this.sisalto.length()) {
@@ -116,9 +140,9 @@ public class Huffman {
             jono.add(yhdistetty);
         }
     }
-    
+
     public HashMap<Character, HuffmanSolmu> getTaulu() {
         return this.taulu;
     }
-    
+
 }

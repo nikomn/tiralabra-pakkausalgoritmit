@@ -19,33 +19,30 @@ public class Tiedostonkirjoittaja {
         // 
         //
         int taulunPituus = merkkitaulu.size();
-        String taulunPituusBinaariformaatissa = String.format("%24s", Integer.toBinaryString(taulunPituus)).replace(' ', '0') ;
-        
+        String taulunPituusBinaariformaatissa = String.format("%24s", Integer.toBinaryString(taulunPituus)).replace(' ', '0');
+
         Double tasan = Math.ceil(aineisto.length() / 8.0);
         Double tavuMax = 8 * tasan - aineisto.length();
         int ylihypattavat = tavuMax.intValue();
         String skippiBitit = String.format("%24s", Integer.toBinaryString(ylihypattavat)).replace(' ', '0');
         //System.out.println("Skippibitit: " + skippiBitit);
-        
+
         String puunJuuriBinaariformaatissa = puunjuuri.muunnaBinaariEsitysmuotoon();
-       
+
         String taulu = "";
         for (Character avain : merkkitaulu.keySet()) {
             //System.out.println(avain + ": " + taulu2.get(avain).toistuvuus);
-            taulu = merkkitaulu.get(avain).muunnaBinaariEsitysmuotoon();
+            taulu = taulu + merkkitaulu.get(avain).muunnaBinaariEsitysmuotoon();
         }
-        
-        String kokoAineisto = taulunPituusBinaariformaatissa + skippiBitit 
+
+        String kokoAineisto = taulunPituusBinaariformaatissa + skippiBitit
                 + puunJuuriBinaariformaatissa + taulu + aineisto;
-        
-        System.out.println("Koko aineisto: " + kokoAineisto);
-        
+
+        //System.out.println("Koko aineisto: " + kokoAineisto);
+
 //        for (Map.Entry<Character, HuffmanSolmu> entry : merkkitaulu.entrySet()) {
 //            properties.put(entry.getKey(), entry.getValue());
 //        }
-        
-        
-        
         //System.out.println("Kirjoitus...");
         //System.out.println("Alkuperäinen: " + aineisto);
 //        Properties properties = new Properties();
@@ -55,23 +52,50 @@ public class Tiedostonkirjoittaja {
 //        }
 //
 //        properties.store(new FileOutputStream("merkkitaulu.dat"), null);
-
         String kaanteinenAineisto = "";
 
         for (int i = aineisto.length() - 1; i >= 0; i--) {
             kaanteinenAineisto = kaanteinenAineisto + aineisto.charAt(i);
         }
+        for (int i = 0; i < ylihypattavat; i++) {
+            kaanteinenAineisto = kaanteinenAineisto + '0';
+
+        }
+
+        String kaanteinenTaulunPituusBinaariformaatissa = "";
+        for (int i = taulunPituusBinaariformaatissa.length() - 1; i >= 0; i--) {
+            kaanteinenTaulunPituusBinaariformaatissa = kaanteinenTaulunPituusBinaariformaatissa + taulunPituusBinaariformaatissa.charAt(i);
+        }
+
+        //kaanteinenAineisto = kaanteinenAineisto + kaanteinenTaulunPituusBinaariformaatissa + "000000000000000000000001";
+
+        //System.out.println("Kaanteinen aineisto: " + kaanteinenAineisto);
+
+        String kaanteinenSkippiBitit = "";
+        for (int i = skippiBitit.length() - 1; i >= 0; i--) {
+            kaanteinenSkippiBitit = kaanteinenSkippiBitit + skippiBitit.charAt(i);
+        }
         
-//        kaanteinenAineisto = taulunPituusBinaariformaatissa + skippiBitit 
-//                + puunJuuriBinaariformaatissa + taulu + kaanteinenAineisto;
+        String kaanteinenPuunjuuri = "";
+        for (int i = puunJuuriBinaariformaatissa.length() - 1; i >= 0; i--) {
+            kaanteinenPuunjuuri = kaanteinenPuunjuuri + puunJuuriBinaariformaatissa.charAt(i);
+        }
         
-        kaanteinenAineisto = kaanteinenAineisto + taulu 
-                + puunJuuriBinaariformaatissa + skippiBitit + taulunPituusBinaariformaatissa;
+        String kaanteinenTaulu = "";
+        for (int i = taulu.length() - 1; i >= 0; i--) {
+            kaanteinenTaulu = kaanteinenTaulu + taulu.charAt(i);
+        }
+        
+        String kirjoitettavaData = kaanteinenAineisto + kaanteinenTaulu 
+                + kaanteinenPuunjuuri + kaanteinenSkippiBitit 
+                + kaanteinenTaulunPituusBinaariformaatissa + "000000000000000000000001";
+        
+        //System.out.println("Taulu: " + taulu);
 //        
 //        for (int i = taulu.length() - 1; i >= 0; i--) {
 //            kaanteinenAineisto = kaanteinenAineisto + taulu.charAt(i);
 //        }
-        
+
 //        for (int i = taulu.length() - 1; i >= 0; i--) {
 //            kaanteinenAineisto = kaanteinenAineisto + taulu.charAt(i);
 //        }
@@ -80,24 +104,17 @@ public class Tiedostonkirjoittaja {
 //            kaanteinenAineisto = kaanteinenAineisto + puunJuuriBinaariformaatissa.charAt(i);
 //        }
 //        
-//        for (int i = skippiBitit.length() - 1; i >= 0; i--) {
-//            kaanteinenAineisto = kaanteinenAineisto + skippiBitit.charAt(i);
-//        }
 //        
 //        for (int i = taulunPituusBinaariformaatissa.length() - 1; i >= 0; i--) {
 //            kaanteinenAineisto = kaanteinenAineisto + taulunPituusBinaariformaatissa.charAt(i);
 //        }
 //        
-        
-        
-        
-
         //System.out.println(kaanteinenAineisto);
         //kaanteinenAineisto = taulunPituusBinaariformaatissa + skippiBitit + puunJuuriBinaariformaatissa + taulu + kaanteinenAineisto;
         //kaanteinenAineisto = kaanteinenAineisto + taulu + puunJuuriBinaariformaatissa + skippiBitit + taulunPituusBinaariformaatissa;
-        BitSet bitsetti = new BitSet(kaanteinenAineisto.length());
+        BitSet bitsetti = new BitSet(kirjoitettavaData.length());
         int kpl = 0;
-        for (Character c : kaanteinenAineisto.toCharArray()) {
+        for (Character c : kirjoitettavaData.toCharArray()) {
             //System.out.println("c: " + c);
             if (c.equals('1')) {
                 bitsetti.set(kpl);
@@ -112,7 +129,7 @@ public class Tiedostonkirjoittaja {
             //System.out.println(merkkitaulu.toString());
             //tuloste.writeBytes(merkkitaulu.toString());
             for (byte b : bitsetti.toByteArray()) {
-                System.out.println("Kirjoitetaan: " + b);
+                //System.out.println("Kirjoitetaan: " + b);
 
                 tuloste.writeByte(b);
 

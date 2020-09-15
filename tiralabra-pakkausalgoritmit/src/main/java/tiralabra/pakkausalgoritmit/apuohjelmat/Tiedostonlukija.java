@@ -29,30 +29,59 @@ public class Tiedostonlukija {
     }
 
     public String[] erotteleKentat(String merkkijono) {
+        int lohkojenMaara = merkkijono.length() / 24;
+        //System.out.println("Lohkot: " + lohkojenMaara);
+        String[] dataLohkot = new String[lohkojenMaara];
+        
+        String x = "";
+        int indeksi = 0;
+        for (int i = 0; i < merkkijono.length(); i++) {
+            x = x + merkkijono.charAt(i);
+            if (x.length() == 24) {
+                //System.out.println("x: " + x);
+                dataLohkot[indeksi] = x;
+                x = "";
+                indeksi++;
+            }
+        }
+        
+        //System.out.println(Arrays.toString(dataLohkot));
+        
         String[] kentat = new String[5];
-        String taulunPituus = merkkijono.substring(0, 24);
-        System.out.println("Taulunpituus: " + taulunPituus);
-        int taulunpituusNumerona = Integer.parseInt(taulunPituus, 2);
-        kentat[0] = taulunPituus;
+        
+        int tauluPituus = Integer.parseInt(dataLohkot[1], 2);
+        int skippiBitit = Integer.parseInt(dataLohkot[2], 2);
+        
+        
+        
+        
+        
+        
+//        merkkijono = merkkijono.substring(24, merkkijono.length());
+//        
+//        String taulunPituus = merkkijono.substring(0, 24);
+//        System.out.println("Taulunpituus: " + taulunPituus);
+//        int taulunpituusNumerona = Integer.parseInt(taulunPituus, 2);
+//        kentat[0] = taulunPituus;
+//
+//        merkkijono = merkkijono.substring(24, merkkijono.length());
+//        String ylihypattavat = merkkijono.substring(0, 24);
+//        kentat[1] = ylihypattavat;
+//
+//        merkkijono = merkkijono.substring(24, merkkijono.length());
+//        String puunjuuri = merkkijono.substring(0, 120);
+//        kentat[2] = puunjuuri;
+//
+//        merkkijono = merkkijono.substring(120, merkkijono.length());
+//        System.out.println("Taulunpituus: " + taulunpituusNumerona);
+//        String taulu = merkkijono.substring(0, taulunpituusNumerona);
+//        kentat[3] = taulu;
+//
+//        merkkijono = merkkijono.substring(120 + taulunpituusNumerona, merkkijono.length() - 1);
+//        String data = merkkijono;
+//        kentat[4] = data;
 
-        merkkijono = merkkijono.substring(24, merkkijono.length());
-        String ylihypattavat = merkkijono.substring(0, 24);
-        kentat[1] = ylihypattavat;
-
-        merkkijono = merkkijono.substring(24, merkkijono.length());
-        String puunjuuri = merkkijono.substring(0, 120);
-        kentat[2] = puunjuuri;
-
-        merkkijono = merkkijono.substring(120, merkkijono.length());
-        System.out.println("Taulunpituus: " + taulunpituusNumerona);
-        String taulu = merkkijono.substring(0, taulunpituusNumerona);
-        kentat[3] = taulu;
-
-        merkkijono = merkkijono.substring(120 + taulunpituusNumerona, merkkijono.length() - 1);
-        String data = merkkijono;
-        kentat[4] = data;
-
-        return kentat;
+        return dataLohkot;
     }
 
     public String[] lueKoodattuTiedosto(String tiedosto) throws Exception {
@@ -73,6 +102,7 @@ public class Tiedostonlukija {
         String[] kentat = erotteleKentat(mjono);
 
         return kentat;
+        //return mjono;
     }
 
 }
