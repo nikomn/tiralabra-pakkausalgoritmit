@@ -11,6 +11,8 @@ public class Huffman {
     private HuffmanSolmu puunjuuri;
     private HashMap<Character, HuffmanSolmu> taulu;
     private String sisalto;
+    private HuffmanSolmu[] solmut;
+    private int indeksi;
 
     public void puraKoodattuTiedosto(String[] tiedostonSisalto) {
         String[] testi = new String[8];
@@ -23,15 +25,18 @@ public class Huffman {
         testi[5] = "000000000000000000101101";  // vasen
         testi[5] = "000000000000000000101101";  // oikea
         testi[6] = "000000000000000000101101";  // vanhempi
-        int tauluPituus = Integer.parseInt(testi[1], 2);
-        int skippiBitit = Integer.parseInt(testi[2], 2);
-        for (int i = 3; i < (tauluPituus * 5) + 3; i = i + 5) {
-            int merkkiNumero = Integer.parseInt(testi[i], 2);
+        int tauluPituus = Integer.parseInt(tiedostonSisalto[1], 2);
+        int skippiBitit = Integer.parseInt(tiedostonSisalto[2], 2);
+        System.out.println("taulun pituus: " + tauluPituus);
+        HuffmanSolmu[] solmulista = new HuffmanSolmu[tauluPituus];
+        for (int i = 7; i < (tauluPituus * 6) + 7; i = i + 6) {
+            System.out.println("i: " + i);
+            int merkkiNumero = Integer.parseInt(tiedostonSisalto[i + 1], 2);
             Character merkki = (char) merkkiNumero;
             System.out.println("Merkki: " + merkki);
-            int toistuvuus = Integer.parseInt(tiedostonSisalto[i + 1], 2);
+            int toistuvuus = Integer.parseInt(tiedostonSisalto[i + 2], 2);
             // Character merkki, Integer toistuvuus, HuffmanSolmu vasen, HuffmanSolmu oikea
-            HuffmanSolmu hs = new HuffmanSolmu(merkki, toistuvuus, null, null);
+            HuffmanSolmu hs = new HuffmanSolmu(merkki, toistuvuus, tiedostonSisalto[i], null, null);
             System.out.println(hs.muunnaBinaariEsitysmuotoon());
 
         }
@@ -114,11 +119,15 @@ public class Huffman {
     }
 
     public void muodostaPuu() {
+        this.solmut = new HuffmanSolmu[99999];
+        this.indeksi = 0;
         PriorityQueue<HuffmanSolmu> jono = new PriorityQueue<>();
         //System.out.println("\nTaulu:");
         for (Character avain : this.taulu.keySet()) {
-            //System.out.println(avain + ": " + taulu2.get(avain).toistuvuus);
+            //System.out.println(avain + ": " + this.taulu.get(avain).toistuvuus);
             jono.add(this.taulu.get(avain));
+            this.solmut[this.indeksi] = this.taulu.get(avain);
+            this.indeksi++;
         }
 
         int solmunSuuruus = 0;
@@ -138,6 +147,8 @@ public class Huffman {
             eka.vanhempi = yhdistetty;
             toka.vanhempi = yhdistetty;
             jono.add(yhdistetty);
+            this.solmut[this.indeksi] = yhdistetty;
+            this.indeksi++;
         }
     }
 

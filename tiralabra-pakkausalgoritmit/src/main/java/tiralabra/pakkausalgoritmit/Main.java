@@ -12,46 +12,48 @@ import tiralabra.pakkausalgoritmit.apuohjelmat.Tiedostonlukija;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        
-        HuffmanSolmu z = new HuffmanSolmu('z', 10000, null, null);
-        HuffmanSolmu y = new HuffmanSolmu('y', 10000, null, null);
-        HuffmanSolmu x = new HuffmanSolmu('x', 10000, null, null);
-        
-        y.vasen = x;
-        y.oikea = z;
-        y.vanhempi = x;
-        System.out.println("y:");
-        System.out.println(y.muunnaBinaariEsitysmuotoon());
-        System.out.println("Binaarimuoto tuloste...");
-        
-        String binaariesitysmuoto = y.muunnaBinaariEsitysmuotoon();
-        System.out.println("Binaari:");
-        System.out.println(binaariesitysmuoto);
-        System.out.println("Kentät:");
-        System.out.println(binaariesitysmuoto.substring(0, 24));
-        System.out.println(binaariesitysmuoto.substring(24, 48));
-        System.out.println(binaariesitysmuoto.substring(48, 72));
-        System.out.println(binaariesitysmuoto.substring(72, 96));
-        System.out.println(binaariesitysmuoto.substring(96, 120));
-        System.out.println("---");
-        System.out.println("3 solmua...");
-        List<HuffmanSolmu> tmp = new ArrayList<>();
-        tmp.add(z);
-        tmp.add(x);
-        tmp.add(y);
-        for (HuffmanSolmu s: tmp) {
-            String bf = s.muunnaBinaariEsitysmuotoon();
-        System.out.println("Binaari:");
-        System.out.println(bf);
-        System.out.println("Kentät:");
-        System.out.println(bf.substring(0, 24));
-        System.out.println(bf.substring(24, 48));
-        System.out.println(bf.substring(48, 72));
-        System.out.println(bf.substring(72, 96));
-        System.out.println(bf.substring(96, 120));
-        System.out.println("---");
-            
-        }
+
+//        HuffmanSolmu z = new HuffmanSolmu('z', 10000, null, null);
+//        HuffmanSolmu y = new HuffmanSolmu('y', 10000, null, null);
+//        HuffmanSolmu x = new HuffmanSolmu('x', 10000, null, null);
+//
+//        y.vasen = x;
+//        y.oikea = z;
+//        y.vanhempi = x;
+//        System.out.println("y:");
+//        System.out.println(y.muunnaBinaariEsitysmuotoon());
+//        System.out.println("Binaarimuoto tuloste...");
+//
+//        String binaariesitysmuoto = y.muunnaBinaariEsitysmuotoon();
+//        System.out.println("Binaari:");
+//        System.out.println(binaariesitysmuoto);
+//        System.out.println("Kentät:");
+//        System.out.println(binaariesitysmuoto.substring(0, 24));
+//        System.out.println(binaariesitysmuoto.substring(24, 48));
+//        System.out.println(binaariesitysmuoto.substring(48, 72));
+//        System.out.println(binaariesitysmuoto.substring(72, 96));
+//        System.out.println(binaariesitysmuoto.substring(96, 120));
+//        System.out.println(binaariesitysmuoto.substring(120, 144));
+//        System.out.println("---");
+//        System.out.println("3 solmua...");
+//        List<HuffmanSolmu> tmp = new ArrayList<>();
+//        tmp.add(z);
+//        tmp.add(x);
+//        tmp.add(y);
+//        for (HuffmanSolmu s : tmp) {
+//            String bf = s.muunnaBinaariEsitysmuotoon();
+//            System.out.println("Binaari:");
+//            System.out.println(bf);
+//            System.out.println("Kentät:");
+//            System.out.println(bf.substring(0, 24));
+//            System.out.println(bf.substring(24, 48));
+//            System.out.println(bf.substring(48, 72));
+//            System.out.println(bf.substring(72, 96));
+//            System.out.println(bf.substring(96, 120));
+//            System.out.println(bf.substring(120, 144));
+//            System.out.println("---");
+//
+//        }
         //System.out.println(Integer.toBinaryString('x'));
         //System.out.println(Integer.toBinaryString(10000000));
 
@@ -64,7 +66,7 @@ public class Main {
         // Datan lukeminen
         System.out.println("Luetaan tiedostoa...");
         String sisalto = tlukija.lueTiedosto("testi.txt");
-        System.out.println("Luettiin" + sisalto);
+        System.out.println("Luettiin: " + sisalto);
         System.out.println("Tiedoston sisältö luettu!");
         //sisalto = "abcdabcd\n";
 
@@ -77,7 +79,7 @@ public class Main {
         h.muodostaTaulu(sisalto);
         h.muodostaPuu();
         String koodattu = h.koodaa();
-        
+
         // Kirjoitetaan tiedostoon...
         tkirjoittaja.kirjoitaTiedosto(koodattu, h.haePuunjuuri(), h.getTaulu(), "huffman.dat");
 
@@ -101,7 +103,7 @@ public class Main {
         System.out.println("Koodatun merkkijonon koko: " + pakattu + " bittiä");
 
         System.out.println("\nPakattu on n. " + suhde + "% alkuperäisestä.");
-        
+
         System.out.println("Tiedostosta luettuna: ");
         //System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
         String[] luettu = tlukija.lueKoodattuTiedosto("huffman.dat");

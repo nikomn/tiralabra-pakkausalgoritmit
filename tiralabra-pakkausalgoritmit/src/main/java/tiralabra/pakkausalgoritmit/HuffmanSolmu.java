@@ -5,6 +5,8 @@
  */
 package tiralabra.pakkausalgoritmit;
 
+import java.util.Objects;
+
 /**
  *
  * @author nikoniem
@@ -15,20 +17,39 @@ public class HuffmanSolmu implements Comparable {
     HuffmanSolmu vasen;
     HuffmanSolmu oikea;
     HuffmanSolmu vanhempi;
-    
-    public HuffmanSolmu() {
-        
-    }
+    String tunnisteBinaarina;
+    Long tunniste;
     
     public HuffmanSolmu(Character merkki, Integer toistuvuus, HuffmanSolmu vasen, HuffmanSolmu oikea) {
         this.merkki = merkki;
         this.toistuvuus = toistuvuus;
         this.vasen = vasen;
         this.oikea = oikea;
+        System.out.println("Uusi merkki: " + merkki);
+        if (merkki == null) {
+            merkki = '-';
+        }
+        this.tunniste = System.nanoTime() % (toistuvuus * merkki);
+        this.tunnisteBinaarina = String.format("%24s", Long.toBinaryString(this.tunniste)).replace(' ', '0');
+        //System.out.println("Luotu uusi: " + this.tunnisteBinaarina);
+    }
+    
+    public HuffmanSolmu(Character merkki, Integer toistuvuus, String tunnisteId, HuffmanSolmu vasen, HuffmanSolmu oikea) {
+        this.merkki = merkki;
+        this.toistuvuus = toistuvuus;
+        this.vasen = vasen;
+        this.oikea = oikea;
+        this.tunniste = System.nanoTime() % (toistuvuus * merkki);
+        this.tunnisteBinaarina = tunnisteId;
+        //System.out.println("Luotu uusi: " + this.tunnisteBinaarina);
     }
     
     public Integer haeToistuvuus() {
         return this.toistuvuus;
+    }
+    
+    public Long haeTunniste() {
+        return this.tunniste;
     }
     
     public HuffmanSolmu haeVasen() {
@@ -40,44 +61,45 @@ public class HuffmanSolmu implements Comparable {
     }
     
     public String muunnaBinaariEsitysmuotoon() {
+        System.out.println("Merkki: " + this.merkki);
         // String.format("%16s", Integer.toBinaryString(1)).replace(' ', '0')
-        Character tmpMerkki = '-'; 
+        String id = this.tunnisteBinaarina;
+        System.out.println("id: " + id);
+        
+        String m = String.format("%24s", Integer.toBinaryString('-')).replace(' ', '0'); 
         if (this.merkki != null) {
-            tmpMerkki = this.merkki;
+            m = String.format("%24s", Integer.toBinaryString(this.merkki)).replace(' ', '0'); 
         }
-        Character tmpVasen = '-'; 
-        if (this.vasen != null && this.vasen.merkki != null) {
-            tmpVasen = this.vasen.merkki;
-        }
-        Character tmpOikea = '-'; 
-        if (this.oikea != null && this.oikea.merkki != null) {
-            tmpOikea = this.oikea.merkki;
-        }
-        Character tmpVanhempi = '-'; 
-        if (this.vanhempi != null && this.vanhempi.merkki != null) {
-            tmpVanhempi = this.vanhempi.merkki;
-        }
-        String m = String.format("%24s", Integer.toBinaryString(tmpMerkki)).replace(' ', '0');
-        //System.out.println("m: " + m);
-        String t = String.format("%24s", Integer.toBinaryString(this.toistuvuus)).replace(' ', '0') ;
-        //System.out.println("t: " + t);
-        String v = String.format("%24s", Integer.toBinaryString(tmpVasen)).replace(' ', '0');
-        //System.out.println("v: " + v);
-        String o = String.format("%24s", Integer.toBinaryString(tmpOikea)).replace(' ', '0');
-        //System.out.{println("o: " + o);
-        String V = String.format("%24s", Integer.toBinaryString(tmpVanhempi)).replace(' ', '0');
-        //System.out.println("V: " + V);
         
-        String binaariMerkkijono = m + t + v + o + V;
+        System.out.println("m: " + m);
+        String t = String.format("%24s", Integer.toBinaryString(0)).replace(' ', '0'); ; 
+        if (this.toistuvuus != null) {
+            t = String.format("%24s", Integer.toBinaryString(this.toistuvuus)).replace(' ', '0'); ;
+        }
         
-//        String binaariMerkkijono = String.format("%24s", Integer.toBinaryString(this.merkki)).replace(' ', '0')
-//                + String.format("%24s", Integer.toBinaryString(this.toistuvuus)).replace(' ', '0') 
-//                + String.format("%24s", Integer.toBinaryString(this.vasen.merkki)).replace(' ', '0') 
-//                + String.format("%24s", Integer.toBinaryString(this.oikea.merkki)).replace(' ', '0') 
-//                + String.format("%24s", Integer.toBinaryString(this.vanhempi.merkki)).replace(' ', '0');
+        System.out.println("t: " + t);
+        String v = "000000000000000000000000"; 
+        if (this.vasen != null) {
+            v = this.vasen.tunnisteBinaarina;
+        }
+        System.out.println("v: " + v);
+        String o = "000000000000000000000000"; 
+        if (this.oikea != null) {
+            o = this.oikea.tunnisteBinaarina;
+        }
+        System.out.println("o: " + o);
         
-        //System.out.println(Integer.toBinaryString('x'));
-        //System.out.println(Integer.toBinaryString(10000000));
+        String V = "000000000000000000000000"; 
+        if (this.vanhempi != null) {
+            V = this.vanhempi.tunnisteBinaarina;
+        }
+        System.out.println("V: " + V);
+        
+        String binaariMerkkijono = id + m + t + v + o + V;
+        
+        System.out.println("binaariMerkkijono: " + binaariMerkkijono);
+        
+
         return binaariMerkkijono;
     }
     
@@ -95,4 +117,7 @@ public class HuffmanSolmu implements Comparable {
             return -1;
         }
     }
+    
+
+    
 }
