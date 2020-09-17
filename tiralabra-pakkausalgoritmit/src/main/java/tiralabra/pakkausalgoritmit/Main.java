@@ -79,9 +79,11 @@ public class Main {
         h.muodostaTaulu(sisalto);
         h.muodostaPuu();
         String koodattu = h.koodaa();
+        System.out.println("Tulostetaan taulua...");
+        h.tulostaTaulut();
 
         // Kirjoitetaan tiedostoon...
-        tkirjoittaja.kirjoitaTiedosto(koodattu, h.haePuunjuuri(), h.getTaulu(), "huffman.dat");
+        tkirjoittaja.kirjoitaTiedosto(koodattu, h.haePuunjuuri(), h.haePuu(), h.haeIndeksi(), h.getTaulu(), "huffman.dat");
 
         // Lopputulokset...
         int alkuperainen = binaarimuoto.length();  // Ei vastaa todellista kokoa, mutta lienee riittävän lähellä?

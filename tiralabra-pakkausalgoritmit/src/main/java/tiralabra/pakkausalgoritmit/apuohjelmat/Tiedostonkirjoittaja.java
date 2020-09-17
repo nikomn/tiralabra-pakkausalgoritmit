@@ -10,7 +10,7 @@ import tiralabra.pakkausalgoritmit.HuffmanSolmu;
 
 public class Tiedostonkirjoittaja {
 
-    public void kirjoitaTiedosto(String aineisto, HuffmanSolmu puunjuuri, HashMap<Character, HuffmanSolmu> merkkitaulu, String tiedostonnimi) throws Exception {
+    public void kirjoitaTiedosto(String aineisto, HuffmanSolmu puunjuuri, HuffmanSolmu[] puu, Integer pituus, HashMap<Character, HuffmanSolmu> merkkitaulu, String tiedostonnimi) throws Exception {
         // Formaatti, ehkä...?
         //
         // taulunpituus(tavuina)|ylihypättävät(bitti lkm)|taulu|data
@@ -18,7 +18,7 @@ public class Tiedostonkirjoittaja {
         // esim. 'ab'
         // 
         //
-        int taulunPituus = merkkitaulu.size();
+        int taulunPituus = pituus;
         String taulunPituusBinaariformaatissa = String.format("%24s", Integer.toBinaryString(taulunPituus)).replace(' ', '0');
 
         Double tasan = Math.ceil(aineisto.length() / 8.0);
@@ -30,9 +30,14 @@ public class Tiedostonkirjoittaja {
         String puunJuuriBinaariformaatissa = puunjuuri.muunnaBinaariEsitysmuotoon();
 
         String taulu = "";
-        for (Character avain : merkkitaulu.keySet()) {
-            //System.out.println(avain + ": " + taulu2.get(avain).toistuvuus);
-            taulu = taulu + merkkitaulu.get(avain).muunnaBinaariEsitysmuotoon();
+//        for (Character avain : merkkitaulu.keySet()) {
+//            //System.out.println(avain + ": " + taulu2.get(avain).toistuvuus);
+//            taulu = taulu + merkkitaulu.get(avain).muunnaBinaariEsitysmuotoon();
+//        }
+        
+        for (int i = 0; i < taulunPituus; i++) {
+            taulu = taulu + puu[i].muunnaBinaariEsitysmuotoon();
+            
         }
 
         String kokoAineisto = taulunPituusBinaariformaatissa + skippiBitit

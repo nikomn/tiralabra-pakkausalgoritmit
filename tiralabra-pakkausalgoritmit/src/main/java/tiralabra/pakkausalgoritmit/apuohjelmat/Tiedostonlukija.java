@@ -38,7 +38,7 @@ public class Tiedostonlukija {
         for (int i = 0; i < merkkijono.length(); i++) {
             x = x + merkkijono.charAt(i);
             if (x.length() == 24) {
-                //System.out.println("x: " + x);
+                System.out.println("x: " + x);
                 dataLohkot[indeksi] = x;
                 x = "";
                 indeksi++;
