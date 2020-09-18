@@ -9,8 +9,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- *
- * @author nikoniem
+ * Huffman solmujen ominaisuuksia testaava luokka 
  */
 public class TestiHuffmanSolmu {
     @Test

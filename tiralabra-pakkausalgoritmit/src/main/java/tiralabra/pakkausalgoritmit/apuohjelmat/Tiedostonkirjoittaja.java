@@ -8,16 +8,24 @@ import java.util.Map;
 import java.util.Properties;
 import tiralabra.pakkausalgoritmit.HuffmanSolmu;
 
+/**
+ * Luokka sisältää tiedostojen kirjoittamiseen tarvittavat toiminnallisuudet. 
+ */
 public class Tiedostonkirjoittaja {
 
+    /**
+     * Paluuarvoton metodi kirjoittaa tiedostoonHuffman algoritmilla koodatun tekstin 
+     * binäärimuotoisena.
+     *
+     * @param aineisto Huffman algoritmilla koodattu merkkijono
+     * @param puunjuuri Huffman puun juurisolmu
+     * @param pituus Huffmanpuun solmujen määrä
+     * @param puu Huffmanpuun solmuja sisältävä taulukko
+     * @param merkkitaulu Merkkien toistuvuudet sisältävä taulu
+     * @param tiedostonnimi kohdetiedoston nimi
+     *
+     */
     public void kirjoitaTiedosto(String aineisto, HuffmanSolmu puunjuuri, HuffmanSolmu[] puu, Integer pituus, HashMap<Character, HuffmanSolmu> merkkitaulu, String tiedostonnimi) throws Exception {
-        // Formaatti, ehkä...?
-        //
-        // taulunpituus(tavuina)|ylihypättävät(bitti lkm)|taulu|data
-        //        
-        // esim. 'ab'
-        // 
-        //
         int taulunPituus = pituus;
         String taulunPituusBinaariformaatissa = String.format("%24s", Integer.toBinaryString(taulunPituus)).replace(' ', '0');
 

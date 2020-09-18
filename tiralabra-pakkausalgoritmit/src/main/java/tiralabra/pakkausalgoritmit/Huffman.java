@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Luokka sisältää Huffman algoritmiin liittyvät toiminnallisuudet.
+ */
 public class Huffman {
 
     private HuffmanSolmu puunjuuri;
@@ -15,7 +18,19 @@ public class Huffman {
     private HuffmanSolmu[] solmut;
     private HuffmanSolmu[] solmulista;
     private int indeksi;
-    
+
+    /**
+     * Metodi muodostaa HuffmanSolmun tiedostosta luetun datan perusteella.
+     *
+     * @param tunnisteString, binäärimuotoinen merkkijono, joka sisältää
+     * HuffmanSolmu-olion uniikin tunnisteen binäärimuotoon muunnettuna
+     * @param merkiString, binäärimuotoinen merkkijono, joka sisältää
+     * merkkijonon tai null arvon binäärimuotoon muunnettuna
+     * @param toistuvuusString, binäärimuotoinen merkkijono, joka sisältää
+     * kokonaisluvun binäärimuotoon muunnettuna.
+     *
+     * @return HuffmanSolmu-olio
+     */
     public HuffmanSolmu muodostaSolmu(String tunnisteString, String merkkiString, String toistuvuusString) {
         String m = null;
         if (!merkkiString.equals("000000000000000000000000")) {
@@ -24,11 +39,19 @@ public class Huffman {
             m = merkki + "";
         }
         Integer t = Integer.parseInt(toistuvuusString, 2);
-        
+
         HuffmanSolmu solmu = new HuffmanSolmu(m, t, tunnisteString, null, null);
         return solmu;
     }
-    
+
+    /**
+     * Paluuarvoton metodi joka määrittää paramatrina annettua tunnistetta
+     * vastaavan HuffmanSolmu-olion.
+     *
+     * Käytetään pakattujen tiedostojen purkamisen yhteydessä.
+     *
+     * @param tunniste, merkkijono
+     */
     public void asetaPuunjuuri(String tunniste) {
         for (int i = 0; i < this.solmulista.length; i++) {
             if (this.solmulista[i].tunnisteBinaarina.equals(tunniste)) {
@@ -36,7 +59,18 @@ public class Huffman {
             }
         }
     }
-    
+
+    /**
+     * Paluuarvoton metodi joka yhdistää parametrina annettuja tunnisteita
+     * vastaavat HuffmanSolmut toisiinsa.
+     *
+     * Käytetään pakattujen tiedostojen purkamisen yhteydessä.
+     *
+     * @param tunniste, merkkijono
+     * @param vasen, merkkijono
+     * @param oikea, merkkijono
+     * @param vanhempi, merkkijono
+     */
     public void muodostaYhteys(String tunniste, String vasen, String oikea, String vanhempi) {
         System.out.println("Muodostetaan yhteyttä: ");
         System.out.println("Tunniste: " + tunniste);
@@ -59,7 +93,7 @@ public class Huffman {
                 V = i;
             }
         }
-        
+
         if (v != -1) {
             solmulista[s].vasen = solmulista[v];
         } else {
@@ -75,10 +109,17 @@ public class Huffman {
         } else {
             solmulista[s].vanhempi = null;
         }
-        
-        
+
     }
 
+    /**
+     * Paluuarvoton metodi joka käsittelee ja tulkitsee tiedostosta luetun
+     * binäärimuotoisen datan ja muodostaa sen pohjalta Huffmanpuun ja purkaa
+     * koodatun datan merkkijonomuotoon.
+     *
+     *
+     * @param tiedostonSisalto, merkkijonotaulu
+     */
     public void puraKoodattuTiedosto(String[] tiedostonSisalto) {
         String m = null;
         if (!tiedostonSisalto[4].equals("000000000000000000000000")) {
@@ -87,7 +128,7 @@ public class Huffman {
             m = merkki + "";
         }
         Integer t = Integer.parseInt(tiedostonSisalto[5], 2);
-        
+
         HuffmanSolmu juuri = new HuffmanSolmu(m, t, tiedostonSisalto[3], null, null);
         System.out.println("Juuri: " + juuri);
         String[] testi = new String[8];
@@ -106,7 +147,7 @@ public class Huffman {
         this.solmulista = new HuffmanSolmu[tauluPituus];
         Integer solmulistaIndeksi = 0;
         for (int i = 9; i < (tauluPituus * 6) + 7; i = i + 6) {
-            
+
             System.out.println("i: " + i);
             int merkkiNumero = Integer.parseInt(tiedostonSisalto[i + 1], 2);
             Character merkki = (char) merkkiNumero;
@@ -119,24 +160,23 @@ public class Huffman {
             this.solmulista[solmulistaIndeksi] = hs;
             solmulistaIndeksi++;
         }
-        
+
         int tiedostoIndeksi = 9;
         for (int i = 9; i < (tauluPituus * 6) + 7; i = i + 6) {
             muodostaYhteys(tiedostonSisalto[i], tiedostonSisalto[i + 3], tiedostonSisalto[i + 4], tiedostonSisalto[i + 5]);
             tiedostoIndeksi = i + 6;
         }
-        
-        
+
         String koodattu = "";
         for (int i = tiedostoIndeksi; i < tiedostonSisalto.length; i++) {
             koodattu = koodattu + tiedostonSisalto[i];
         }
-        
+
         String subString = koodattu.substring(skippiBitit, koodattu.length());
         System.out.println("Koodatun tiedoston data: " + subString);
-        
+
         asetaPuunjuuri(tiedostonSisalto[3]);
-        
+
         String merkkijono = "";
         System.out.println("Puu:");
         HuffmanSolmu s = this.puunjuuri;
@@ -167,14 +207,19 @@ public class Huffman {
                 }
             }
         }
-        
-        System.out.println("Purettu merkkijono: " + merkkijono);
-        
-        
-    }
-    
-    
 
+        System.out.println("Purettu merkkijono: " + merkkijono);
+
+    }
+
+    /**
+     * Paluuarvoton metodi joka muodostaa merkkien toistuvuudet sisältävän
+     * taulun.
+     *
+     * Käytetään pakattujen tiedostojen pakkaamisen yhteydessä.
+     *
+     * @param mj, merkkijono
+     */
     public void muodostaTaulu(String mj) {
         this.taulu = new HashMap<>();
         this.sisalto = mj;
@@ -183,7 +228,7 @@ public class Huffman {
             char m = this.sisalto.charAt(i);
             //System.out.println("Käsitellään merkkiä: " + m);
             if (!this.taulu.containsKey(m)) {
-                this.taulu.put(m, new HuffmanSolmu(m  + "", 1, null, null));
+                this.taulu.put(m, new HuffmanSolmu(m + "", 1, null, null));
             } else {
                 this.taulu.get(m).toistuvuus++;
             }
@@ -193,24 +238,51 @@ public class Huffman {
 
     }
 
+    /**
+     * Metodi hakee HuffmanSolmujen toistuvuudet sisältävän taulukon koon.
+     *
+     * @return taulunkoko kokonaislukuna
+     */
     public int haeTaulunKoko() {
         return this.taulu.size();
     }
 
+    /**
+     * Metodi hakee Huffmanpuun juureksi määritellyn HuffmanSolmun.
+     *
+     * @return HuffmanSolmu
+     */
     public HuffmanSolmu haePuunjuuri() {
         return this.puunjuuri;
     }
-    
+
+    /**
+     * Metodi hakee taulukon, joka sisältää kaikki HuffmanSolmut.
+     *
+     * @return HuffmanSolmuja sisältävä taulukko
+     */
     public HuffmanSolmu[] haePuu() {
         return this.solmut;
     }
-    
+
+    /**
+     * Metodi hakee HuffmanSolmuja sisältävän taulukon nykyisen indeksin.
+     *
+     * @return kokonaisluku
+     */
     public Integer haeIndeksi() {
         return this.indeksi;
     }
-    
-    
 
+    /**
+     * Metodi hakee parametrina määritellystä HuffmanSolmusta lähtien puun
+     * juureksi määritellyn Huffman solmun ja palauttaa niiden välillä kuljetun
+     * matkan merkkijonomuodossa.
+     *
+     * @param alku, HuffmanSolmu
+     *
+     * @return merkkijono
+     */
     public String etsiJuuri(HuffmanSolmu alku) {
         //System.out.println("Haku alkaa...");
         //System.out.println("Etsitään merkkiä " + haettavaMerkki);
@@ -237,6 +309,12 @@ public class Huffman {
         return koodi;
     }
 
+    /**
+     * Metodi koodaa merkkijonon Huffman formaattiin.
+     *
+     *
+     * @return merkkijono
+     */
     public String koodaa() {
         System.out.println("Koodataan tekstiä...");
         String koodattu = "";
@@ -261,6 +339,12 @@ public class Huffman {
         return koodattu;
     }
 
+    /**
+     * Paluuarvoton metodi joka muodostaa Huffman puun.
+     *
+     * Käytetään pakkaamisessa.
+     *
+     */
     public void muodostaPuu() {
         this.solmut = new HuffmanSolmu[99999];
         this.indeksi = 0;
@@ -295,10 +379,21 @@ public class Huffman {
         }
     }
 
+    /**
+     * Metodi hakee HuffmanSolmujen toistuvuuksista kirjaa pitävän taulun.
+     *
+     * @return Hajautustaulu
+     */
     public HashMap<Character, HuffmanSolmu> getTaulu() {
         return this.taulu;
     }
-    
+
+    /**
+     * Paluuarvotn metodi joka tulostaa puuhun kuuluvat HuffmanSolmut.
+     * 
+     * Enimmäkseen kehitysaikaisia debug tarkoituksia varten.
+     *
+     */
     public void tulostaTaulut() {
         //System.out.println(Arrays.toString(this.solmut));
         for (int i = 0; i < this.indeksi; i++) {

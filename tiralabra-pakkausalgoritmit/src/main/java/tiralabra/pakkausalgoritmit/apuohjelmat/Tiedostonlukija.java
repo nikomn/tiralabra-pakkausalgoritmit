@@ -7,8 +7,18 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Scanner;
 
+/**
+ * Luokka sisältää tiedostojen lukemiseen tarvittavat toiminnot.
+ */
 public class Tiedostonlukija {
 
+    /**
+     * Metodi lukee tavallisen tekstitiedoston sisällön.
+     *
+     * @param tiedosto tiedoston nimi ja sijainti
+     *
+     * @return merkkijono
+     */
     public String lueTiedosto(String tiedosto) throws Exception {
         String mjono = "";
         try {
@@ -28,11 +38,19 @@ public class Tiedostonlukija {
         return mjono;
     }
 
+    /**
+     * Metodi erottelee Huffman algoritmilla pakatusta tiedostosta luetut
+     * bitit määrämittaisiin kenttiin.
+     *
+     * @param merkkijono nollista ja ykkösistä koostuva merkkijono
+     *
+     * @return nollista ja ykkösistä koostuvia merkkijonoja sisältävä taulukko
+     */
     public String[] erotteleKentat(String merkkijono) {
         int lohkojenMaara = merkkijono.length() / 24;
         //System.out.println("Lohkot: " + lohkojenMaara);
         String[] dataLohkot = new String[lohkojenMaara];
-        
+
         String x = "";
         int indeksi = 0;
         for (int i = 0; i < merkkijono.length(); i++) {
@@ -44,19 +62,13 @@ public class Tiedostonlukija {
                 indeksi++;
             }
         }
-        
+
         //System.out.println(Arrays.toString(dataLohkot));
-        
         String[] kentat = new String[5];
-        
+
         int tauluPituus = Integer.parseInt(dataLohkot[1], 2);
         int skippiBitit = Integer.parseInt(dataLohkot[2], 2);
-        
-        
-        
-        
-        
-        
+
 //        merkkijono = merkkijono.substring(24, merkkijono.length());
 //        
 //        String taulunPituus = merkkijono.substring(0, 24);
@@ -80,10 +92,16 @@ public class Tiedostonlukija {
 //        merkkijono = merkkijono.substring(120 + taulunpituusNumerona, merkkijono.length() - 1);
 //        String data = merkkijono;
 //        kentat[4] = data;
-
         return dataLohkot;
     }
 
+    /**
+     * Metodi lukee Huffman algoritmilla koodatun tiedoston sisällön.
+     *
+     * @param tiedosto tiedoston nimi ja sijainti
+     *
+     * @return nollista ja ykkösistä koostuvia merkkijonoja sisältävä taulukko
+     */
     public String[] lueKoodattuTiedosto(String tiedosto) throws Exception {
         String mjono = "";
         try {

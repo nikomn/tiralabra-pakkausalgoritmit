@@ -5,8 +5,7 @@ import org.junit.Test;
 import tiralabra.pakkausalgoritmit.Huffman;
 
 /**
- *
- * @author nikoniem
+ * Huffman algoritmin keskeisten ominaisuuksien testaukset 
  */
 public class TestiHuffman {
 
