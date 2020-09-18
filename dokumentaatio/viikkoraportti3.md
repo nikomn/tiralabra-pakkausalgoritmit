@@ -17,7 +17,7 @@
 
 ### Mitä olen tehnyt
 
-Tällä viikolla törmäsin jatkuvasti ongelmiin Huffman algoritmilla koodattujen tiedostojen kirjoittamisen ja erityisesti lukemisen kohdalla. Kyseisestä operaatiosta on muodostunut huomattavasti työläämpi urakka, kuin mitä arvelin ja tilanne alkaa näyttää pahalta kyseisen ominaisuuden kohdalla. Ongelmaksi muodostuu ennenkaikkea se, miten saisin järkevällä tavalla tallennettua koodin purkamiseen tarvittavan taulun ja myöhemmin purettua sen ja tulkittua sen taas auki. Mikään aikaisempi kurssi ei ole antanut kauheasti eväitä tällaiseen, joten käytännössä joudun tekemään toteutusta täysin ilman mitään ennakkotietoja. Käytännössä toteutus edellyttää, että määrittelen kokonaan uuden tiedostoformaatin ja sen tulkintaan liittyvät asiat, joka tuntuu olevan enimmäkseen kurssin aiheen ulkopuolista asiaa, mutta en oikein ymmärrä, miten voisin kirjoittaa omalla algoritmillani koodatun bittitason datan tiedostoo ja lukea sen sieltä suoraan ilman, että toteutan koko tiedoston määrittelyn itse. Tämä loputon nollien ja ykkösten pyörittely edes takaisin on vienyt tällä viikolla aivan liikaa aikaa, enkä ole vieläkään ehtinyt toteuttaa dokumentaatiota ja testejä. Alan varmaankin seuraavaksi keskittyä dokumentaatio puoleen, joka sekin tuntuu hieman hullulta, kun varsinainen ohjelma, jota olen dokumentoimassa ja testaamassa ei vielä toimi...
+Tällä viikolla törmäsin jatkuvasti ongelmiin Huffman algoritmilla koodattujen tiedostojen kirjoittamisen ja erityisesti lukemisen kohdalla. Kyseisestä operaatiosta on muodostunut huomattavasti työläämpi urakka, kuin mitä arvelin ja tilanne alkaa näyttää pahalta kyseisen ominaisuuden kohdalla. Ongelmaksi muodostuu ennenkaikkea se, miten saisin järkevällä tavalla tallennettua koodin purkamiseen tarvittavan taulun ja myöhemmin purettua sen ja tulkittua sen taas auki. Mikään aikaisempi kurssi ei ole antanut kauheasti eväitä tällaiseen, joten käytännössä joudun tekemään toteutusta täysin ilman mitään ennakkotietoja. Käytännössä toteutus edellyttää, että määrittelen kokonaan uuden tiedostoformaatin ja sen tulkintaan liittyvät asiat, joka tuntuu olevan enimmäkseen kurssin aiheen ulkopuolista asiaa, mutta en oikein ymmärrä, miten voisin kirjoittaa omalla algoritmillani koodatun bittitason datan tiedostoo ja lukea sen sieltä suoraan ilman, että toteutan koko tiedoston määrittelyn itse. Tämä loputon nollien ja ykkösten pyörittely edes takaisin on vienyt tällä viikolla aivan liikaa aikaa, enkä ole vieläkään ehtinyt toteuttaa dokumentaatiota ja testejä kunnolla. Alan varmaankin seuraavaksi keskittyä dokumentaatio puoleen, joka sekin tuntuu hieman hullulta, kun varsinainen ohjelma, jota olen dokumentoimassa ja testaamassa ei vielä toimi...
 
 ### Mitä opin
 
@@ -30,4 +30,4 @@ Epäselväksi jäi tällä viikolla todella iso määrä asioita. Edellyttääk�
 
 ## Aikaa käytetty
 
-Tällä viikolla aikaa käytety 10+ tuntia
+Tällä viikolla aikaa käytety 14 tuntia
