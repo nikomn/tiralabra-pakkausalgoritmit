@@ -1,4 +1,4 @@
-# Viikkoraportti - viikko 2
+# Viikkoraportti - viikko 3
 
 ## Yhteenveto tällä viikolla tehdyistä asioista:
 
