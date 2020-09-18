@@ -3,6 +3,7 @@
 ## Yhteenveto tällä viikolla tehdyistä asioista:
 
 - Tiedostojen lukemisen ja kirjoittamisen toteututtaminen
+- JavaDocin kirjoittaminen
 
 ## Mitä seuraavaksi
 
