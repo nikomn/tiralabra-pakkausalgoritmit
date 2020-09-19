@@ -8,6 +8,27 @@ plugins {
     id 'checkstyle'
 }
 
+//def jacoco = project.extensions.getByName("jacoco")
+//jacoco.toolVersion = "0.8.3"
+
+jacoco {
+    toolVersion = "0.8.3"
+}
+
+//compileJava.options.fork = true
+//compileJava.options.forkOptions.executable = '/usr/lib/jvm/java-8-openjdk-amd64/bin/javac'
+//
+//apply plugin: 'java'
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+//}
+//apply plugin: 'java'
+//compileJava {
+//    sourceCompatibility = '1.8'
+//    targetCompatibility = '1.8'
+//}
+
 checkstyle {
     toolVersion '8.17';    // your choice here
 }

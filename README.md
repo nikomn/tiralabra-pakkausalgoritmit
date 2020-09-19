@@ -13,3 +13,11 @@
 ## Huffman-tiedostoformaatin kuvaus
 
 [Huffman tiedostoformaatti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/huffmantiedostonformaatti.md)
+
+## Testauskattavuus
+
+![Jacoco-raportti 1](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco1.png)
+
+![Jacoco-raportti 2](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco2.png)
+
+![Jacoco-raportti 3](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco3.png)
