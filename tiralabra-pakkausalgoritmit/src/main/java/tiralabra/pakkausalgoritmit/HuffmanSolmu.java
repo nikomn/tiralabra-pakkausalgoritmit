@@ -70,6 +70,8 @@ public class HuffmanSolmu implements Comparable {
     public Integer haeToistuvuus() {
         return this.toistuvuus;
     }
+    
+    
 
     /**
      * Metodi hakee HuffmanSolmun uniikin tunnisteen

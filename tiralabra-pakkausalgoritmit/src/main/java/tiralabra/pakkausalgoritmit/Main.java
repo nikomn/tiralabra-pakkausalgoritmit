@@ -13,50 +13,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-//        HuffmanSolmu z = new HuffmanSolmu('z', 10000, null, null);
-//        HuffmanSolmu y = new HuffmanSolmu('y', 10000, null, null);
-//        HuffmanSolmu x = new HuffmanSolmu('x', 10000, null, null);
-//
-//        y.vasen = x;
-//        y.oikea = z;
-//        y.vanhempi = x;
-//        System.out.println("y:");
-//        System.out.println(y.muunnaBinaariEsitysmuotoon());
-//        System.out.println("Binaarimuoto tuloste...");
-//
-//        String binaariesitysmuoto = y.muunnaBinaariEsitysmuotoon();
-//        System.out.println("Binaari:");
-//        System.out.println(binaariesitysmuoto);
-//        System.out.println("Kentät:");
-//        System.out.println(binaariesitysmuoto.substring(0, 24));
-//        System.out.println(binaariesitysmuoto.substring(24, 48));
-//        System.out.println(binaariesitysmuoto.substring(48, 72));
-//        System.out.println(binaariesitysmuoto.substring(72, 96));
-//        System.out.println(binaariesitysmuoto.substring(96, 120));
-//        System.out.println(binaariesitysmuoto.substring(120, 144));
-//        System.out.println("---");
-//        System.out.println("3 solmua...");
-//        List<HuffmanSolmu> tmp = new ArrayList<>();
-//        tmp.add(z);
-//        tmp.add(x);
-//        tmp.add(y);
-//        for (HuffmanSolmu s : tmp) {
-//            String bf = s.muunnaBinaariEsitysmuotoon();
-//            System.out.println("Binaari:");
-//            System.out.println(bf);
-//            System.out.println("Kentät:");
-//            System.out.println(bf.substring(0, 24));
-//            System.out.println(bf.substring(24, 48));
-//            System.out.println(bf.substring(48, 72));
-//            System.out.println(bf.substring(72, 96));
-//            System.out.println(bf.substring(96, 120));
-//            System.out.println(bf.substring(120, 144));
-//            System.out.println("---");
-//
-//        }
-        //System.out.println(Integer.toBinaryString('x'));
-        //System.out.println(Integer.toBinaryString(10000000));
-
         // Työvälineiden alustus
         Tiedostonlukija tlukija = new Tiedostonlukija();
         BinaariMuotoilija binaarimuuntaja = new BinaariMuotoilija();
@@ -78,12 +34,26 @@ public class Main {
         // Huffman koodaus...
         h.muodostaTaulu(sisalto);
         h.muodostaPuu();
+        h.tulostaKoodit();
+        h.muodostaAvaintaulu();
+        System.out.println("\n\n");
+        System.out.println("Binääritaulu:");
+        String x = h.avaintauluBinaarina();
+        System.out.println("\n");
+        String koodattuna = "";
+        for (int i = 0; i < sisalto.length(); i++) {
+            koodattuna = h.haeAvaintaulusta(sisalto.charAt(i)) + koodattuna;
+        }
+        System.out.println("Avaintaulusta haettuna:");
+        System.out.println(koodattuna);
+        System.out.println("Koodataan vanhalla tavalla...");
         String koodattu = h.koodaa();
         System.out.println("Tulostetaan taulua...");
         h.tulostaTaulut();
 
         // Kirjoitetaan tiedostoon...
-        tkirjoittaja.kirjoitaTiedosto(koodattu, h.haePuunjuuri(), h.haePuu(), h.haeIndeksi(), h.getTaulu(), "huffman.dat");
+        //tkirjoittaja.kirjoitaTiedosto(koodattu, h.haePuunjuuri(), h.haePuu(), h.haeIndeksi(), h.getTaulu(), "huffman.dat");
+        tkirjoittaja.kirjoitaTiedosto2(koodattuna, h.avaintauluBinaarina(), h.haeIndeksi(), "huffman2.dat");
 
         // Lopputulokset...
         int alkuperainen = binaarimuoto.length();  // Ei vastaa todellista kokoa, mutta lienee riittävän lähellä?
@@ -108,12 +78,23 @@ public class Main {
 
         System.out.println("Tiedostosta luettuna: ");
         //System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
-        String[] luettu = tlukija.lueKoodattuTiedosto("huffman.dat");
-        String luettuKoodattu = luettu[luettu.length - 1];
-        String subString = luettuKoodattu.substring(lkm, luettuKoodattu.length());
+        //String[] luettu = tlukija.lueKoodattuTiedosto("huffman.dat");
+        //String luettuKoodattu = luettu[luettu.length - 1];
+        //String subString = luettuKoodattu.substring(lkm, luettuKoodattu.length());
         //System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
-        System.out.println(subString);
-        h.puraKoodattuTiedosto(luettu);
+        //System.out.println(subString);
+        //h.puraKoodattuTiedosto(luettu);
+        String luettu = tlukija.lueKoodattuTiedosto2("huffman2.dat");
+        boolean dataAlkanut = false;
+        for (int i = 0; i < luettu.length(); i++) {
+            if (!dataAlkanut && luettu.charAt(i) == '1') {
+                dataAlkanut = true;
+            }
+            if (dataAlkanut) {
+                System.out.println(luettu.charAt(i));
+            }
+        }
+        System.out.println(luettu);
 
     }
 

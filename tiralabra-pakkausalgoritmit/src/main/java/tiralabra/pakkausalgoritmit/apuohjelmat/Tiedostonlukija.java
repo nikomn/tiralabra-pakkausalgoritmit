@@ -39,8 +39,8 @@ public class Tiedostonlukija {
     }
 
     /**
-     * Metodi erottelee Huffman algoritmilla pakatusta tiedostosta luetut
-     * bitit määrämittaisiin kenttiin.
+     * Metodi erottelee Huffman algoritmilla pakatusta tiedostosta luetut bitit
+     * määrämittaisiin kenttiin.
      *
      * @param merkkijono nollista ja ykkösistä koostuva merkkijono
      *
@@ -120,6 +120,35 @@ public class Tiedostonlukija {
         String[] kentat = erotteleKentat(mjono);
 
         return kentat;
+        //return mjono;
+    }
+
+    /**
+     * Metodi lukee Huffman algoritmilla koodatun tiedoston sisällön.
+     *
+     * @param tiedosto tiedoston nimi ja sijainti
+     *
+     * @return nollista ja ykkösistä koostuva merkkijono
+     */
+    public String lueKoodattuTiedosto2(String tiedosto) throws Exception {
+        String mjono = "";
+        try {
+            byte[] bitit = Files.readAllBytes(Paths.get(tiedosto));
+            //System.out.println(Arrays.toString(bitit));
+            for (int i = 0; i < bitit.length; i++) {
+                //System.out.println("bitti: " + bitit[i]);
+                //System.out.println(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
+                mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+                
+
+            }
+        } catch (Exception e) {
+            System.out.println("Virhe tiedoston lukemisessa!");
+            mjono = "-1";
+        }
+
+        //String[] kentat = erotteleKentat(mjono);
+        return mjono;
         //return mjono;
     }
 
