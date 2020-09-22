@@ -18,7 +18,10 @@ public class Huffman {
     private String sisalto;
     private HuffmanSolmu[] solmut;
     private HuffmanSolmu[] solmulista;
+    private HuffmanSolmu[] tiedostostaLuettuPuu = new HuffmanSolmu[999999];
     private int indeksi;
+    private Integer puuIndeksi;
+    //private String puu;
 
     /**
      * Metodi muodostaa HuffmanSolmun tiedostosta luetun datan perusteella.
@@ -43,6 +46,48 @@ public class Huffman {
 
         HuffmanSolmu solmu = new HuffmanSolmu(m, t, tunnisteString, null, null);
         return solmu;
+    }
+
+    public String puunMuoto(HuffmanSolmu solmu) {
+        String puu = "";
+        System.out.println("solmu: " + solmu);
+        if (solmu.merkki.length() == 1) {
+            puu = "0" + puu;
+        } else {
+            puu = "1" + puu;
+            puu = puunMuoto(solmu.vasen) + puu;
+            puu = puunMuoto(solmu.oikea) + puu;
+        }
+
+        System.out.println("Puu: " + puu);
+        return puu;
+
+    }
+
+    public HuffmanSolmu luePuuTiedostosta(String puu) {
+        if (this.puuIndeksi == null) {
+            this.puuIndeksi = 0;
+        }
+        Character pala = puu.charAt(this.puuIndeksi);
+
+        if (pala == '0') {
+            HuffmanSolmu s = new HuffmanSolmu(null, null, null, null);
+            this.tiedostostaLuettuPuu[this.puuIndeksi] = s;
+            this.puuIndeksi++;
+            return s;
+        } else {
+            HuffmanSolmu s = new HuffmanSolmu(null, null, null, null);
+            this.tiedostostaLuettuPuu[this.puuIndeksi] = s;
+            this.puuIndeksi++;
+            s.vasen = luePuuTiedostosta(puu);
+            s.oikea = luePuuTiedostosta(puu);
+            return s;
+        }
+
+    }
+
+    public HuffmanSolmu[] haeTiedostostaLuettuPuu() {
+        return this.tiedostostaLuettuPuu;
     }
 
     /**
@@ -115,6 +160,56 @@ public class Huffman {
 
     /**
      * Paluuarvoton metodi joka käsittelee ja tulkitsee tiedostosta luetun
+     * binäärimuotoisen datan ja purkaa koodatun datan merkkijonomuotoon.
+     *
+     *
+     * @param tiedostonSisalto, merkkijono
+     */
+    public void puraKoodattuTiedosto2(String tiedostonSisalto) {
+        HashMap<String, Character> koodiTaulu = new HashMap<>();
+
+        int tiedostoIndeksi = 0;
+
+        // Etsitään datan alku, ts. ensimmäinen 1
+        boolean dataAlkanut = false;
+        while (!dataAlkanut) {
+            Character b = tiedostonSisalto.charAt(tiedostoIndeksi);
+            if (b == '1') {
+                dataAlkanut = true;
+                tiedostoIndeksi = tiedostoIndeksi + 8;
+            } else {
+                tiedostoIndeksi++;
+            }
+        }
+
+        String lkmString = tiedostonSisalto.substring(tiedostoIndeksi, tiedostoIndeksi + 24);
+        System.out.println("pituus: " + lkmString);
+        int tauluPituus = Integer.parseInt(lkmString, 2);
+        System.out.println("pituus: " + tauluPituus);
+        tiedostoIndeksi = tiedostoIndeksi + 24;
+        for (int i = 0; i < tauluPituus; i++) {
+            String merkkiString = tiedostonSisalto.substring(tiedostoIndeksi, tiedostoIndeksi + 8);
+            int merkkiNumero = Integer.parseInt(merkkiString, 2);
+            Character merkki = (char) merkkiNumero;
+            tiedostoIndeksi = tiedostoIndeksi + 8;
+            String koodatunMerkinPituusString = tiedostonSisalto.substring(tiedostoIndeksi, tiedostoIndeksi + 8);
+            int koodatunMerkinPituus = Integer.parseInt(koodatunMerkinPituusString, 2);
+            tiedostoIndeksi = tiedostoIndeksi + 8;
+            String koodatunMerkkiString = tiedostonSisalto.substring(tiedostoIndeksi, tiedostoIndeksi + koodatunMerkinPituus);
+            tiedostoIndeksi = tiedostoIndeksi + koodatunMerkinPituus;
+            System.out.println(koodatunMerkkiString + ": " + merkki);
+            koodiTaulu.put(koodatunMerkkiString, merkki);
+        }
+
+        String koodattuData = tiedostonSisalto.substring(tiedostoIndeksi, tiedostonSisalto.length());
+
+        System.out.println("Koodattu: " + koodattuData);
+
+        //int solmujenMaara = 0;
+    }
+
+    /**
+     * Paluuarvoton metodi joka käsittelee ja tulkitsee tiedostosta luetun
      * binäärimuotoisen datan ja muodostaa sen pohjalta Huffmanpuun ja purkaa
      * koodatun datan merkkijonomuotoon.
      *
@@ -179,40 +274,66 @@ public class Huffman {
         asetaPuunjuuri(tiedostonSisalto[3]);
 
         String merkkijono = "";
-        System.out.println("Puu:");
-        HuffmanSolmu s = this.puunjuuri;
-        System.out.println("\t\t" + s.vasen.merkki + " | " + s.oikea.merkki);
-        s = s.vasen;
-        System.out.println(s.vasen.merkki + " | " + s.oikea.merkki);
-        s = s.oikea;
-        System.out.println(s);
-        //System.out.println(s.vasen.merkki);
+//        System.out.println("Puu:");
+//        HuffmanSolmu s = this.puunjuuri;
+//        System.out.println("\t\t" + s.vasen.merkki + " | " + s.oikea.merkki);
+//        s = s.vasen;
+//        System.out.println(s.vasen.merkki + " | " + s.oikea.merkki);
+//        s = s.oikea;
+//        System.out.println(s);
+//        //System.out.println(s.vasen.merkki);
         HuffmanSolmu solmu = this.puunjuuri;
         // 110001011101001011101
         // abcdabcd
         //
         // aaaa\n == 01111
         // a == 1, \n == 0?
-        subString = "1101";
-        for (int i = subString.length() - 1; i > -1; i--) {
-            //for (int i = 0; i < subString.length(); i++) {
-            System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
+        
+        // Pitäisi olla 11 == a
+        /*
+        11: a -> 11
+        00: b -> 00
+        01: c -> 10
+        101: d -> 101
+        100: \n -> 001
+        */
+        // 10011101010011101010011
+        //            d c b a  
+        subString = "101100011"; //abcd
+        //subString = "10"; // c?
+        //subString = "00"; // b?
+        //subString = "11"; // a?
+        //subString = "01";
+        
+        
+        String kaanteinensubString = "";
+
+        for (int i = subString.length() - 1; i >= 0; i--) {
+            kaanteinensubString = kaanteinensubString + subString.charAt(i);
+        }
+        
+        subString = kaanteinensubString;
+        //for (int i = subString.length() - 1; i > -1; i--) {
+        for (int i = 0; i < subString.length(); i++) {
+            //System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
+            //System.out.println("solmu.vasen" + solmu.vasen);
+            
+            
+            if (subString.charAt(i) == '0') {
+                System.out.println("Vaihtuu vasempaan");
+                solmu = solmu.vasen;
+            } else {
+                System.out.println("Vaihtuu oikeaan");
+                solmu = solmu.oikea;
+            }
             System.out.println("Käsiteltävänä: " + subString.charAt(i));
-            System.out.println("solmu.vasen" + solmu.vasen);
+            System.out.println("Lehti " + solmu.merkki);
             if (solmu.vasen == null && solmu.oikea == null) {
                 System.out.println("Lehti " + solmu.merkki);
                 merkkijono = merkkijono + solmu.merkki;
                 solmu = this.puunjuuri;
-                System.out.println("Solmuna on nyt " + solmu.merkki);
-            } else {
-                if (subString.charAt(i) == '0') {
-                    System.out.println("Vaihtuu vasempaan");
-                    solmu = solmu.vasen;
-                } else {
-                    System.out.println("Vaihtuu oikeaan");
-                    solmu = solmu.oikea;
-                }
             }
+
         }
 
         System.out.println("Purettu merkkijono: " + merkkijono);
@@ -420,7 +541,7 @@ public class Huffman {
             System.out.println(avain + ": " + etsiJuuri(merkki));
         }
     }
-    
+
     public void muodostaAvaintaulu() {
         this.avainTaulu = new HashMap<>();
         for (Character avain : this.taulu.keySet()) {
@@ -430,11 +551,11 @@ public class Huffman {
             this.avainTaulu.put(merkki, koodi);
         }
     }
-    
+
     public String haeAvaintaulusta(Character merkki) {
         return this.avainTaulu.get(merkki);
     }
-    
+
     public String avaintauluBinaarina() {
         /*
         Esim:
@@ -459,33 +580,31 @@ public class Huffman {
         01100001 00000110
         ...
 
-        */
-        
+         */
+
         // 110 -> 00000110
         // String koodi = "110"
         // ("00000000" + koodi).substring(koodi.length())
-        
         String t = "";
-        
+
         for (Character avain : this.avainTaulu.keySet()) {
             String koodi = this.avainTaulu.get(avain);
             String koodiBinaari = ("00000000" + koodi).substring(koodi.length());
             String pituus = String.format("%8s", Integer.toBinaryString(koodi.length())).replace(' ', '0');;
             String merkki = String.format("%8s", Integer.toBinaryString(avain)).replace(' ', '0');
-            
+
             //     3    |    p     | 01001110100110001
             if (avain == '\n') {
                 System.out.println("  \\n    |    p   | " + koodi);
             } else {
                 System.out.println("   " + avain + "    |    p   | " + koodi);
             }
-            
+
             System.out.println(merkki + "|" + pituus + "|" + koodi);
             t = t + merkki + pituus + koodi;
-            
+
         }
-        
-        
+
         return t;
     }
 

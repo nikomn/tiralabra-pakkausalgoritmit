@@ -51,9 +51,23 @@ public class Main {
         System.out.println("Tulostetaan taulua...");
         h.tulostaTaulut();
 
+        String puunmuotoString = h.puunMuoto(h.haePuunjuuri());
+        HuffmanSolmu sss = h.luePuuTiedostosta(puunmuotoString);
+        System.out.println("sss: " + sss);
+        HuffmanSolmu[] y = h.haeTiedostostaLuettuPuu();
+        for (int i = 0; i < y.length; i++) {
+            HuffmanSolmu u = y[i];
+            if (u == null) {
+                break;
+            } else {
+                System.out.println(u);
+            }
+            
+        }
+
         // Kirjoitetaan tiedostoon...
-        //tkirjoittaja.kirjoitaTiedosto(koodattu, h.haePuunjuuri(), h.haePuu(), h.haeIndeksi(), h.getTaulu(), "huffman.dat");
-        tkirjoittaja.kirjoitaTiedosto2(koodattuna, h.avaintauluBinaarina(), h.haeIndeksi(), "huffman2.dat");
+        tkirjoittaja.kirjoitaTiedosto(koodattu, h.haePuunjuuri(), h.haePuu(), h.haeIndeksi(), h.getTaulu(), "huffman.dat");
+        //tkirjoittaja.kirjoitaTiedosto2(koodattuna, h.avaintauluBinaarina(), h.haeTaulunKoko(), "huffman2.dat");
 
         // Lopputulokset...
         int alkuperainen = binaarimuoto.length();  // Ei vastaa todellista kokoa, mutta lienee riittävän lähellä?
@@ -78,23 +92,24 @@ public class Main {
 
         System.out.println("Tiedostosta luettuna: ");
         //System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
-        //String[] luettu = tlukija.lueKoodattuTiedosto("huffman.dat");
-        //String luettuKoodattu = luettu[luettu.length - 1];
-        //String subString = luettuKoodattu.substring(lkm, luettuKoodattu.length());
+        String[] luettu = tlukija.lueKoodattuTiedosto("huffman.dat");
+        String luettuKoodattu = luettu[luettu.length - 1];
+        String subString = luettuKoodattu.substring(lkm, luettuKoodattu.length());
         //System.out.println(tlukija.lueKoodattuTiedosto("huffman.dat"));
-        //System.out.println(subString);
-        //h.puraKoodattuTiedosto(luettu);
-        String luettu = tlukija.lueKoodattuTiedosto2("huffman2.dat");
-        boolean dataAlkanut = false;
-        for (int i = 0; i < luettu.length(); i++) {
-            if (!dataAlkanut && luettu.charAt(i) == '1') {
-                dataAlkanut = true;
-            }
-            if (dataAlkanut) {
-                System.out.println(luettu.charAt(i));
-            }
-        }
-        System.out.println(luettu);
+        System.out.println(subString);
+        h.puraKoodattuTiedosto(luettu);
+        //String luettu = tlukija.lueKoodattuTiedosto2("huffman2.dat");
+//        boolean dataAlkanut = false;
+//        for (int i = 0; i < luettu.length(); i++) {
+//            if (!dataAlkanut && luettu.charAt(i) == '1') {
+//                dataAlkanut = true;
+//            }
+//            if (dataAlkanut) {
+//                System.out.println(luettu.charAt(i));
+//            }
+//        }
+//        System.out.println(luettu);
+//        h.puraKoodattuTiedosto2(luettu);
 
     }
 

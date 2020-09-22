@@ -103,6 +103,10 @@ public class Tiedostonkirjoittaja {
                 + kaanteinenPuunjuuri + kaanteinenSkippiBitit 
                 + kaanteinenTaulunPituusBinaariformaatissa + "000000000000000000000001";
         
+//        String kirjoitettavaData = "100000000000000000000000" 
+//                + taulunPituusBinaariformaatissa + skippiBitit 
+//                + puunJuuriBinaariformaatissa + taulu + aineisto;
+        
         //System.out.println("Taulu: " + taulu);
 //        
 //        for (int i = taulu.length() - 1; i >= 0; i--) {
@@ -199,6 +203,8 @@ public class Tiedostonkirjoittaja {
         
         String kirjoitettavaData = kaanteinenAineisto + kaanteinenTaulu 
                 + kaanteinenTaulunPituusBinaariformaatissa + "00000001";
+        
+        
         
         
         System.out.println("Kirjoitetaan data:");
