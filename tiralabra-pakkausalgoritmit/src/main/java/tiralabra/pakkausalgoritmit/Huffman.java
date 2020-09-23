@@ -118,14 +118,14 @@ public class Huffman {
      * @param vanhempi, merkkijono
      */
     public void muodostaYhteys(String tunniste, String vasen, String oikea, String vanhempi) {
-        System.out.println("Muodostetaan yhteyttä: ");
-        System.out.println("Tunniste: " + tunniste);
+        //System.out.println("Muodostetaan yhteyttä: ");
+        //System.out.println("Tunniste: " + tunniste);
         int s = -1;
         int o = -1;
         int v = -1;
         int V = -1;
         for (int i = 0; i < this.solmulista.length; i++) {
-            System.out.println("this.solmulista[i].tunnisteBinaarina " + this.solmulista[i].tunnisteBinaarina);
+            //System.out.println("this.solmulista[i].tunnisteBinaarina " + this.solmulista[i].tunnisteBinaarina);
             if (this.solmulista[i].tunnisteBinaarina.equals(tunniste)) {
                 s = i;
             }
@@ -226,33 +226,33 @@ public class Huffman {
         Integer t = Integer.parseInt(tiedostonSisalto[5], 2);
 
         HuffmanSolmu juuri = new HuffmanSolmu(m, t, tiedostonSisalto[3], null, null);
-        System.out.println("Juuri: " + juuri);
-        String[] testi = new String[8];
-        testi[0] = "100000000000000000000000";  // headeri
-        testi[1] = "000000000000000000000001";  // taulunpituus
-        testi[2] = "000000000000000000000011";  // skippibitit
-
-        testi[3] = "000000000000000001100001";  // merkki
-        testi[4] = "000000000000000000000010";  // toistuvuus
-        testi[5] = "000000000000000000101101";  // vasen
-        testi[5] = "000000000000000000101101";  // oikea
-        testi[6] = "000000000000000000101101";  // vanhempi
+        //System.out.println("Juuri: " + juuri);
+//        String[] testi = new String[8];
+//        testi[0] = "100000000000000000000000";  // headeri
+//        testi[1] = "000000000000000000000001";  // taulunpituus
+//        testi[2] = "000000000000000000000011";  // skippibitit
+//
+//        testi[3] = "000000000000000001100001";  // merkki
+//        testi[4] = "000000000000000000000010";  // toistuvuus
+//        testi[5] = "000000000000000000101101";  // vasen
+//        testi[5] = "000000000000000000101101";  // oikea
+//        testi[6] = "000000000000000000101101";  // vanhempi
         int tauluPituus = Integer.parseInt(tiedostonSisalto[1], 2);
         int skippiBitit = Integer.parseInt(tiedostonSisalto[2], 2);
-        System.out.println("taulun pituus: " + tauluPituus);
+        //System.out.println("taulun pituus: " + tauluPituus);
         this.solmulista = new HuffmanSolmu[tauluPituus];
         Integer solmulistaIndeksi = 0;
         for (int i = 9; i < (tauluPituus * 6) + 7; i = i + 6) {
 
-            System.out.println("i: " + i);
+            //System.out.println("i: " + i);
             int merkkiNumero = Integer.parseInt(tiedostonSisalto[i + 1], 2);
             Character merkki = (char) merkkiNumero;
-            System.out.println("Merkki: " + merkki);
+            //System.out.println("Merkki: " + merkki);
             int toistuvuus = Integer.parseInt(tiedostonSisalto[i + 2], 2);
             // Character merkki, Integer toistuvuus, HuffmanSolmu vasen, HuffmanSolmu oikea
             HuffmanSolmu hs = muodostaSolmu(tiedostonSisalto[i], tiedostonSisalto[i + 1], tiedostonSisalto[i + 2]);
             //HuffmanSolmu hs = new HuffmanSolmu(merkki + "", toistuvuus, tiedostonSisalto[i], null, null);
-            System.out.println(hs.muunnaBinaariEsitysmuotoon());
+            //System.out.println(hs.muunnaBinaariEsitysmuotoon());
             this.solmulista[solmulistaIndeksi] = hs;
             solmulistaIndeksi++;
         }
@@ -269,7 +269,7 @@ public class Huffman {
         }
 
         String subString = koodattu.substring(skippiBitit, koodattu.length());
-        System.out.println("Koodatun tiedoston data: " + subString);
+        //System.out.println("Koodatun tiedoston data: " + subString);
 
         asetaPuunjuuri(tiedostonSisalto[3]);
 
@@ -299,7 +299,7 @@ public class Huffman {
         */
         // 10011101010011101010011
         //            d c b a  
-        subString = "101100011"; //abcd
+        //subString = "101100011"; //abcd
         //subString = "10"; // c?
         //subString = "00"; // b?
         //subString = "11"; // a?
@@ -312,7 +312,7 @@ public class Huffman {
             kaanteinensubString = kaanteinensubString + subString.charAt(i);
         }
         
-        subString = kaanteinensubString;
+        //subString = kaanteinensubString;
         //for (int i = subString.length() - 1; i > -1; i--) {
         for (int i = 0; i < subString.length(); i++) {
             //System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
@@ -320,23 +320,23 @@ public class Huffman {
             
             
             if (subString.charAt(i) == '0') {
-                System.out.println("Vaihtuu vasempaan");
+                //System.out.println("Vaihtuu vasempaan");
                 solmu = solmu.vasen;
             } else {
-                System.out.println("Vaihtuu oikeaan");
+                //System.out.println("Vaihtuu oikeaan");
                 solmu = solmu.oikea;
             }
-            System.out.println("Käsiteltävänä: " + subString.charAt(i));
-            System.out.println("Lehti " + solmu.merkki);
+            //System.out.println("Käsiteltävänä: " + subString.charAt(i));
+            //System.out.println("Lehti " + solmu.merkki);
             if (solmu.vasen == null && solmu.oikea == null) {
-                System.out.println("Lehti " + solmu.merkki);
+                //System.out.println("Lehti " + solmu.merkki);
                 merkkijono = merkkijono + solmu.merkki;
                 solmu = this.puunjuuri;
             }
 
         }
 
-        System.out.println("Purettu merkkijono: " + merkkijono);
+        System.out.println("Tiedostosta luettu teksti: \n" + merkkijono);
 
     }
 
@@ -351,7 +351,8 @@ public class Huffman {
     public void muodostaTaulu(String mj) {
         this.taulu = new HashMap<>();
         this.sisalto = mj;
-        System.out.println("Muodostetaan merkkitaulua merkkijonolle " + this.sisalto + "...");
+        System.out.println("Muodostetaan merkkitaulua...");
+        //System.out.println("Muodostetaan merkkitaulua merkkijonolle " + this.sisalto + "...");
         for (int i = 0; i < this.sisalto.length(); i++) {
             char m = this.sisalto.charAt(i);
             //System.out.println("Käsitellään merkkiä: " + m);
@@ -445,9 +446,17 @@ public class Huffman {
      */
     public String koodaa() {
         System.out.println("Koodataan tekstiä...");
+        int merkkiMaara = this.sisalto.length();
+        int kasiteltavaMerkkiLkm = 0;
+        int prosenttiKokkonaisuudesta = merkkiMaara / 100;
         String koodattu = "";
         for (int i = 0; i < this.sisalto.length(); i++) {
+            kasiteltavaMerkkiLkm++;
             //System.out.println("Koodi on nyt " + koodattu);
+            if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+                double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (merkkiMaara * 1.0) * 100.0);
+                System.out.println(prosentti + "%" + " käsitelty...");
+            }
             char m = this.sisalto.charAt(i);
             //System.out.println("Käsitellään merkkiä: " + m);
             if (!this.taulu.containsKey(m)) {
@@ -459,7 +468,7 @@ public class Huffman {
                     System.out.println("Tässä on nyt joku virhe...");
                 }
                 //System.out.println("Löydetty solmu: " + solmu.merkki);
-                koodattu = etsiJuuri(solmu) + koodattu;
+                koodattu = koodattu + etsiJuuri(solmu);
             }
         }
         System.out.println("Koodaus valmis!");
