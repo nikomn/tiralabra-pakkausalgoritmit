@@ -48,6 +48,16 @@ public class Huffman {
         return solmu;
     }
 
+    public boolean kirjoita() {
+        /*
+        Todo... muunna tiedostonkirjoittaja siten, että sille annetaan kirjoitettava
+        bittijono. Generoi bittijono Huffman tiedostolle tässä ja LZ:lle
+        sen omassa luokassa ja anna ne tiedostonkirjoittajalle...
+        */
+        return true;
+
+    }
+
     public String puunMuoto(HuffmanSolmu solmu) {
         String puu = "";
         System.out.println("solmu: " + solmu);
@@ -288,7 +298,7 @@ public class Huffman {
         //
         // aaaa\n == 01111
         // a == 1, \n == 0?
-        
+
         // Pitäisi olla 11 == a
         /*
         11: a -> 11
@@ -296,7 +306,7 @@ public class Huffman {
         01: c -> 10
         101: d -> 101
         100: \n -> 001
-        */
+         */
         // 10011101010011101010011
         //            d c b a  
         //subString = "101100011"; //abcd
@@ -304,21 +314,18 @@ public class Huffman {
         //subString = "00"; // b?
         //subString = "11"; // a?
         //subString = "01";
-        
-        
         String kaanteinensubString = "";
 
         for (int i = subString.length() - 1; i >= 0; i--) {
             kaanteinensubString = kaanteinensubString + subString.charAt(i);
         }
-        
+
         //subString = kaanteinensubString;
         //for (int i = subString.length() - 1; i > -1; i--) {
         for (int i = 0; i < subString.length(); i++) {
             //System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
             //System.out.println("solmu.vasen" + solmu.vasen);
-            
-            
+
             if (subString.charAt(i) == '0') {
                 //System.out.println("Vaihtuu vasempaan");
                 solmu = solmu.vasen;

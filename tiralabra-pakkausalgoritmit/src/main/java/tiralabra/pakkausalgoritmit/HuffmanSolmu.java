@@ -122,7 +122,7 @@ public class HuffmanSolmu implements Comparable {
             m = String.format("%24s", Integer.toBinaryString(this.merkki.charAt(0))).replace(' ', '0');
         }
 
-        String t = String.format("%24s", Integer.toBinaryString(0)).replace(' ', '0');;
+        String t = String.format("%24s", Integer.toBinaryString(0)).replace(' ', '0');
         if (this.toistuvuus != null) {
             t = String.format("%24s", Integer.toBinaryString(this.toistuvuus)).replace(' ', '0');;
         }

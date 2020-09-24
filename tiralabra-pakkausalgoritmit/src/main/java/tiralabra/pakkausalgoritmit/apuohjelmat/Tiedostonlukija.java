@@ -37,6 +37,23 @@ public class Tiedostonlukija {
 
         return mjono;
     }
+    
+    
+    public String lueBinaaritiedosto(String tiedosto) throws Exception {
+        String mjono = "";
+        try {
+            byte[] bitit = Files.readAllBytes(Paths.get(tiedosto));
+            for (int i = 0; i < bitit.length; i++) {
+                mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+            }
+        } catch (Exception e) {
+            System.out.println("Virhe tiedoston lukemisessa!");
+            mjono = "-1";
+        }
+
+        return mjono;
+        
+    }
 
     /**
      * Metodi erottelee Huffman algoritmilla pakatusta tiedostosta luetut bitit
