@@ -14,7 +14,7 @@
 
 ## Käyttöohje
 
-[Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kauttoohje.md)
+[Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
 
 ## Huffman-tiedostoformaatin kuvaus
 
