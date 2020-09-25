@@ -10,6 +10,12 @@
 
 [Viikkoraportti 3](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti3.md)
 
+[Viikkoraportti 4](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti4.md)
+
+## Käyttöohje
+
+[Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kauttoohje.md)
+
 ## Huffman-tiedostoformaatin kuvaus
 
 [Huffman tiedostoformaatti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/huffmantiedostonformaatti.md)
