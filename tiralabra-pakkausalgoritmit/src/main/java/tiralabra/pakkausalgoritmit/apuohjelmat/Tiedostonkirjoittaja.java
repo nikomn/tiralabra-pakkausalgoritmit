@@ -158,16 +158,17 @@ public class Tiedostonkirjoittaja {
         int aineistonPituus = aineisto.length() + ylihypattavat;
         int kasiteltavana = 0;
         int prosenttiKokkonaisuudesta = aineistonPituus / 100;
-        String kaanteinenAineisto = "";
-
-        for (int i = aineisto.length() - 1; i >= 0; i--) {
-            kasiteltavana++;
-            if (kasiteltavana % prosenttiKokkonaisuudesta == 0) {
-                double prosentti = Math.round((kasiteltavana * 1.0) / (aineistonPituus * 1.0) * 100.0);
-                System.out.println(prosentti + "%" + " käsitelty...");
-            }
-            kaanteinenAineisto = kaanteinenAineisto + aineisto.charAt(i);
-        }
+        String kaanteinenAineisto = new StringBuilder(aineisto).reverse().toString();
+//        String kaanteinenAineisto = "";
+//
+//        for (int i = aineisto.length() - 1; i >= 0; i--) {
+//            kasiteltavana++;
+//            if (kasiteltavana % prosenttiKokkonaisuudesta == 0) {
+//                double prosentti = Math.round((kasiteltavana * 1.0) / (aineistonPituus * 1.0) * 100.0);
+//                System.out.println(prosentti + "%" + " käsitelty...");
+//            }
+//            kaanteinenAineisto = kaanteinenAineisto + aineisto.charAt(i);
+//        }
         //System.out.println("Ylihypättäviä: " + ylihypattavat);
         for (int i = 0; i < ylihypattavat; i++) {
             kasiteltavana++;

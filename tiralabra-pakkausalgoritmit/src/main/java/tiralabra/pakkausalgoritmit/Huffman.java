@@ -314,11 +314,15 @@ public class Huffman {
         //subString = "00"; // b?
         //subString = "11"; // a?
         //subString = "01";
-        String kaanteinensubString = "";
 
-        for (int i = subString.length() - 1; i >= 0; i--) {
-            kaanteinensubString = kaanteinensubString + subString.charAt(i);
-        }
+
+//        String kaanteinensubString = "";
+//
+//        for (int i = subString.length() - 1; i >= 0; i--) {
+//            kaanteinensubString = kaanteinensubString + subString.charAt(i);
+//        }
+        
+        String kaanteinenSubString = new StringBuilder(subString).reverse().toString();
 
         //subString = kaanteinensubString;
         //for (int i = subString.length() - 1; i > -1; i--) {
