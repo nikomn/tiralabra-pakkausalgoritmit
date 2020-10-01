@@ -16,6 +16,10 @@
 
 [Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
 
+## Algoritmien vertailua
+
+[Algoritmien vertailua](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/vertailua.md)
+
 ## Huffman-tiedostoformaatin kuvaus
 
 [Huffman tiedostoformaatti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/huffmantiedostonformaatti.md)
