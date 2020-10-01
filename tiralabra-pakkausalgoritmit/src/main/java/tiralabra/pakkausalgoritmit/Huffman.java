@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import tiralabra.pakkausalgoritmit.apuohjelmat.Tiedostonkirjoittaja;
 
 /**
  * Luokka sisältää Huffman algoritmiin liittyvät toiminnallisuudet.
@@ -346,8 +347,10 @@ public class Huffman {
             }
 
         }
+        Tiedostonkirjoittaja f = new Tiedostonkirjoittaja();
+        f.kirjoitaTekstiTiedostoon(merkkijono, "huffman_purettu.txt");
 
-        System.out.println("Tiedostosta luettu teksti: \n" + merkkijono);
+        //System.out.println("Tiedostosta luettu teksti: \n" + merkkijono);
 
     }
 

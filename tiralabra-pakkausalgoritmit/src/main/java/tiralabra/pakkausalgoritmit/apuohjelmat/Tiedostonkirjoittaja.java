@@ -2,6 +2,7 @@ package tiralabra.pakkausalgoritmit.apuohjelmat;
 
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +14,21 @@ import tiralabra.pakkausalgoritmit.HuffmanSolmu;
  */
 public class Tiedostonkirjoittaja {
 
+    public boolean kirjoitaTekstiTiedostoon(String data, String tiedostonNimi) {
+        try {
+            FileWriter tk = new FileWriter(tiedostonNimi);
+            tk.write(data);
+            tk.close();
+        } catch (Exception e) {
+            System.out.println("Odottamaton virhe " + e);
+            return false;
+
+        }
+        return true;
+    }
+
     public boolean kirjoitaTiedostoon(String data, String tiedostonNimi) {
-        
+
         /*
         Lisätään tiedoston alkuun ns. tasausbittejä, että tiedetään, mistä
         varsinainen data alkaa. 
@@ -47,7 +61,7 @@ public class Tiedostonkirjoittaja {
         on 000001 ja 7162 muuta bittiä ja taas on mahdotonta tietää luetusta
         tiedostosta onko varsinaista dataa 000001 ja 7162 muuta bittiä vai 
         00001 ja 7162 muuta bittiä vai 0001 ja 7162 muuta bittiä...
-        */
+         */
         Double tasan = Math.ceil(data.length() / 8.0);
         Double tasausBitit = 8 * tasan - data.length();
         String tasaaja = "00000001";
@@ -74,7 +88,7 @@ public class Tiedostonkirjoittaja {
             }
             kpl++;
         }
-        
+
         System.out.println("Vaihe 2. Kirjoitetaan tiedostoon...");
 
         try {

@@ -37,13 +37,21 @@ public class Tiedostonlukija {
 
         return mjono;
     }
-    
-    
+
     public String lueBinaaritiedosto(String tiedosto) throws Exception {
+
         String mjono = "";
         try {
             byte[] bitit = Files.readAllBytes(Paths.get(tiedosto));
+            int bittiMaara = bitit.length;
+            int kasiteltavaMerkkiLkm = 0;
+            double prosenttiKokkonaisuudesta = bittiMaara / 100;
             for (int i = 0; i < bitit.length; i++) {
+                kasiteltavaMerkkiLkm++;
+                if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+                    double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
+                    System.out.println(prosentti + "%" + " luettu...");
+                }
                 mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
             }
         } catch (Exception e) {
@@ -52,7 +60,7 @@ public class Tiedostonlukija {
         }
 
         return mjono;
-        
+
     }
 
     /**
@@ -156,7 +164,6 @@ public class Tiedostonlukija {
                 //System.out.println("bitti: " + bitit[i]);
                 //System.out.println(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
                 mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
-                
 
             }
         } catch (Exception e) {
