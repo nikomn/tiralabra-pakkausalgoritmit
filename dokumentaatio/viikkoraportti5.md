@@ -6,12 +6,13 @@
 - Ohjelman testaus erilaisilla tiedostoilla ja vikojen selvittely
 - Käyttöliittymän toteutus
 - Vertaisarviointi
+- Alustavat omat tietorakenteet
 
 ## Mitä seuraavaksi
 
 - Yksikkötestien kirjoittaminen
 - Dokumentaation täydentäminen
-- Valmiiden tietorakenteiden korvaaminen itse tehdyillä toteutuksilla.
+- Omien tietorakenteiden käyttöönotto koodissa.
 - Koodin siivous
 
 ## Raportti
@@ -21,6 +22,8 @@
 Tällä viikolla sain algoritmit toimimaan riitävän tehokkaasti. Tein myös tekstipohjaisenkäyttöliittymän. Tekemistä riittää vielä muutenkin, eikä graafisen käyttöliittymän toteuttaminen ole korkean prioriteetin asia tällä hetkellä, joten siihen palataan myöhemmin jos aikaa riittää. Graafinen käyttöliittymä ei sinänsä toisi mitään varsinaista lisäarvoa ohjelman kanalta, muuta kuin näyttäisi ehkä paremmalta.
 
 Paljon aikaa meni aluksi hukkaan, kun yritin selvittää, miksi LZ pakatun datan purkaminen ei toimi, mutta lopulta selvisi, että LZ algortimin kuvaus, johon olin perehtynyt sisälsi virheen, eikä pakkaus ja purku tulisi toimimaan sillä tavalla. Jouduin siis tekemään kokonaan uuden toteutuksen...
+
+Tein myös alustavat omat versiot hajautustaulusta ja prioriteettijonosta. 
 
 
 ### Mitä opin
