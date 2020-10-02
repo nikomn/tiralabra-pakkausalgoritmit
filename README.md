@@ -12,6 +12,8 @@
 
 [Viikkoraportti 4](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti4.md)
 
+[Viikkoraportti 5](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti5.md)
+
 ## Käyttöohje
 
 [Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
