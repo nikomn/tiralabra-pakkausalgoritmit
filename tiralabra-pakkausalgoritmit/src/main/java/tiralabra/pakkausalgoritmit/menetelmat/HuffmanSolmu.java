@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiralabra.pakkausalgoritmit;
+package tiralabra.pakkausalgoritmit.menetelmat;
 
 import java.util.Objects;
 

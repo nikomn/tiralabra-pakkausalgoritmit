@@ -1,4 +1,4 @@
-package tiralabra.pakkausalgoritmit.apuohjelmat;
+package tiralabra.pakkausalgoritmit.tiedostot;
 
 /**
  * Luokka tarjoaa aputoiminnallisuuden, jossa merkkijono muunnetaan

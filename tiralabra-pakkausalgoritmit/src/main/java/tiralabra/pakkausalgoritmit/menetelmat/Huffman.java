@@ -1,4 +1,4 @@
-package tiralabra.pakkausalgoritmit;
+package tiralabra.pakkausalgoritmit.menetelmat;
 
 import java.io.File;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-import tiralabra.pakkausalgoritmit.apuohjelmat.Tiedostonkirjoittaja;
+import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
 
 /**
  * Luokka sisältää Huffman algoritmiin liittyvät toiminnallisuudet.
@@ -227,7 +227,7 @@ public class Huffman {
      *
      * @param tiedostonSisalto, merkkijonotaulu
      */
-    public void puraKoodattuTiedosto(String[] tiedostonSisalto) {
+    public void puraKoodattuTiedosto(String[] tiedostonSisalto, String purettuNimi) {
         String m = null;
         if (!tiedostonSisalto[4].equals("000000000000000000000000")) {
             int merkkiNumero = Integer.parseInt(tiedostonSisalto[4], 2);
@@ -348,7 +348,7 @@ public class Huffman {
 
         }
         Tiedostonkirjoittaja f = new Tiedostonkirjoittaja();
-        f.kirjoitaTekstiTiedostoon(merkkijono, "huffman_purettu.txt");
+        f.kirjoitaTekstiTiedostoon(merkkijono, purettuNimi);
 
         //System.out.println("Tiedostosta luettu teksti: \n" + merkkijono);
 
@@ -467,7 +467,7 @@ public class Huffman {
         for (int i = 0; i < this.sisalto.length(); i++) {
             kasiteltavaMerkkiLkm++;
             //System.out.println("Koodi on nyt " + koodattu);
-            if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+            if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
                 double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (merkkiMaara * 1.0) * 100.0);
                 System.out.println(prosentti + "%" + " käsitelty...");
             }

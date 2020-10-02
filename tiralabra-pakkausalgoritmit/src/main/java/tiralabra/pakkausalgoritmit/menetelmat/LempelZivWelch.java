@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiralabra.pakkausalgoritmit;
+package tiralabra.pakkausalgoritmit.menetelmat;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import tiralabra.pakkausalgoritmit.apuohjelmat.Tiedostonkirjoittaja;
-import tiralabra.pakkausalgoritmit.apuohjelmat.Tiedostonlukija;
+import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
+import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonlukija;
 
 /**
  *
@@ -79,9 +79,9 @@ public class LempelZivWelch {
         tk.kirjoitaTiedostoon(this.tuloste, "lz.dat");
     }
 
-    public void tallenna2() {
+    public void tallenna2(String tiedostonNimi) {
         Tiedostonkirjoittaja tk = new Tiedostonkirjoittaja();
-        tk.kirjoitaTiedostoon(this.tuloste2, "lz.dat");
+        tk.kirjoitaTiedostoon(this.tuloste2, tiedostonNimi);
     }
 
     public String lueTiedostosta(String tiedosto) throws Exception {
@@ -123,8 +123,8 @@ public class LempelZivWelch {
                 Integer l = (int) lahetettava.charAt(0);
                 
                 //System.out.println("Lähetetään " + koodiosa + "" + lahetettava + "(" + l + ")");
-//                if (l > 32767) {
-//                    System.out.println("Tarvitaan enemmän kuin 15 bittiä!");
+//                if (l > 511) {
+//                    System.out.println("Tarvitaan enemmän kuin 9 bittiä!");
 //                    System.out.println("Enter jatkaa...");
 //                    String tauko = lukija.nextLine();
 //                }
@@ -132,7 +132,7 @@ public class LempelZivWelch {
             } else {
 
                 //System.out.println("Lähetetään e" + n + "(" + nykyinen + ")");
-//                if (nykyinen > 32767) {
+//                if (nykyinen > 511) {
 //                    System.out.println("Tarvitaan enemmän kuin 15 bittiä!");
 //                    System.out.println("Enter jatkaa...");
 //                    String tauko = lukija.nextLine();
@@ -148,7 +148,7 @@ public class LempelZivWelch {
 
     }
 
-    public String pura2(String data) {
+    public String pura2(String data, String purettuNimi) {
         HashMap<Integer, String> sk = new HashMap<>();
         int sanakirjaIndeksi = 256;
         String purettuMerkkijono = "";
@@ -219,7 +219,7 @@ public class LempelZivWelch {
         //System.out.println("Purettu merkkijono: " + purettuMerkkijono);
         System.out.println("");
         Tiedostonkirjoittaja f = new Tiedostonkirjoittaja();
-        f.kirjoitaTekstiTiedostoon(purettuMerkkijono, "lz_purettu.txt");
+        f.kirjoitaTekstiTiedostoon(purettuMerkkijono, purettuNimi);
         return purettuMerkkijono;
     }
 
@@ -672,7 +672,7 @@ public class LempelZivWelch {
         //lz.pura2("100000100100000001100000100010000001010000100100000001010000100000000001100000100000000000100000000");
         //lz.pura2("110011100000100001100001100000000000001011100000000000000001000000000000011101100100000001000001000010000001001101100000000000101011100000000000111101100000000000010101100000000000100000000");
         lz.pakkaa2(sisalto);
-        lz.tallenna2();
+        lz.tallenna2("lz.dat");
 
         //lz.pakkaa(sisalto);
         //System.out.println(lz.haeTuloste());
@@ -704,7 +704,7 @@ public class LempelZivWelch {
 
         //System.out.println(lz.pura(d));
         //System.out.println(lz.pura2(d));
-        String purettuMerkkijono = lz.pura2(d);
+        String purettuMerkkijono = lz.pura2(d, "lz_purettu.txt");
 
         if (purettuMerkkijono.equals(sisalto)) {
             System.out.println("Merkkijono on täsmälleen sama ennen ja jälkeen purkamisen");

@@ -2,7 +2,7 @@ package pakkausalgoritmit;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import tiralabra.pakkausalgoritmit.Huffman;
+import tiralabra.pakkausalgoritmit.menetelmat.Huffman;
 
 /**
  * Huffman algoritmin keskeisten ominaisuuksien testaukset 

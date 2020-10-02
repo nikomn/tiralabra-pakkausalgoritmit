@@ -1,4 +1,4 @@
-package tiralabra.pakkausalgoritmit.apuohjelmat;
+package tiralabra.pakkausalgoritmit.tiedostot;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -23,7 +23,7 @@ public class Tiedostonlukija {
         String mjono = "";
         try {
             Scanner tlukija = new Scanner(new File(tiedosto));
-            System.out.println("Luetaan tiedostoa...");
+            //System.out.println("Luetaan tiedostoa...");
             while (tlukija.hasNextLine()) {
                 //System.out.println(tlukija.nextLine());
                 String x = tlukija.nextLine();
@@ -48,7 +48,7 @@ public class Tiedostonlukija {
             double prosenttiKokkonaisuudesta = bittiMaara / 100;
             for (int i = 0; i < bitit.length; i++) {
                 kasiteltavaMerkkiLkm++;
-                if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+                if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
                     double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
                     System.out.println(prosentti + "%" + " luettu...");
                 }

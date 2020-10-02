@@ -1,4 +1,4 @@
-package tiralabra.pakkausalgoritmit.apuohjelmat;
+package tiralabra.pakkausalgoritmit.tiedostot;
 
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
@@ -7,7 +7,7 @@ import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import tiralabra.pakkausalgoritmit.HuffmanSolmu;
+import tiralabra.pakkausalgoritmit.menetelmat.HuffmanSolmu;
 
 /**
  * Luokka sisältää tiedostojen kirjoittamiseen tarvittavat toiminnallisuudet.
@@ -79,7 +79,7 @@ public class Tiedostonkirjoittaja {
         System.out.println("Vaihe 1. Muodostetaan bittitaulua...");
         for (Character c : kirjoitettavaData.toCharArray()) {
             kasiteltavaMerkkiLkm++;
-            if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+            if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
                 double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
                 System.out.println(prosentti + "%" + " käsitelty...");
             }
@@ -97,7 +97,7 @@ public class Tiedostonkirjoittaja {
             prosenttiKokkonaisuudesta = bitsetti.length() / 100;
             for (byte b : bitsetti.toByteArray()) {
                 kasiteltavaMerkkiLkm++;
-                if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+                if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
                     double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
                     System.out.println(prosentti + "%" + " käsitelty...");
                 }
@@ -186,7 +186,7 @@ public class Tiedostonkirjoittaja {
         //System.out.println("Ylihypättäviä: " + ylihypattavat);
         for (int i = 0; i < ylihypattavat; i++) {
             kasiteltavana++;
-            if (kasiteltavana % prosenttiKokkonaisuudesta == 0) {
+            if (prosenttiKokkonaisuudesta > 0 && kasiteltavana % prosenttiKokkonaisuudesta == 0) {
                 double prosentti = Math.round((kasiteltavana * 1.0) / (aineistonPituus * 1.0) * 100.0);
                 System.out.println(prosentti + "%" + " käsitelty...");
             }
@@ -263,7 +263,7 @@ public class Tiedostonkirjoittaja {
         for (Character c : kirjoitettavaData.toCharArray()) {
             kasiteltavaMerkkiLkm++;
             //System.out.println("Koodi on nyt " + koodattu);
-            if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+            if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
                 double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
                 System.out.println(prosentti + "%" + " käsitelty...");
             }
@@ -286,7 +286,7 @@ public class Tiedostonkirjoittaja {
             for (byte b : bitsetti.toByteArray()) {
                 kasiteltavaMerkkiLkm++;
                 //System.out.println("Koodi on nyt " + koodattu);
-                if (kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+                if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
                     double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
                     System.out.println(prosentti + "%" + " käsitelty...");
                 }
