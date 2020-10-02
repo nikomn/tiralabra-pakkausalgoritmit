@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
+import tiralabra.pakkausalgoritmit.tietorakenteet.Hajautustaulu;
+import tiralabra.pakkausalgoritmit.tietorakenteet.Lista;
 
 /**
  * Luokka sisältää Huffman algoritmiin liittyvät toiminnallisuudet.
@@ -14,8 +16,10 @@ import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
 public class Huffman {
 
     private HuffmanSolmu puunjuuri;
+    private Hajautustaulu<Character, HuffmanSolmu> omaTaulu;
     private HashMap<Character, HuffmanSolmu> taulu;
     private HashMap<Character, String> avainTaulu;
+    private Hajautustaulu<Character, String> omaAvainTaulu;
     private String sisalto;
     private HuffmanSolmu[] solmut;
     private HuffmanSolmu[] solmulista;
@@ -328,7 +332,7 @@ public class Huffman {
         //subString = kaanteinensubString;
         //for (int i = subString.length() - 1; i > -1; i--) {
         for (int i = 0; i < subString.length(); i++) {
-            //System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
+            System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
             //System.out.println("solmu.vasen" + solmu.vasen);
 
             if (subString.charAt(i) == '0') {
@@ -363,17 +367,18 @@ public class Huffman {
      * @param mj, merkkijono
      */
     public void muodostaTaulu(String mj) {
-        this.taulu = new HashMap<>();
+        //this.taulu = new HashMap<>();
+        this.omaTaulu = new Hajautustaulu<>();
         this.sisalto = mj;
         System.out.println("Muodostetaan merkkitaulua...");
         //System.out.println("Muodostetaan merkkitaulua merkkijonolle " + this.sisalto + "...");
         for (int i = 0; i < this.sisalto.length(); i++) {
             char m = this.sisalto.charAt(i);
             //System.out.println("Käsitellään merkkiä: " + m);
-            if (!this.taulu.containsKey(m)) {
-                this.taulu.put(m, new HuffmanSolmu(m + "", 1, null, null));
+           if (!this.omaTaulu.sisaltaaAvaimen(m)) {
+                this.omaTaulu.lisaa(m, new HuffmanSolmu(m + "", 1, null, null));
             } else {
-                this.taulu.get(m).toistuvuus++;
+                this.omaTaulu.hae(m).toistuvuus++;
             }
         }
         //System.out.println("Taulun pituus: " + this.taulu.size());
@@ -387,7 +392,7 @@ public class Huffman {
      * @return taulunkoko kokonaislukuna
      */
     public int haeTaulunKoko() {
-        return this.taulu.size();
+        return this.omaTaulu.koko();
     }
 
     /**
@@ -473,11 +478,11 @@ public class Huffman {
             }
             char m = this.sisalto.charAt(i);
             //System.out.println("Käsitellään merkkiä: " + m);
-            if (!this.taulu.containsKey(m)) {
+            if (!this.omaTaulu.sisaltaaAvaimen(m)) {
                 System.out.println("Virheellinen merkkojono!");
                 return "VIRHE!";
             } else {
-                HuffmanSolmu solmu = this.taulu.get(m);
+                HuffmanSolmu solmu = this.omaTaulu.hae(m);
                 if (solmu == null) {
                     System.out.println("Tässä on nyt joku virhe...");
                 }
@@ -501,12 +506,17 @@ public class Huffman {
         this.indeksi = 0;
         PriorityQueue<HuffmanSolmu> jono = new PriorityQueue<>();
         //System.out.println("\nTaulu:");
-        for (Character avain : this.taulu.keySet()) {
-            //System.out.println(avain + ": " + this.taulu.get(avain).toistuvuus);
-            jono.add(this.taulu.get(avain));
-            this.solmut[this.indeksi] = this.taulu.get(avain);
-            this.indeksi++;
+        Lista<Character> avainLista = this.omaTaulu.haeAvaimet();
+        for (int i = 0; i < avainLista.koko(); i++) {
+            jono.add(this.omaTaulu.hae(avainLista.arvo(i)));
+            this.solmut[this.indeksi] = this.omaTaulu.hae(avainLista.arvo(i));
         }
+//        for (Character avain : this.taulu.keySet()) {
+//            //System.out.println(avain + ": " + this.taulu.get(avain).toistuvuus);
+//            jono.add(this.taulu.get(avain));
+//            this.solmut[this.indeksi] = this.taulu.get(avain);
+//            this.indeksi++;
+//        }
 
         int solmunSuuruus = 0;
 

@@ -54,7 +54,7 @@ public class Kayttoliittyma {
         System.out.println("Tiedoston sisältö luettu!");
         System.out.println("Tiedoston lukemisessa kesti " + kesto + " ms");
 
-        lahdeKoko = new File("testi.txt").length();
+        lahdeKoko = new File(tiedosto).length();
 
         // Huffman koodaus...
         System.out.println("");
@@ -202,7 +202,7 @@ public class Kayttoliittyma {
         System.out.println("lz purku\t\t| " + lzPurkuAjat[0] + " ms.");
 
         System.out.println("\nTiedostojen tarkistus\n");
-        TiedostonVertailija tv = new TiedostonVertailija("testi.txt");
+        TiedostonVertailija tv = new TiedostonVertailija(tiedosto);
         boolean huffmanOK = tv.vertaa("huffman_purettu.txt");
         boolean lzOK = tv.vertaa("lz_purettu.txt");
         if (!huffmanOK) {

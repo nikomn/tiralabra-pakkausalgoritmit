@@ -186,5 +186,17 @@ public class HuffmanSolmu implements Comparable {
             return -1;
         }
     }
+    
+    public void lisaaVasen(HuffmanSolmu s) {
+        this.vasen = s;
+    }
+    
+    public void lisaaOikea(HuffmanSolmu s) {
+        this.oikea = s;
+    }
+    
+    public void lisaaVanhempi(HuffmanSolmu s) {
+        this.vanhempi = s;
+    }
 
 }
