@@ -3,11 +3,13 @@ package tiralabra.pakkausalgoritmit.tiedostot;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import tiralabra.pakkausalgoritmit.menetelmat.HuffmanSolmu;
+import tiralabra.pakkausalgoritmit.tietorakenteet.Hajautustaulu;
 
 /**
  * Luokka sisältää tiedostojen kirjoittamiseen tarvittavat toiminnallisuudet.
@@ -127,8 +129,13 @@ public class Tiedostonkirjoittaja {
      * @param tiedostonnimi kohdetiedoston nimi
      *
      */
-    public void kirjoitaTiedosto(String aineisto, HuffmanSolmu puunjuuri, HuffmanSolmu[] puu, Integer pituus, HashMap<Character, HuffmanSolmu> merkkitaulu, String tiedostonnimi) throws Exception {
+    public void kirjoitaTiedosto(String aineisto, HuffmanSolmu puunjuuri, HuffmanSolmu[] puu, Integer pituus, Hajautustaulu<Character, HuffmanSolmu> merkkitaulu, String tiedostonnimi) throws Exception {
         System.out.println("Kirjoitetaan tiedostoon...");
+//        System.out.println("Vastaanotetut argumentit:");
+//        System.out.println("aineisto: " + aineisto);
+//        System.out.println("puunjuuri: " + puunjuuri);
+//        System.out.println("puu: " + Arrays.toString(puu));
+//        System.out.println("pituus: " + pituus);
         System.out.println("Vaihe 1. Muodostetaan kirjoitettavaa bittijonoa...");
         int taulunPituus = pituus;
         String taulunPituusBinaariformaatissa = String.format("%24s", Integer.toBinaryString(taulunPituus)).replace(' ', '0');
@@ -252,7 +259,7 @@ public class Tiedostonkirjoittaja {
 //            kaanteinenAineisto = kaanteinenAineisto + taulunPituusBinaariformaatissa.charAt(i);
 //        }
 //        
-        //System.out.println(kirjoitettavaData);
+        System.out.println("kirjoitetaan tiedostoon:" + kirjoitettavaData);
         //kaanteinenAineisto = taulunPituusBinaariformaatissa + skippiBitit + puunJuuriBinaariformaatissa + taulu + kaanteinenAineisto;
         //kaanteinenAineisto = kaanteinenAineisto + taulu + puunJuuriBinaariformaatissa + skippiBitit + taulunPituusBinaariformaatissa;
         int bittiMaara = kirjoitettavaData.length();

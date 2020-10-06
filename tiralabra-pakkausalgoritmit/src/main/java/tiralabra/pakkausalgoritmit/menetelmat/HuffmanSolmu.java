@@ -5,7 +5,6 @@
  */
 package tiralabra.pakkausalgoritmit.menetelmat;
 
-import java.util.Objects;
 
 /**
  * Luokka kuvaa HuffmanSolmu-olion ominaisuudet.
@@ -29,6 +28,7 @@ public class HuffmanSolmu implements Comparable {
      * @param oikea, HuffmanSolmu-olio, voi olla null
      */
     public HuffmanSolmu(String merkki, Integer toistuvuus, HuffmanSolmu vasen, HuffmanSolmu oikea) {
+        //System.out.println("Lisätään merkkiä " + merkki);
         this.toistuvuus = toistuvuus;
         this.vasen = vasen;
         this.oikea = oikea;
@@ -116,6 +116,7 @@ public class HuffmanSolmu implements Comparable {
          */
 
         String id = this.tunnisteBinaarina;
+        System.out.println("Muunnetaan solmua binaariksi: " + this.merkki);
 
         String m = "000000000000000000000000";
         if (this.merkki != null && this.merkki.length() == 1) {

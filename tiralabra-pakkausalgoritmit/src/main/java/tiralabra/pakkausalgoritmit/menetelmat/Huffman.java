@@ -332,7 +332,7 @@ public class Huffman {
         //subString = kaanteinensubString;
         //for (int i = subString.length() - 1; i > -1; i--) {
         for (int i = 0; i < subString.length(); i++) {
-            System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
+            //System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
             //System.out.println("solmu.vasen" + solmu.vasen);
 
             if (subString.charAt(i) == '0') {
@@ -508,8 +508,10 @@ public class Huffman {
         //System.out.println("\nTaulu:");
         Lista<Character> avainLista = this.omaTaulu.haeAvaimet();
         for (int i = 0; i < avainLista.koko(); i++) {
+            //System.out.println("Luetaan omasta taulusta: " + this.omaTaulu.hae(avainLista.arvo(i)));
             jono.add(this.omaTaulu.hae(avainLista.arvo(i)));
             this.solmut[this.indeksi] = this.omaTaulu.hae(avainLista.arvo(i));
+            this.indeksi++;
         }
 //        for (Character avain : this.taulu.keySet()) {
 //            //System.out.println(avain + ": " + this.taulu.get(avain).toistuvuus);
@@ -545,8 +547,12 @@ public class Huffman {
      *
      * @return Hajautustaulu
      */
-    public HashMap<Character, HuffmanSolmu> getTaulu() {
-        return this.taulu;
+//    public HashMap<Character, HuffmanSolmu> getTaulu() {
+//        return this.taulu;
+//    }
+    
+    public Hajautustaulu<Character, HuffmanSolmu> getTaulu() {
+        return this.omaTaulu;
     }
 
     /**
