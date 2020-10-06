@@ -3,8 +3,6 @@ package tiralabra.pakkausalgoritmit.tiedostot;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.BitSet;
 import java.util.Scanner;
 
 /**

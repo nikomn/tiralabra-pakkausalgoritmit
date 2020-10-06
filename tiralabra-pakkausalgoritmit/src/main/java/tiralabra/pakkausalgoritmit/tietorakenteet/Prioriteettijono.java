@@ -1,6 +1,5 @@
 package tiralabra.pakkausalgoritmit.tietorakenteet;
 
-import java.util.PriorityQueue;
 import tiralabra.pakkausalgoritmit.menetelmat.HuffmanSolmu;
 
 public class Prioriteettijono {
@@ -93,41 +92,41 @@ public class Prioriteettijono {
         }
     }
     
-    public static void main(String[] args) {
-        HuffmanSolmu a = new HuffmanSolmu("a", 10, null, null);
-        HuffmanSolmu b = new HuffmanSolmu("b", 20, null, null);
-        HuffmanSolmu c = new HuffmanSolmu("c", 30, null, null);
-        HuffmanSolmu d = new HuffmanSolmu("d", 40, null, null);
-        HuffmanSolmu e = new HuffmanSolmu("e", 50, null, null);
-        HuffmanSolmu f = new HuffmanSolmu("f", 60, null, null);
-        HuffmanSolmu g = new HuffmanSolmu("g", 70, null, null);
-        
-        g.lisaaOikea(f);
-        g.lisaaVasen(e);
-        f.lisaaVanhempi(g);
-        e.lisaaVanhempi(g);
-        
-        Prioriteettijono p = new Prioriteettijono();
-        p.lisaa(g);
-        p.lisaa(f);
-        p.lisaa(e);
-        
-        System.out.println(p.nouda());
-        System.out.println(p.nouda());
-        System.out.println(p.nouda());
-        
-        PriorityQueue<HuffmanSolmu> jono = new PriorityQueue<>();
-        jono.add(g);
-        jono.add(f);
-        jono.add(e);
-        System.out.println(jono.poll());
-        System.out.println(jono.poll());
-        System.out.println(jono.poll());
-        
-        // Näyttää toimivan :)
-        
-        
-    }
+//    public static void main(String[] args) {
+//        HuffmanSolmu a = new HuffmanSolmu("a", 10, null, null);
+//        HuffmanSolmu b = new HuffmanSolmu("b", 20, null, null);
+//        HuffmanSolmu c = new HuffmanSolmu("c", 30, null, null);
+//        HuffmanSolmu d = new HuffmanSolmu("d", 40, null, null);
+//        HuffmanSolmu e = new HuffmanSolmu("e", 50, null, null);
+//        HuffmanSolmu f = new HuffmanSolmu("f", 60, null, null);
+//        HuffmanSolmu g = new HuffmanSolmu("g", 70, null, null);
+//        
+//        g.lisaaOikea(f);
+//        g.lisaaVasen(e);
+//        f.lisaaVanhempi(g);
+//        e.lisaaVanhempi(g);
+//        
+//        Prioriteettijono p = new Prioriteettijono();
+//        p.lisaa(g);
+//        p.lisaa(f);
+//        p.lisaa(e);
+//        
+//        System.out.println(p.nouda());
+//        System.out.println(p.nouda());
+//        System.out.println(p.nouda());
+//        
+//        PriorityQueue<HuffmanSolmu> jono = new PriorityQueue<>();
+//        jono.add(g);
+//        jono.add(f);
+//        jono.add(e);
+//        System.out.println(jono.poll());
+//        System.out.println(jono.poll());
+//        System.out.println(jono.poll());
+//        
+//        // Näyttää toimivan :)
+//        
+//        
+//    }
     
     
     

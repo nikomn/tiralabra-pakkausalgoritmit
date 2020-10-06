@@ -14,15 +14,15 @@
 
 [Viikkoraportti 5](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti5.md)
 
-## Käyttöohje
+## Dokumentaatiota
 
 [Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
 
-## Algoritmien vertailua
+[Tietorakenteet](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tietorakenteet.md)
+
+[Kirjastot](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kirjastot.md)
 
 [Algoritmien vertailua](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/vertailua.md)
-
-## Huffman-tiedostoformaatin kuvaus
 
 [Huffman tiedostoformaatti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/huffmantiedostonformaatti.md)
 
@@ -33,3 +33,10 @@
 ![Jacoco-raportti 2](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco2.png)
 
 ![Jacoco-raportti 3](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco3.png)
+
+## Todo (päivitetty 2020-10-06)
+
+- [x] Omien tietorakenteiden käyttöönotto
+- [] Testaksen toteuttaminen kattasti
+- [] Dokumentaation täydentäminen
+- [] Koodin siivous

@@ -3,11 +3,8 @@ package tiralabra.pakkausalgoritmit.tiedostot;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.util.Arrays;
 import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+
 import tiralabra.pakkausalgoritmit.menetelmat.HuffmanSolmu;
 import tiralabra.pakkausalgoritmit.tietorakenteet.Hajautustaulu;
 

@@ -10,7 +10,6 @@ import java.util.Scanner;
 import tiralabra.pakkausalgoritmit.Kello;
 import tiralabra.pakkausalgoritmit.menetelmat.Huffman;
 import tiralabra.pakkausalgoritmit.menetelmat.LempelZivWelch;
-import tiralabra.pakkausalgoritmit.tiedostot.BinaariMuotoilija;
 import tiralabra.pakkausalgoritmit.tiedostot.TiedostonVertailija;
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonlukija;
