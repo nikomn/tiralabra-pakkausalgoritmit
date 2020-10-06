@@ -1,9 +1,9 @@
 package tiralabra.pakkausalgoritmit.menetelmat;
 
-import java.util.PriorityQueue;
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
 import tiralabra.pakkausalgoritmit.tietorakenteet.Hajautustaulu;
 import tiralabra.pakkausalgoritmit.tietorakenteet.Lista;
+import tiralabra.pakkausalgoritmit.tietorakenteet.Prioriteettijono;
 
 /**
  * Luokka sisältää Huffman algoritmiin liittyvät toiminnallisuudet.
@@ -12,12 +12,10 @@ public class Huffman {
 
     private HuffmanSolmu puunjuuri;
     private Hajautustaulu<Character, HuffmanSolmu> omaTaulu;
-    private Hajautustaulu<Character, String> omaAvainTaulu;
     private String sisalto;
     private HuffmanSolmu[] solmut;
     private HuffmanSolmu[] solmulista;
     private int indeksi;
-    private Integer puuIndeksi;
 
     /**
      * Metodi muodostaa HuffmanSolmun tiedostosta luetun datan perusteella.
@@ -252,7 +250,6 @@ public class Huffman {
      * @param mj, merkkijono
      */
     public void muodostaTaulu(String mj) {
-        //this.taulu = new HashMap<>();
         this.omaTaulu = new Hajautustaulu<>();
         this.sisalto = mj;
         System.out.println("Muodostetaan merkkitaulua...");
@@ -389,12 +386,12 @@ public class Huffman {
     public void muodostaPuu() {
         this.solmut = new HuffmanSolmu[99999];
         this.indeksi = 0;
-        PriorityQueue<HuffmanSolmu> jono = new PriorityQueue<>();
+        Prioriteettijono omaJono = new Prioriteettijono();
         //System.out.println("\nTaulu:");
         Lista<Character> avainLista = this.omaTaulu.haeAvaimet();
         for (int i = 0; i < avainLista.koko(); i++) {
             //System.out.println("Luetaan omasta taulusta: " + this.omaTaulu.hae(avainLista.arvo(i)));
-            jono.add(this.omaTaulu.hae(avainLista.arvo(i)));
+            omaJono.lisaa(this.omaTaulu.hae(avainLista.arvo(i)));
             this.solmut[this.indeksi] = this.omaTaulu.hae(avainLista.arvo(i));
             this.indeksi++;
         }
@@ -408,12 +405,12 @@ public class Huffman {
         int solmunSuuruus = 0;
 
         while (solmunSuuruus != this.sisalto.length()) {
-            HuffmanSolmu eka = jono.poll();
+            HuffmanSolmu eka = omaJono.nouda();
             if (eka.toistuvuus == this.sisalto.length()) {
                 this.puunjuuri = eka;
                 break;
             }
-            HuffmanSolmu toka = jono.poll();
+            HuffmanSolmu toka = omaJono.nouda();
             solmunSuuruus = eka.toistuvuus + toka.toistuvuus;
             HuffmanSolmu yhdistetty = new HuffmanSolmu(null, solmunSuuruus, eka, toka);
             if (yhdistetty.toistuvuus == this.sisalto.length()) {
@@ -421,7 +418,7 @@ public class Huffman {
             }
             eka.vanhempi = yhdistetty;
             toka.vanhempi = yhdistetty;
-            jono.add(yhdistetty);
+            omaJono.lisaa(yhdistetty);
             this.solmut[this.indeksi] = yhdistetty;
             this.indeksi++;
         }
