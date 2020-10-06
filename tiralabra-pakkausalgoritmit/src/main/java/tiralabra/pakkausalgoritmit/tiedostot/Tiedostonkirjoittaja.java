@@ -92,14 +92,9 @@ public class Tiedostonkirjoittaja {
 
         try {
             DataOutputStream tuloste = new DataOutputStream(new FileOutputStream(tiedostonNimi));
-            kasiteltavaMerkkiLkm = 0;
-            prosenttiKokkonaisuudesta = bitsetti.length() / 100;
+            
             for (byte b : bitsetti.toByteArray()) {
-                kasiteltavaMerkkiLkm++;
-                if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
-                    double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
-                    System.out.println(prosentti + "%" + " käsitelty...");
-                }
+                
 
                 tuloste.writeByte(b);
 
@@ -256,21 +251,21 @@ public class Tiedostonkirjoittaja {
 //            kaanteinenAineisto = kaanteinenAineisto + taulunPituusBinaariformaatissa.charAt(i);
 //        }
 //        
-        System.out.println("kirjoitetaan tiedostoon:" + kirjoitettavaData);
+        //System.out.println("kirjoitetaan tiedostoon:" + kirjoitettavaData);
         //kaanteinenAineisto = taulunPituusBinaariformaatissa + skippiBitit + puunJuuriBinaariformaatissa + taulu + kaanteinenAineisto;
         //kaanteinenAineisto = kaanteinenAineisto + taulu + puunJuuriBinaariformaatissa + skippiBitit + taulunPituusBinaariformaatissa;
-        int bittiMaara = kirjoitettavaData.length();
-        int kasiteltavaMerkkiLkm = 0;
-        prosenttiKokkonaisuudesta = bittiMaara / 100;
+        //int bittiMaara = kirjoitettavaData.length();
+        //int kasiteltavaMerkkiLkm = 0;
+        //prosenttiKokkonaisuudesta = bittiMaara / 100;
         BitSet bitsetti = new BitSet(kirjoitettavaData.length());
         int kpl = 0;
         for (Character c : kirjoitettavaData.toCharArray()) {
-            kasiteltavaMerkkiLkm++;
+            //kasiteltavaMerkkiLkm++;
             //System.out.println("Koodi on nyt " + koodattu);
-            if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
-                double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
-                System.out.println(prosentti + "%" + " käsitelty...");
-            }
+//            if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+//                double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
+//                System.out.println(prosentti + "%" + " käsitelty...");
+//            }
             //System.out.println("c: " + c);
             if (c.equals('1')) {
                 bitsetti.set(kpl);
@@ -286,14 +281,14 @@ public class Tiedostonkirjoittaja {
             DataOutputStream tuloste = new DataOutputStream(new FileOutputStream(tiedostonnimi));
             //System.out.println(merkkitaulu.toString());
             //tuloste.writeBytes(merkkitaulu.toString());
-            kasiteltavaMerkkiLkm = 0;
+            //kasiteltavaMerkkiLkm = 0;
             for (byte b : bitsetti.toByteArray()) {
-                kasiteltavaMerkkiLkm++;
+                //kasiteltavaMerkkiLkm++;
                 //System.out.println("Koodi on nyt " + koodattu);
-                if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
-                    double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
-                    System.out.println(prosentti + "%" + " käsitelty...");
-                }
+//                if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+//                    double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
+//                    System.out.println(prosentti + "%" + " käsitelty...");
+//                }
                 //System.out.println("Kirjoitetaan: " + b);
 
                 tuloste.writeByte(b);

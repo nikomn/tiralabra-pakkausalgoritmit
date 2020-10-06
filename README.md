@@ -22,6 +22,8 @@
 
 [Kirjastot](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kirjastot.md)
 
+[Ohjelman nopeudesta](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tehokkuudesta.md)
+
 [Algoritmien vertailua](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/vertailua.md)
 
 [Huffman tiedostoformaatti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/huffmantiedostonformaatti.md)

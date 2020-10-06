@@ -1,6 +1,5 @@
 package tiralabra.pakkausalgoritmit.menetelmat;
 
-
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonlukija;
 import tiralabra.pakkausalgoritmit.tietorakenteet.Hajautustaulu;
@@ -85,11 +84,15 @@ public class LempelZivWelch {
     public void pakkaa2(String merkkijono) {
         Hajautustaulu<String, Integer> omaSk = new Hajautustaulu<>();
         String koodi = "";
+        StringBuilder merkkijononKoostaja = new StringBuilder();
         int demoIndeksi = 256;
         int nykyinen = merkkijono.charAt(0);
         String n = merkkijono.charAt(0) + "";
         //System.out.println("Lähetetään e" + n + "(" + nykyinen + ")");
-        koodi = koodi + muunnaBittijonoksi(0, this.palojenKoko) + muunnaBittijonoksi(nykyinen, this.palojenKoko);
+        //koodi = koodi + muunnaBittijonoksi(0, this.palojenKoko) + muunnaBittijonoksi(nykyinen, this.palojenKoko);
+        // Paljon nopeampaa...
+        merkkijononKoostaja.append(muunnaBittijonoksi(0, this.palojenKoko));
+        merkkijononKoostaja.append(muunnaBittijonoksi(nykyinen, this.palojenKoko));
 
         omaSk.lisaa(n, demoIndeksi);
         demoIndeksi++;
@@ -114,25 +117,38 @@ public class LempelZivWelch {
                 Integer l = (int) lahetettava.charAt(0);
 
                 //System.out.println("Lähetetään " + koodiosa + "" + lahetettava + "(" + l + ")");
-                koodi = koodi + muunnaBittijonoksi(koodiosa, this.palojenKoko) + muunnaBittijonoksi(l, this.palojenKoko);
+                //koodi = koodi + muunnaBittijonoksi(koodiosa, this.palojenKoko) + muunnaBittijonoksi(l, this.palojenKoko);
+                // Paljon nopeampaa...
+                merkkijononKoostaja.append(muunnaBittijonoksi(koodiosa, this.palojenKoko));
+                merkkijononKoostaja.append(muunnaBittijonoksi(l, this.palojenKoko));
             } else {
 
                 //System.out.println("Lähetetään e" + n + "(" + nykyinen + ")");
-                koodi = koodi + muunnaBittijonoksi(0, this.palojenKoko) + muunnaBittijonoksi(nykyinen, this.palojenKoko);
+                //koodi = koodi + muunnaBittijonoksi(0, this.palojenKoko) + muunnaBittijonoksi(nykyinen, this.palojenKoko);
+                // Paljon nopeampaa...
+                merkkijononKoostaja.append(muunnaBittijonoksi(0, this.palojenKoko));
+                merkkijononKoostaja.append(muunnaBittijonoksi(nykyinen, this.palojenKoko));
             }
 
         }
 
         //System.out.println("Lopputulos:");
         //System.out.println(koodi);
-        this.tuloste2 = koodi;
+        //this.tuloste2 = koodi;
+        
+        // Isoilla tiedostoilla indeksi voi virrata yli määritellyn palakoon,
+        // esim. indeksi == 549827 -> 10000110001111000011 -> 20bittiä!
+        //System.out.println("Indeksin koko: " + demoIndeksi);
+        this.tuloste2 = merkkijononKoostaja.toString();
 
     }
 
     public String pura2(String data, String purettuNimi) {
         Hajautustaulu<Integer, String> omaSk = new Hajautustaulu<>();
+        
         int sanakirjaIndeksi = 256;
-        String purettuMerkkijono = "";
+        //String purettuMerkkijono = "";
+        StringBuilder merkkijononKoostaja = new StringBuilder();
         boolean dataAlkanut = false;
         int osoitin = data.length() - 1;
         if (data.charAt(osoitin) == '1') {
@@ -175,7 +191,9 @@ public class LempelZivWelch {
                     if (osat[0] == 0) {
                         Character m = (char) osat[1];
                         //System.out.println("Vastaanottettiin merkki: " + m);
-                        purettuMerkkijono = purettuMerkkijono + m;
+                        //purettuMerkkijono = purettuMerkkijono + m;
+                        // Paljon nopeampaa...
+                        merkkijononKoostaja.append(m);
                         //System.out.print(m);
                         //sk.put(sanakirjaIndeksi, m + "");
                         omaSk.lisaa(sanakirjaIndeksi, m + "");
@@ -185,7 +203,10 @@ public class LempelZivWelch {
                         //String sanakirjaViittaus = sk.get(osat[0]);
                         Character m = (char) osat[1];
                         //System.out.println("Vastaanottettiin merkkijono: " + sanakirjaViittaus + m);
-                        purettuMerkkijono = purettuMerkkijono + sanakirjaViittaus + m;
+                        //purettuMerkkijono = purettuMerkkijono + sanakirjaViittaus + m;
+                        // Paljon nopeampaa...
+                        merkkijononKoostaja.append(sanakirjaViittaus);
+                        merkkijononKoostaja.append(m);
                         //System.out.print(sanakirjaViittaus + m);
                         //sk.put(sanakirjaIndeksi, sanakirjaViittaus + m);
                         omaSk.lisaa(sanakirjaIndeksi, sanakirjaViittaus + m);
@@ -203,8 +224,10 @@ public class LempelZivWelch {
         //System.out.println("Purettu merkkijono: " + purettuMerkkijono);
         System.out.println("");
         Tiedostonkirjoittaja f = new Tiedostonkirjoittaja();
-        f.kirjoitaTekstiTiedostoon(purettuMerkkijono, purettuNimi);
-        return purettuMerkkijono;
+        //f.kirjoitaTekstiTiedostoon(purettuMerkkijono, purettuNimi);
+        f.kirjoitaTekstiTiedostoon(merkkijononKoostaja.toString(), purettuNimi);
+        //return purettuMerkkijono;
+        return merkkijononKoostaja.toString();
     }
 
 }

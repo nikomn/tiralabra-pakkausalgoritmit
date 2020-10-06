@@ -119,6 +119,7 @@ public class Huffman {
      * @param tiedostonSisalto, merkkijonotaulu
      */
     public void puraKoodattuTiedosto(String[] tiedostonSisalto, String purettuNimi) {
+        System.out.println("Puretaan koodattua dataa...");
         String m = null;
         if (!tiedostonSisalto[4].equals("000000000000000000000000")) {
             int merkkiNumero = Integer.parseInt(tiedostonSisalto[4], 2);
@@ -144,7 +145,10 @@ public class Huffman {
         //System.out.println("taulun pituus: " + tauluPituus);
         this.solmulista = new HuffmanSolmu[tauluPituus];
         Integer solmulistaIndeksi = 0;
+        //int edistymisIndeksi = 0;
         for (int i = 9; i < (tauluPituus * 6) + 7; i = i + 6) {
+            //edistymisIndeksi++;
+            //System.out.println("Käsitellään solmua " + edistymisIndeksi + "/" + tauluPituus);
 
             //System.out.println("i: " + i);
             int merkkiNumero = Integer.parseInt(tiedostonSisalto[i + 1], 2);
@@ -159,19 +163,31 @@ public class Huffman {
             solmulistaIndeksi++;
         }
 
+        //int edistymisIndeksi = 0;
         int tiedostoIndeksi = 9;
         for (int i = 9; i < (tauluPituus * 6) + 7; i = i + 6) {
+            //edistymisIndeksi++;
+            //System.out.println("Käsitellään solmua " + edistymisIndeksi + "/" + tauluPituus);
             muodostaYhteys(tiedostonSisalto[i], tiedostonSisalto[i + 3], tiedostonSisalto[i + 4], tiedostonSisalto[i + 5]);
             tiedostoIndeksi = i + 6;
         }
 
+        StringBuilder merkkijononKoostaja = new StringBuilder();
         String koodattu = "";
+        
         for (int i = tiedostoIndeksi; i < tiedostonSisalto.length; i++) {
-            koodattu = koodattu + tiedostonSisalto[i];
+            
+            //koodattu = koodattu + tiedostonSisalto[i];
+            merkkijononKoostaja.append(tiedostonSisalto[i]);
         }
+        
+        
+
+        koodattu = merkkijononKoostaja.toString();
 
         String subString = koodattu.substring(skippiBitit, koodattu.length());
         //System.out.println("Koodatun tiedoston data: " + subString);
+        
 
         asetaPuunjuuri(tiedostonSisalto[3]);
 
@@ -215,6 +231,7 @@ public class Huffman {
 
         //subString = kaanteinensubString;
         //for (int i = subString.length() - 1; i > -1; i--) {
+        StringBuilder merkkijononKoostaja2 = new StringBuilder();
         for (int i = 0; i < subString.length(); i++) {
             //System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
             //System.out.println("solmu.vasen" + solmu.vasen);
@@ -230,13 +247,16 @@ public class Huffman {
             //System.out.println("Lehti " + solmu.merkki);
             if (solmu.vasen == null && solmu.oikea == null) {
                 //System.out.println("Lehti " + solmu.merkki);
-                merkkijono = merkkijono + solmu.merkki;
+                
+                //merkkijono = merkkijono + solmu.merkki;
+                // Paljon nopeampaa...
+                merkkijononKoostaja2.append(solmu.merkki);
                 solmu = this.puunjuuri;
             }
 
         }
         Tiedostonkirjoittaja f = new Tiedostonkirjoittaja();
-        f.kirjoitaTekstiTiedostoon(merkkijono, purettuNimi);
+        f.kirjoitaTekstiTiedostoon(merkkijononKoostaja2.toString(), purettuNimi);
 
         //System.out.println("Tiedostosta luettu teksti: \n" + merkkijono);
     }
@@ -346,6 +366,7 @@ public class Huffman {
      * @return merkkijono
      */
     public String koodaa() {
+        StringBuilder merkkijononKoostaja = new StringBuilder();
         System.out.println("Koodataan tekstiä...");
         int merkkiMaara = this.sisalto.length();
         int kasiteltavaMerkkiLkm = 0;
@@ -367,14 +388,19 @@ public class Huffman {
                 HuffmanSolmu solmu = this.omaTaulu.hae(m);
                 if (solmu == null) {
                     System.out.println("Tässä on nyt joku virhe...");
+                } else {
+                    String koodiMuoto = etsiJuuri(solmu);
+                    merkkijononKoostaja.append(koodiMuoto);
+                    //koodattu = koodattu + koodiMuoto;
                 }
+
                 //System.out.println("Löydetty solmu: " + solmu.merkki);
-                koodattu = koodattu + etsiJuuri(solmu);
             }
         }
         System.out.println("Koodaus valmis!");
         //System.out.println("Koodi on nyt " + koodattu);
-        return koodattu;
+        //return koodattu;
+        return merkkijononKoostaja.toString();
     }
 
     /**

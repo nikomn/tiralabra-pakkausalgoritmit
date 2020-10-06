@@ -116,7 +116,7 @@ public class HuffmanSolmu implements Comparable {
          */
 
         String id = this.tunnisteBinaarina;
-        System.out.println("Muunnetaan solmua binaariksi: " + this.merkki);
+        //System.out.println("Muunnetaan solmua binaariksi: " + this.merkki);
 
         String m = "000000000000000000000000";
         if (this.merkki != null && this.merkki.length() == 1) {

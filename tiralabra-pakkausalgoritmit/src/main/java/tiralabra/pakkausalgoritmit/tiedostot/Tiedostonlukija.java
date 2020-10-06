@@ -19,24 +19,30 @@ public class Tiedostonlukija {
      */
     public String lueTiedosto(String tiedosto) throws Exception {
         String mjono = "";
+        StringBuilder merkkijononKoostaja = new StringBuilder();
         try {
             Scanner tlukija = new Scanner(new File(tiedosto));
             //System.out.println("Luetaan tiedostoa...");
             while (tlukija.hasNextLine()) {
                 //System.out.println(tlukija.nextLine());
                 String x = tlukija.nextLine();
-                mjono = mjono + x + "\n";
+                //mjono = mjono + x + "\n";
+                merkkijononKoostaja.append(x + "\n");
             }
             tlukija.close();
         } catch (Exception e) {
             System.out.println("Virhe tiedoston lukemisessa!");
-            mjono = "Tiedostoa ei voitu lukea!";
+            //mjono = "Tiedostoa ei voitu lukea!";
+            //merkkijononKoostaja.append("")
+            return "Tiedostoa ei voitu lukea!";
         }
 
-        return mjono;
+        //return mjono;
+        return merkkijononKoostaja.toString();
     }
 
     public String lueBinaaritiedosto(String tiedosto) throws Exception {
+        StringBuilder merkkijononKoostaja = new StringBuilder();
 
         String mjono = "";
         try {
@@ -50,14 +56,26 @@ public class Tiedostonlukija {
                     double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
                     System.out.println(prosentti + "%" + " luettu...");
                 }
-                mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+                //mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+                //merkkijononKoostaja.insert(0, String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
+                
+                // nopeampaa...
+                //merkkijononKoostaja.append(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
+                String uusi = new StringBuilder(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0')).reverse().toString();
+                
+                merkkijononKoostaja.append(uusi);
             }
         } catch (Exception e) {
             System.out.println("Virhe tiedoston lukemisessa!");
             mjono = "-1";
+            return "-1";
         }
 
-        return mjono;
+        //return mjono;
+        
+        //return merkkijononKoostaja.toString();
+        // Paljon nopeampaa...
+        return new StringBuilder(merkkijononKoostaja.toString()).reverse().toString();
 
     }
 
@@ -126,21 +144,43 @@ public class Tiedostonlukija {
      * @return nollista ja ykkösistä koostuvia merkkijonoja sisältävä taulukko
      */
     public String[] lueKoodattuTiedosto(String tiedosto) throws Exception {
+        StringBuilder merkkijononKoostaja = new StringBuilder();
         String mjono = "";
         try {
             byte[] bitit = Files.readAllBytes(Paths.get(tiedosto));
             //System.out.println(Arrays.toString(bitit));
+            
+            int bittiMaara = bitit.length;
+            int kasiteltavaMerkkiLkm = 0;
+            double prosenttiKokkonaisuudesta = bittiMaara / 100;
             for (int i = 0; i < bitit.length; i++) {
+                kasiteltavaMerkkiLkm++;
+                if (prosenttiKokkonaisuudesta > 0 && kasiteltavaMerkkiLkm % prosenttiKokkonaisuudesta == 0) {
+                    double prosentti = Math.round((kasiteltavaMerkkiLkm * 1.0) / (bittiMaara * 1.0) * 100.0);
+                    System.out.println(prosentti + "%" + " luettu...");
+                }
                 //System.out.println("bitti: " + bitit[i]);
                 //System.out.println(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
-                mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+                //mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+                
+                
+                //merkkijononKoostaja.insert(0, String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
+                // Paljon nopeampaa!
+                String uusi = new StringBuilder(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0')).reverse().toString();
+                
+                merkkijononKoostaja.append(uusi);
             }
         } catch (Exception e) {
             System.out.println("Virhe tiedoston lukemisessa!");
             mjono = "-1";
         }
 
-        String[] kentat = erotteleKentat(mjono);
+        //String[] kentat = erotteleKentat(mjono);
+        System.out.println("Erotellaan datakenttiä...");
+        //String kaanteinenAineisto = new StringBuilder(merkkijononKoostaja.toString()).reverse().toString();
+        //String[] kentat = erotteleKentat(merkkijononKoostaja.toString());
+        // paljon nopeampaa...
+        String[] kentat = erotteleKentat(new StringBuilder(merkkijononKoostaja.toString()).reverse().toString());
 
         return kentat;
         //return mjono;
@@ -155,13 +195,15 @@ public class Tiedostonlukija {
      */
     public String lueKoodattuTiedosto2(String tiedosto) throws Exception {
         String mjono = "";
+        StringBuilder merkkijononKoostaja = new StringBuilder();
         try {
             byte[] bitit = Files.readAllBytes(Paths.get(tiedosto));
             //System.out.println(Arrays.toString(bitit));
             for (int i = 0; i < bitit.length; i++) {
                 //System.out.println("bitti: " + bitit[i]);
                 //System.out.println(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
-                mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+                //mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
+                merkkijononKoostaja.insert(0, String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
 
             }
         } catch (Exception e) {
@@ -170,7 +212,8 @@ public class Tiedostonlukija {
         }
 
         //String[] kentat = erotteleKentat(mjono);
-        return mjono;
+        return merkkijononKoostaja.toString();
+        //return mjono;
         //return mjono;
     }
 

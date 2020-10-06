@@ -77,6 +77,11 @@ public class Kayttoliittyma {
         System.out.println("Puun muodostus kesti " + kesto + " ms");
 
         System.out.println("Koodataan data...");
+//        tyovaiheAjastin.kaynnista();
+//        String muunnettu = h.muunna();
+//        kesto = tyovaiheAjastin.pysayta();
+//        System.out.println("Datan koodaus uudella tavalla kesti " + kesto + " ms");
+
         tyovaiheAjastin.kaynnista();
         String koodattu = h.koodaa();
         kesto = tyovaiheAjastin.pysayta();
@@ -124,7 +129,16 @@ public class Kayttoliittyma {
         System.out.println("\n\nSuoritetaan pakkaus ja purkaminen LZ algortimilla");
         lzAjastin.kaynnista();
 
-        LempelZivWelch lz = new LempelZivWelch(18);
+        // Jos tosi iso tiedosto?
+        // Demoa ajatellen on ehkä ihan hyvä, jos pystytään muuttamaan dynaamisemmin...
+        // Muodostuu ongelmaksi, jos pakataan iso tiedosto demon yhteydessä ja yritetään
+        // Purkaa se myöhemmin erikseen erillisellä toiminnolla...
+        int palankoko = 18;
+        if (lahdeKoko > 2000000) {
+            palankoko = 20;
+        }
+
+        LempelZivWelch lz = new LempelZivWelch(palankoko);
         /*
         Huom. LempelZivWelch argumenttina annetaan käytettävä bittikoko.
         Perusidea on se, että normaaleihin kirjaimiin tarvittavaa 8 bitin kokoa
@@ -256,7 +270,7 @@ public class Kayttoliittyma {
                 System.out.println("Pakattu tiedosto on n. " + huffmanSuhde + "% alkuperäisestä.");
                 System.out.println("");
 
-            } 
+            }
             if (valinta.equals("2")) {
                 System.out.println("Mikä tiedosto pakataan: ");
                 String tiedosto = lukija.nextLine();
@@ -267,7 +281,7 @@ public class Kayttoliittyma {
 
                 Tiedostonlukija tlukija = new Tiedostonlukija();
                 String sisalto = tlukija.lueTiedosto(tiedosto);
-
+                
                 LempelZivWelch lz = new LempelZivWelch(18);
                 lz.pakkaa2(sisalto);
                 lz.tallenna2(pakattuNimi);
@@ -280,7 +294,7 @@ public class Kayttoliittyma {
                 System.out.println("Pakattu tiedosto on n. " + lzSuhde + "% alkuperäisestä.");
                 System.out.println("");
             }
-            
+
             if (valinta.equals("x")) {
                 break;
             }
@@ -288,7 +302,7 @@ public class Kayttoliittyma {
         }
 
     }
-    
+
     public void pura(Scanner lukija) throws Exception {
         while (true) {
             System.out.println("Millä algoritmilla data on pakattu?"
@@ -304,14 +318,13 @@ public class Kayttoliittyma {
 
                 Tiedostonlukija tlukija = new Tiedostonlukija();
                 String[] luettu = tlukija.lueKoodattuTiedosto(tiedosto);
-                
+
                 Huffman h = new Huffman();
                 h.puraKoodattuTiedosto(luettu, purettuNimi);
 
-                
                 System.out.println("HUffman tiedosto purettu");
 
-            } 
+            }
             if (valinta.equals("2")) {
                 LempelZivWelch lz = new LempelZivWelch(18);
                 System.out.println("Mikä tiedosto puretaan?");
@@ -324,7 +337,7 @@ public class Kayttoliittyma {
                 String purettuMerkkijono = lz.pura2(d, purettuNimi);
                 System.out.println("LZ tiedosto purettu");
             }
-            
+
             if (valinta.equals("x")) {
                 break;
             }
@@ -332,7 +345,7 @@ public class Kayttoliittyma {
         }
 
     }
-    
+
     public void kaynnista() throws Exception {
         Scanner lukija = new Scanner(System.in);
         Kayttoliittyma kl = new Kayttoliittyma();
@@ -356,12 +369,9 @@ public class Kayttoliittyma {
             if (valinta.equals("x")) {
                 break;
             }
-            
 
         }
-        
-    }
 
-    
+    }
 
 }

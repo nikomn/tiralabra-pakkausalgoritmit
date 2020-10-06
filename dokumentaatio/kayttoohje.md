@@ -25,7 +25,9 @@ Valitse toiminto
 
 ## Demo
 
-Demo toiminto kysyy pakattavan tiedoston nimeä, jonka jälkeen kyseinen tiedosto
+Demo toiminto kysyy pakattavan tiedoston nimeä (huom. projektin mukana satunnaisia
+sanoja sisältävä 1Mt tekstitiedosto 'testi.txt', jota voi halutessaan käyttää
+testaamiseen), jonka jälkeen kyseinen tiedosto
 
 1. Pakataan Huffman algoritmilla
 2. Pakattu Huffman tiedosto puretaan uuteen tiedostoon
