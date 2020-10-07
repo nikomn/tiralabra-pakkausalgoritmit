@@ -28,6 +28,8 @@
 
 [Huffman tiedostoformaatti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/huffmantiedostonformaatti.md)
 
+[Algoritmien esittelyä](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/projektin_esittely.pdf)
+
 ## Testauskattavuus
 
 ![Jacoco-raportti 1](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco1.png)
