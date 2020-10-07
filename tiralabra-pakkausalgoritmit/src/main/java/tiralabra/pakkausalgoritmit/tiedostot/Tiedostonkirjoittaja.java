@@ -303,79 +303,79 @@ public class Tiedostonkirjoittaja {
 
     }
 
-    /**
-     * Paluuarvoton metodi kirjoittaa tiedostoonHuffman algoritmilla koodatun
-     * tekstin binäärimuotoisena.
-     *
-     * @param aineisto Huffman algoritmilla koodattu merkkijono
-     * @param avainTaulu Huffman koodatun datan tulkintaan tarvittava taulu
-     * @param pituus Huffmanpuun solmujen määrä
-     * @param tiedostonnimi kohdetiedoston nimi
-     *
-     *
-     */
-    public void kirjoitaTiedosto2(String aineisto, String avainTaulu, Integer pituus, String tiedostonnimi) throws Exception {
-        int taulunPituus = pituus;
-        String taulunPituusBinaariformaatissa = String.format("%24s", Integer.toBinaryString(taulunPituus)).replace(' ', '0');
-
-        String kaanteinenAineisto = "";
-
-        for (int i = aineisto.length() - 1; i >= 0; i--) {
-            kaanteinenAineisto = kaanteinenAineisto + aineisto.charAt(i);
-        }
-
-        String kaanteinenTaulunPituusBinaariformaatissa = "";
-        for (int i = taulunPituusBinaariformaatissa.length() - 1; i >= 0; i--) {
-            kaanteinenTaulunPituusBinaariformaatissa = kaanteinenTaulunPituusBinaariformaatissa + taulunPituusBinaariformaatissa.charAt(i);
-        }
-
-        String kaanteinenTaulu = "";
-        for (int i = avainTaulu.length() - 1; i >= 0; i--) {
-            kaanteinenTaulu = kaanteinenTaulu + avainTaulu.charAt(i);
-        }
-
-        /*
-        Koska tiedosto kirjoitetaan tavu kerrallaan, eikä kirjoitettavaa dataa
-        välttämättä ole täsmälleen n tavua, data täydentyy nollilla.
-        Luettaessa ei ole mahdollista tietää kuinka monta nollaa tiedostossa on, 
-        ennen varsinaista dataa. Tähän ratkaisuna datan alkuun lisätty yhden 
-        tavun mittainen "10000000" ripsu. Tämän avulla tiedostoa luettaessa
-        tiedetään, että varsinainen data alkaa kun tullaan ensimmäisen 1 kohdalle
-        ja siitä voidaan skipata yksi tavu eteenpäin.
-         */
-        String kirjoitettavaData = kaanteinenAineisto + kaanteinenTaulu
-                + kaanteinenTaulunPituusBinaariformaatissa + "00000001";
-
-        System.out.println("Kirjoitetaan data:");
-        System.out.println(kirjoitettavaData);
-
-        BitSet bitsetti = new BitSet(kirjoitettavaData.length());
-        int kpl = 0;
-        for (Character c : kirjoitettavaData.toCharArray()) {
-            //System.out.println("c: " + c);
-            if (c.equals('1')) {
-                bitsetti.set(kpl);
-                //System.out.println("kpl: " + kpl);
-                //System.out.println(bitsetti.get(kpl));
-            }
-            kpl++;
-        }
-
-        try {
-            DataOutputStream tuloste = new DataOutputStream(new FileOutputStream(tiedostonnimi));
-            //System.out.println(merkkitaulu.toString());
-            //tuloste.writeBytes(merkkitaulu.toString());
-            for (byte b : bitsetti.toByteArray()) {
-                //System.out.println("Kirjoitetaan: " + b);
-
-                tuloste.writeByte(b);
-
-            }
-            tuloste.close();
-        } catch (Exception e) {
-            System.out.println("Virhe tiedostoon kirjoittamisessa!");
-        }
-
-    }
+//    /**
+//     * Paluuarvoton metodi kirjoittaa tiedostoonHuffman algoritmilla koodatun
+//     * tekstin binäärimuotoisena.
+//     *
+//     * @param aineisto Huffman algoritmilla koodattu merkkijono
+//     * @param avainTaulu Huffman koodatun datan tulkintaan tarvittava taulu
+//     * @param pituus Huffmanpuun solmujen määrä
+//     * @param tiedostonnimi kohdetiedoston nimi
+//     *
+//     *
+//     */
+//    public void kirjoitaTiedosto2(String aineisto, String avainTaulu, Integer pituus, String tiedostonnimi) throws Exception {
+//        int taulunPituus = pituus;
+//        String taulunPituusBinaariformaatissa = String.format("%24s", Integer.toBinaryString(taulunPituus)).replace(' ', '0');
+//
+//        String kaanteinenAineisto = "";
+//
+//        for (int i = aineisto.length() - 1; i >= 0; i--) {
+//            kaanteinenAineisto = kaanteinenAineisto + aineisto.charAt(i);
+//        }
+//
+//        String kaanteinenTaulunPituusBinaariformaatissa = "";
+//        for (int i = taulunPituusBinaariformaatissa.length() - 1; i >= 0; i--) {
+//            kaanteinenTaulunPituusBinaariformaatissa = kaanteinenTaulunPituusBinaariformaatissa + taulunPituusBinaariformaatissa.charAt(i);
+//        }
+//
+//        String kaanteinenTaulu = "";
+//        for (int i = avainTaulu.length() - 1; i >= 0; i--) {
+//            kaanteinenTaulu = kaanteinenTaulu + avainTaulu.charAt(i);
+//        }
+//
+//        /*
+//        Koska tiedosto kirjoitetaan tavu kerrallaan, eikä kirjoitettavaa dataa
+//        välttämättä ole täsmälleen n tavua, data täydentyy nollilla.
+//        Luettaessa ei ole mahdollista tietää kuinka monta nollaa tiedostossa on, 
+//        ennen varsinaista dataa. Tähän ratkaisuna datan alkuun lisätty yhden 
+//        tavun mittainen "10000000" ripsu. Tämän avulla tiedostoa luettaessa
+//        tiedetään, että varsinainen data alkaa kun tullaan ensimmäisen 1 kohdalle
+//        ja siitä voidaan skipata yksi tavu eteenpäin.
+//         */
+//        String kirjoitettavaData = kaanteinenAineisto + kaanteinenTaulu
+//                + kaanteinenTaulunPituusBinaariformaatissa + "00000001";
+//
+//        System.out.println("Kirjoitetaan data:");
+//        System.out.println(kirjoitettavaData);
+//
+//        BitSet bitsetti = new BitSet(kirjoitettavaData.length());
+//        int kpl = 0;
+//        for (Character c : kirjoitettavaData.toCharArray()) {
+//            //System.out.println("c: " + c);
+//            if (c.equals('1')) {
+//                bitsetti.set(kpl);
+//                //System.out.println("kpl: " + kpl);
+//                //System.out.println(bitsetti.get(kpl));
+//            }
+//            kpl++;
+//        }
+//
+//        try {
+//            DataOutputStream tuloste = new DataOutputStream(new FileOutputStream(tiedostonnimi));
+//            //System.out.println(merkkitaulu.toString());
+//            //tuloste.writeBytes(merkkitaulu.toString());
+//            for (byte b : bitsetti.toByteArray()) {
+//                //System.out.println("Kirjoitetaan: " + b);
+//
+//                tuloste.writeByte(b);
+//
+//            }
+//            tuloste.close();
+//        } catch (Exception e) {
+//            System.out.println("Virhe tiedostoon kirjoittamisessa!");
+//        }
+//
+//    }
 
 }

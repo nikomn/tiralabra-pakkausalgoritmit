@@ -119,6 +119,12 @@ public class Huffman {
      * @param tiedostonSisalto, merkkijonotaulu
      */
     public void puraKoodattuTiedosto(String[] tiedostonSisalto, String purettuNimi) {
+//        System.out.println("\n\nTiedostosta luettu:\n\n");
+//        for (int i = 0; i < tiedostonSisalto.length; i++) {
+//            System.out.println(tiedostonSisalto[i]);
+//            
+//        }
+//        System.out.println("Tiedostoloppu\n\n");
         System.out.println("Puretaan koodattua dataa...");
         String m = null;
         if (!tiedostonSisalto[4].equals("000000000000000000000000")) {

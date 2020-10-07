@@ -10,6 +10,15 @@ komentoriviltä projektin kansiossa komennolla
 $ gradle run --console=plain
 ```
 
+Jacoco testiraporin saa generoitua komennolla:
+
+```console
+$ gradle jacocoTestReport
+```
+
+Jacoco-raportti löytyy kansiosta build/reports/jacoco/test/html. Raportti on
+html muodossa, joten sen voi avata esim. firefoxissa.
+
 ## Aloitusvalikko
 
 Ensimmäisessä näkymässä voidaan valita ajetaanko demo, pakataanko vai puretaanko.

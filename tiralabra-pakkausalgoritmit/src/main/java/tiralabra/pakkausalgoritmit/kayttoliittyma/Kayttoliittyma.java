@@ -155,13 +155,13 @@ public class Kayttoliittyma {
         hintana tiedoston pakkaustiheyden heikkeneminen.
          */
         tyovaiheAjastin.kaynnista();
-        lz.pakkaa2(sisalto);
+        lz.pakkaa(sisalto);
         kesto = tyovaiheAjastin.pysayta();
         lzPakkausAjat[1] = kesto;     // 1: pakkaus
         System.out.println("Koodaus kesti " + kesto + " ms");
 
         tyovaiheAjastin.kaynnista();
-        lz.tallenna2("lz.dat");
+        lz.tallenna("lz.dat");
         kesto = tyovaiheAjastin.pysayta();
         lzPakkausAjat[2] = kesto;     // 2: tiedostoon tallennus
         System.out.println("Pakatun datan tallennus kesti " + kesto + " ms");
@@ -189,7 +189,7 @@ public class Kayttoliittyma {
         System.out.println("Pakatun datan lukeminen kesti " + kesto + " ms");
 
         tyovaiheAjastin.kaynnista();
-        String purettuMerkkijono = lz.pura2(d, "lz_purettu.txt");
+        String purettuMerkkijono = lz.pura(d, "lz_purettu.txt");
         kesto = tyovaiheAjastin.pysayta();
         lzPurkuAjat[2] = kesto;     // 2: pakatun datan tulkinta
         System.out.println("Purerun datan tulkinta kesti " + kesto + " ms");
@@ -283,8 +283,8 @@ public class Kayttoliittyma {
                 String sisalto = tlukija.lueTiedosto(tiedosto);
                 
                 LempelZivWelch lz = new LempelZivWelch(18);
-                lz.pakkaa2(sisalto);
-                lz.tallenna2(pakattuNimi);
+                lz.pakkaa(sisalto);
+                lz.tallenna(pakattuNimi);
 
                 double lahdeKoko = new File(tiedosto).length();
                 double lzKoko = new File(pakattuNimi).length();
@@ -334,7 +334,7 @@ public class Kayttoliittyma {
 
                 Tiedostonlukija tlukija = new Tiedostonlukija();
                 String d = lz.lueTiedostosta(tiedosto);
-                String purettuMerkkijono = lz.pura2(d, purettuNimi);
+                String purettuMerkkijono = lz.pura(d, purettuNimi);
                 System.out.println("LZ tiedosto purettu");
             }
 

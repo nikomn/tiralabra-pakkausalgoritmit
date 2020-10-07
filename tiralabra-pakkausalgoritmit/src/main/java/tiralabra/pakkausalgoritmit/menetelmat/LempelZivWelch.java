@@ -11,15 +11,12 @@ import tiralabra.pakkausalgoritmit.tietorakenteet.Hajautustaulu;
 public class LempelZivWelch {
 
     private Hajautustaulu<String, Integer> omaSanakirja;
-    private Integer indeksi;
-    private String tuloste;
     private Integer palojenKoko;
     private String tuloste2;
 
     public LempelZivWelch(Integer palojenKoko) {
         this.omaSanakirja = new Hajautustaulu<>();
-        this.indeksi = 256;
-        this.tuloste = "";
+        this.tuloste2 = "";
         if (palojenKoko < 9) {
             this.palojenKoko = 12;
         } else {
@@ -28,37 +25,8 @@ public class LempelZivWelch {
 
     }
 
-    public boolean onkoSanakirjassa(String mj) {
-        if (this.omaSanakirja.sisaltaaAvaimen(mj)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void lisaaSanakirjaan(String mj) {
-        //System.out.println("Lisätään sanakirjaan '" + mj + "' paikkaan " + this.indeksi);
-        this.omaSanakirja.lisaa(mj, indeksi);
-        this.indeksi++;
-    }
-
-    public int haeSanakirjasta(String mj) {
-        return this.omaSanakirja.hae(mj);
-    }
-
-    public int haeIndeksi() {
-        return this.indeksi;
-    }
-
-    public void kirjoitaTulostetta(String bittijono) {
-        this.tuloste = this.tuloste + bittijono;
-    }
 
     public String haeTuloste() {
-        return this.tuloste;
-    }
-
-    public String haeTuloste2() {
         return this.tuloste2;
     }
 
@@ -66,12 +34,7 @@ public class LempelZivWelch {
         return String.format("%" + bittimaara + "s", Integer.toBinaryString(merkkiArvo)).replace(' ', '0');
     }
 
-    public void tallenna() {
-        Tiedostonkirjoittaja tk = new Tiedostonkirjoittaja();
-        tk.kirjoitaTiedostoon(this.tuloste, "lz.dat");
-    }
-
-    public void tallenna2(String tiedostonNimi) {
+    public void tallenna(String tiedostonNimi) {
         Tiedostonkirjoittaja tk = new Tiedostonkirjoittaja();
         tk.kirjoitaTiedostoon(this.tuloste2, tiedostonNimi);
     }
@@ -81,7 +44,34 @@ public class LempelZivWelch {
         return tl.lueBinaaritiedosto(tiedosto);
     }
 
-    public void pakkaa2(String merkkijono) {
+    public void pakkaa(String merkkijono) {
+        
+        /*
+        Data esim. syötteellä 'aaaaabbbc' (huom: esimerkki on kuvattu 9 bitin 
+        paloja käyttäen, vaikka usein on tarpeen käyttää suurempaa palakokoa. 
+        Periaate on joka tapauksessa sama ja vain bittien määrä vaihtuisi.)
+        
+        Koodaus             | Tulkinta purkutilanteessa           | Sanakirja
+        ----------------------------------------------------------|-------
+        000000000 001100001 | -a -> a ('a')                       | 256:a
+        100000000 001100001 | 256a -> a+a ('aaa')                 | 257:aa
+        100000001 001100010 | 257b -> aa+b ('aaaaab')             | 258:aab
+        000000000 001100010 | -b -> b ('aaaaabb')                 | 259:b
+        100000011 001100011 | 259c -> bc ('aaaaabbbc')            | 260:bc
+        
+        
+        Tässä '-' tarkoittaa, että merkkiä ei ole ennen kohdattu, ts.
+        '257b'  ja sitä seuraava '-b' tarkoittaa, että on luettu merkkijonoa
+        seuraavasti 
+        ...[a]abb... | a on sanakirjassa, luetaan eteenpäin
+        ...[aa]bb... | aa on sanakirjassa, luetaan eteenpäin
+        ...[aab]b... | aab ei ole sanakirjassa lisätään se sanakirjaan ja dataan
+        ...aab[b]... | b ei ole sanakirjassa lisätään se sanakirjaan ja dataan
+        jne.
+        
+        */
+        
+        
         Hajautustaulu<String, Integer> omaSk = new Hajautustaulu<>();
         String koodi = "";
         StringBuilder merkkijononKoostaja = new StringBuilder();
@@ -135,7 +125,6 @@ public class LempelZivWelch {
         //System.out.println("Lopputulos:");
         //System.out.println(koodi);
         //this.tuloste2 = koodi;
-        
         // Isoilla tiedostoilla indeksi voi virrata yli määritellyn palakoon,
         // esim. indeksi == 549827 -> 10000110001111000011 -> 20bittiä!
         //System.out.println("Indeksin koko: " + demoIndeksi);
@@ -143,9 +132,10 @@ public class LempelZivWelch {
 
     }
 
-    public String pura2(String data, String purettuNimi) {
-        Hajautustaulu<Integer, String> omaSk = new Hajautustaulu<>();
+    public String pura(String data, String purettuNimi) {
         
+        Hajautustaulu<Integer, String> omaSk = new Hajautustaulu<>();
+
         int sanakirjaIndeksi = 256;
         //String purettuMerkkijono = "";
         StringBuilder merkkijononKoostaja = new StringBuilder();

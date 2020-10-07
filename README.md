@@ -38,6 +38,10 @@
 
 ![Jacoco-raportti 3](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco3.png)
 
+![Jacoco-raportti 4](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco4.png)
+
+![Jacoco-raportti 5](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco5.png)
+
 ## Todo (päivitetty 2020-10-06)
 
 - [x] Omien tietorakenteiden käyttöönotto
