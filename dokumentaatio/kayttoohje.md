@@ -3,7 +3,7 @@
 
 ## Käynnistäminen
 
-Ohjelma käynnistetään ajamalla Main.java tiedosto esim. netbeansissa tai
+Ohjelma käynnistetään ajamalla Main.java tiedosto esim. netbeansissa tai  
 komentoriviltä projektin kansiossa komennolla
 
 ```console
@@ -16,12 +16,12 @@ Jacoco testiraporin saa generoitua komennolla:
 $ gradle jacocoTestReport
 ```
 
-Jacoco-raportti löytyy kansiosta build/reports/jacoco/test/html. Raportti on
+Jacoco-raportti löytyy kansiosta build/reports/jacoco/test/html. Raportti on  
 html muodossa, joten sen voi avata esim. firefoxissa.
 
 ## Aloitusvalikko
 
-Ensimmäisessä näkymässä voidaan valita ajetaanko demo, pakataanko vai puretaanko.
+Ensimmäisessä näkymässä voidaan valita ajetaanko demo, pakataanko vai puretaanko.  
 
 ```console
 Pakkausalgoritmien vertailu
@@ -34,17 +34,17 @@ Valitse toiminto
 
 ## Demo
 
-Demo toiminto kysyy pakattavan tiedoston nimeä (huom. projektin mukana satunnaisia
-sanoja sisältävä 1Mt tekstitiedosto 'testi.txt', jota voi halutessaan käyttää
-testaamiseen), jonka jälkeen kyseinen tiedosto
+Demo toiminto kysyy pakattavan tiedoston nimeä (huom. projektin mukana satunnaisia  
+sanoja sisältävä 1Mt tekstitiedosto 'testi.txt', jota voi halutessaan käyttää  
+testaamiseen), jonka jälkeen kyseinen tiedosto  
 
 1. Pakataan Huffman algoritmilla
 2. Pakattu Huffman tiedosto puretaan uuteen tiedostoon
 3. Alkuperäinen tiedosto pakataan LZ algortimilla
 4. Pakattu LZ tiedosto puretaan uuteen tiedostoon
 
-Tiedostoja vertaillaan ja aikoja lasketaan suorituksen aikana ja lopuksi tulostetaan
-yhteenveto, esim.:
+Tiedostoja vertaillaan ja aikoja lasketaan suorituksen aikana ja lopuksi tulostetaan  
+yhteenveto, esim.:  
 
 ```console
 ### YHTEENVETO ###
@@ -78,18 +78,18 @@ Jatka painamalla Enter...
 
 ## Pakkaus
 
-Pakkauksen aluksi voidaan valita kumpaa algortimia käytetään.
+Pakkauksen aluksi voidaan valita kumpaa algortimia käytetään.  
 
-Pakkauksen yhdeydessä kysytään ensin pakattavaa tiedostoa ja muodostettavan pakatun tiedoston nimeä.
-Pakatun tiedoston nimen loppuun lisätään aina automaattisesti ".huffdat" / ".lzdat"
-eli tiedoston päätettä ei tarvitse määritellä itse.
+Pakkauksen yhdeydessä kysytään ensin pakattavaa tiedostoa ja muodostettavan pakatun tiedoston nimeä.  
+Pakatun tiedoston nimen loppuun lisätään aina automaattisesti ".huffdat" / ".lzdat"  
+eli tiedoston päätettä ei tarvitse määritellä itse.  
 
 
 ## Purkaminen
 
-Purkamisen aluksi määritellään kummalla algoritmilla data on pakattu.
+Purkamisen aluksi määritellään kummalla algoritmilla data on pakattu.  
 
-Purkamisen yhdeydessä kysytään ensin purettavaa tiedostoa ja muodostettavan puretun tiedoston nimeä.
+Purkamisen yhdeydessä kysytään ensin purettavaa tiedostoa ja muodostettavan puretun tiedoston nimeä.  
 
 ## Esimerkki ohjelman suorituksesta
 
