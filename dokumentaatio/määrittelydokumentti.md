@@ -11,7 +11,9 @@ Tietojenkäsittelytieteen kandidaatti (TKT)
 
 ## Toteutettavat algoritmit ja tietorakenteet
 
-Tavoitteena on toteuttaa pakkausalgoritmeista Huffmanin pakkausalgoritmi ja LZ zip pakkausalgoritmi tms. Näitä varten tarvitaan ainakin prioriteettijonoa.
+Tavoitteena on toteuttaa pakkausalgoritmeista Huffmanin pakkausalgoritmi ja LZ zip pakkausalgoritmi tms. Näitä varten tarvitaan ainakin prioriteettijonoa. Molemman algoritmin toteutuksessa käytetään myös hajautustaulua.
+
+[Tarkempaa tietoa toteutetista tietorakenteista](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tietorakenteet.md)
 
 ## Ongelma ja valitut algoritmit/tietorakenteet
 
@@ -23,17 +25,32 @@ Alustavan suunnitelman mukaan tarkoitus olisi antaa ohjelmalle teksti-tiedostoja
 
 ## Tavoitteena olevat aika- ja tilavaativuudet (m.m. O-analyysit)
 
-Aikavaativuus Huffman algoritmille on O(n log n) ja tähän aikavaativuuteen myös projektissa tullaan pyrkimään.
+Tilavaativuus on molemmassa riippuvainen alkuperäisen tiedoston koosta, eikä mitään
+kiinteää tilavaativuutta voi määrittää.
 
-## Lähteet (täydentyy myöhemmin...)
+## Huffman
 
-- https://en.wikipedia.org/wiki/Huffman_coding
+Algoritmissa käytetään prioriteettijonoa (O(n log n)), hajautustaulua (O(n)) ja käsitellään linkitettyjä
+listoja (O(n log n)). Kokonaisaikavaativuus on siis luokkaa O(n log n).
+
+## LZW
+
+Algoritmissa käsitellään sanakirjoja, jotka ovat hajautustauluna, joihin liittyvät
+operaatiot vievät aikaa O(n). Aikavaativuuden kannalta kuitenkin joudutaan tekemään
+myös hakuja taulukosta, jolloin lopullinen aikavaativuus on O(n log n) luokkaa.
+
+## Algoritmien vertailua
+
+[Algoritmien vertailua](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/vertailua.md)
+
+## Lähteet
+
+### Huffman algoritmi
+
 - https://www.youtube.com/watch?v=dM6us854Jk0
-- https://www.youtube.com/watch?v=goOa3DGezUA
-- https://www.youtube.com/watch?v=Lto-ajuqW3w
-- https://www.youtube.com/watch?v=JsTptu56GM8
-- https://www.youtube.com/watch?v=NjhJJYHpYsg
-- https://www.youtube.com/watch?v=iiGZ947Tcck
-- https://www.youtube.com/watch?v=j2HSd3HCpDs
+- https://en.wikipedia.org/wiki/Huffman_coding
+
+### LZW algoritmi
+
 - https://www.youtube.com/watch?v=RV5aUr8sZD0
-- https://www.cs.helsinki.fi/courses/582487/2012/k/k/1
+- https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch

@@ -1,5 +1,7 @@
 # tiralabra-kurssin projekti: Pakkausalgoritmit
 
+Tekstitiedostojen pakkaamiseen suunniteltu sovellus.
+
 [Ohjelman määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
 
 ## Viikkoraportit
@@ -17,6 +19,8 @@
 ## Dokumentaatiota
 
 [Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
+
+[Toteutukseen liittyvät tekniset rajoitukset](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tekniset_rajoitukset.md)
 
 [Tietorakenteet](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tietorakenteet.md)
 
