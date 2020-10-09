@@ -13,7 +13,8 @@ vaihtamista merkki/merkkijono muodosta tavuiksi. Muutoin kaikki toiminnot toimis
 pohjimmiltaan samalla logiikalla kuin nykyisin, mutta koska koko ohjelma on rakennettu  
 merkki/merkkijono datan käsittelyä varten, jolloin ohjelman perimmäinen luonne  
 edellyttäisi käytännössä koko ohjelman keskeisten toimintojen uudelleen kirjoittamista,  
-että ne saisi toteutettu järkevimmällä mahdollisella tavalla koodissa. Tämä edellyttäisi  
+että ne saisi toteutettu järkevimmällä mahdollisella tavalla koodissa (esimerkki  
+ongelmasta ks. [tavumoitoisen datan käsittelyyn vaihtamiskokeilu](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/tiralabra-pakkausalgoritmit/src/main/java/tiralabra/pakkausalgoritmit/tiedostot/Tiedostonlukija.java#L57-L101)). Tämä edellyttäisi  
 niin paljon ohjelman uudelleen kirjoittamista, että siihen ei ole enää mielekästä  
 tässä vaiheessa lähteä, koska se vaarantaisi ohjelman valmistumisen deadlineen mennessä.  
 Ohjelma kuitenkin nykymuodossaan toimii ja tekee sen, mitä varten se on suunniteltu  

@@ -122,6 +122,13 @@ public class HuffmanSolmu implements Comparable {
         if (this.merkki != null && this.merkki.length() == 1) {
             m = String.format("%24s", Integer.toBinaryString(this.merkki.charAt(0))).replace(' ', '0');
         }
+        
+//        // Tavumuotokokeilua varten!
+//        if (m.equals("000000000000000100000000")) {
+//            m = "000000000000000000000000";
+//        }
+//        
+//        // Tavumuotokokeilu päättyy!
 
         String t = String.format("%24s", Integer.toBinaryString(0)).replace(' ', '0');
         if (this.toistuvuus != null) {

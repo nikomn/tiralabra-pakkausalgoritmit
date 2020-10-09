@@ -13,7 +13,8 @@ public class Tiedostonlukija {
     /**
      * Metodi lukee tavallisen tekstitiedoston sisällön.
      *
-     * @param tiedosto tiedoston nimi ja sijainti
+     * @param tiedosto tiedoston nimi (ja polku)
+     * @throws Exception
      *
      * @return merkkijono
      */
@@ -41,6 +42,72 @@ public class Tiedostonlukija {
         return merkkijononKoostaja.toString();
     }
 
+    /**
+     * @deprecated Metodi lukee minkä tahansa tiedoston sisällön tavuina ja
+     * muuntaa ne merkeiksi. Ei käytössä, koska ei toimi sellaisenaan muiden
+     * ohjelmanosien kanssa. Mahdollisesti hyödyllinen jatkokehitystä ajatellen.
+     *
+     *
+     * @param tiedosto tiedoston nimi (ja polku)
+     * @throws Exception
+     *
+     * @return merkkijono
+     */
+    @Deprecated
+    public String lueTiedostoTavuina(String tiedosto) throws Exception {
+        StringBuilder asciiIlmiasu = new StringBuilder();
+        try {
+            byte[] tavut = Files.readAllBytes(Paths.get(tiedosto));
+            for (int i = 0; i < tavut.length; i++) {
+                System.out.println("Luettu bitteinä: " + Integer.toBinaryString(tavut[i] & 0xFF));
+                System.out.println("Luettu numerona: " + Integer.parseInt(Integer.toBinaryString(tavut[i] & 0xFF), 2));
+                System.out.println("Luettu merkkinä: " + ((char) Integer.parseInt(Integer.toBinaryString(tavut[i] & 0xFF), 2)));
+                String asciiMerkkiString = String.format("%8s", Integer.toBinaryString(tavut[i] & 0xFF)).replace(' ', '0');
+                System.out.println("String muoto: " + asciiMerkkiString);
+                int asciiMerkkiNumero = Integer.parseInt(asciiMerkkiString, 2);
+                Character asciiMerkki = (char) asciiMerkkiNumero;
+                asciiIlmiasu.append(asciiMerkki);
+
+                /*
+                0 tekee hankalaksi toteuttaa pelkästään tällaisella yksinkertaisella
+                muokkauksella... 0 merkkinä on "", eli ei mitään, eli se katoaa
+                datasta jos käsitellään merkki muodossa...
+                
+                Toisaalta sekään ei tässä auta, jos sen muuttaisi joksikin muuksi,
+                koska silloin pitäisi kaikkialla missä dataa kirjoitetaan takaisin 
+                tavumuotoon muuntaa se takaisin muotoon 0, jolloin taas ohjelma
+                ei enää toimisi alkuperäisellä syötteellä (merkkijonot) oikein...
+                
+                Tällainen muokkaus siis aiheuttaisi ikävän muokkausten "haitariliikkeen"
+                kaikkialle koodiin, koska molemmat pakkausalgoritmit aloittavat
+                pakattavan datan hakemisella...
+                 */
+                if (asciiMerkkiNumero == 0) {
+                    // Purkka ja jeesari viritelmä... ugh...
+                    asciiMerkkiNumero = Integer.parseInt("100000000", 2);
+                    //asciiMerkkiNumero = Integer.parseInt(asciiMerkkiString, 2);
+                    asciiMerkki = (char) asciiMerkkiNumero;
+                    asciiIlmiasu.append(asciiMerkki);
+                    //System.out.println("Merkkijono on nyt: " + asciiIlmiasu.toString());
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println("Tiedoston lukeminen ei onnistunut!");
+        }
+
+        return asciiIlmiasu.toString();
+
+    }
+
+    /**
+     * Metodi lukee binäärimuotoisen LZW pakatun tiedoston.
+     *
+     * @param tiedosto tiedoston nimi ja sijainti
+     * @throws Exception
+     *
+     * @return nollista ja ykkösistä koostuva merkkijono
+     */
     public String lueBinaaritiedosto(String tiedosto) throws Exception {
         StringBuilder merkkijononKoostaja = new StringBuilder();
 
@@ -58,11 +125,11 @@ public class Tiedostonlukija {
                 }
                 //mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
                 //merkkijononKoostaja.insert(0, String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
-                
+
                 // nopeampaa...
                 //merkkijononKoostaja.append(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
                 String uusi = new StringBuilder(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0')).reverse().toString();
-                
+
                 merkkijononKoostaja.append(uusi);
             }
         } catch (Exception e) {
@@ -72,7 +139,6 @@ public class Tiedostonlukija {
         }
 
         //return mjono;
-        
         //return merkkijononKoostaja.toString();
         // Paljon nopeampaa...
         return new StringBuilder(merkkijononKoostaja.toString()).reverse().toString();
@@ -84,12 +150,12 @@ public class Tiedostonlukija {
      * määrämittaisiin kenttiin.
      *
      * @param merkkijono nollista ja ykkösistä koostuva merkkijono
+     * 
      *
      * @return nollista ja ykkösistä koostuvia merkkijonoja sisältävä taulukko
      */
     public String[] erotteleKentat(String merkkijono) {
         int lohkojenMaara = merkkijono.length() / 24;
-        //System.out.println("Lohkot: " + lohkojenMaara);
         String[] dataLohkot = new String[lohkojenMaara];
 
         String x = "";
@@ -104,35 +170,6 @@ public class Tiedostonlukija {
             }
         }
 
-        //System.out.println(Arrays.toString(dataLohkot));
-        String[] kentat = new String[5];
-
-        int tauluPituus = Integer.parseInt(dataLohkot[1], 2);
-        int skippiBitit = Integer.parseInt(dataLohkot[2], 2);
-
-//        merkkijono = merkkijono.substring(24, merkkijono.length());
-//        
-//        String taulunPituus = merkkijono.substring(0, 24);
-//        System.out.println("Taulunpituus: " + taulunPituus);
-//        int taulunpituusNumerona = Integer.parseInt(taulunPituus, 2);
-//        kentat[0] = taulunPituus;
-//
-//        merkkijono = merkkijono.substring(24, merkkijono.length());
-//        String ylihypattavat = merkkijono.substring(0, 24);
-//        kentat[1] = ylihypattavat;
-//
-//        merkkijono = merkkijono.substring(24, merkkijono.length());
-//        String puunjuuri = merkkijono.substring(0, 120);
-//        kentat[2] = puunjuuri;
-//
-//        merkkijono = merkkijono.substring(120, merkkijono.length());
-//        System.out.println("Taulunpituus: " + taulunpituusNumerona);
-//        String taulu = merkkijono.substring(0, taulunpituusNumerona);
-//        kentat[3] = taulu;
-//
-//        merkkijono = merkkijono.substring(120 + taulunpituusNumerona, merkkijono.length() - 1);
-//        String data = merkkijono;
-//        kentat[4] = data;
         return dataLohkot;
     }
 
@@ -140,6 +177,7 @@ public class Tiedostonlukija {
      * Metodi lukee Huffman algoritmilla koodatun tiedoston sisällön.
      *
      * @param tiedosto tiedoston nimi ja sijainti
+     * @throws Exception
      *
      * @return nollista ja ykkösistä koostuvia merkkijonoja sisältävä taulukko
      */
@@ -149,7 +187,7 @@ public class Tiedostonlukija {
         try {
             byte[] bitit = Files.readAllBytes(Paths.get(tiedosto));
             //System.out.println(Arrays.toString(bitit));
-            
+
             int bittiMaara = bitit.length;
             int kasiteltavaMerkkiLkm = 0;
             double prosenttiKokkonaisuudesta = bittiMaara / 100;
@@ -162,12 +200,11 @@ public class Tiedostonlukija {
                 //System.out.println("bitti: " + bitit[i]);
                 //System.out.println(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
                 //mjono = String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0') + mjono;
-                
-                
+
                 //merkkijononKoostaja.insert(0, String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0'));
                 // Paljon nopeampaa!
                 String uusi = new StringBuilder(String.format("%8s", Integer.toBinaryString(bitit[i] & 0xFF)).replace(' ', '0')).reverse().toString();
-                
+
                 merkkijononKoostaja.append(uusi);
             }
         } catch (Exception e) {
@@ -190,6 +227,7 @@ public class Tiedostonlukija {
      * Metodi lukee Huffman algoritmilla koodatun tiedoston sisällön.
      *
      * @param tiedosto tiedoston nimi ja sijainti
+     * @throws Exception
      *
      * @return nollista ja ykkösistä koostuva merkkijono
      */

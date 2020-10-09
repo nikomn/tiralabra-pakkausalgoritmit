@@ -270,6 +270,7 @@ public class Kayttoliittyma {
 
                     Tiedostonlukija tlukija = new Tiedostonlukija();
                     String sisalto = tlukija.lueTiedosto(tiedosto);
+                    //String sisalto = tlukija.lueTiedostoTavuina(tiedosto);
 
                     Huffman h = new Huffman();
                     h.muodostaTaulu(sisalto);
