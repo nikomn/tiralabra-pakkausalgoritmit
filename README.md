@@ -16,9 +16,11 @@ Tekstitiedostojen pakkaamiseen suunniteltu sovellus.
 
 [Viikkoraportti 5](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti5.md)
 
+[Viikkoraportti 6](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti6.md)
+
 ## Dokumentaatiota
 
-[Alustava käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
+[Käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
 
 [Toteutukseen liittyvät tekniset rajoitukset](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tekniset_rajoitukset.md)
 
