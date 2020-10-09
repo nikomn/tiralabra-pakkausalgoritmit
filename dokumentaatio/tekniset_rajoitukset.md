@@ -14,7 +14,7 @@ pohjimmiltaan samalla logiikalla kuin nykyisin, mutta koska koko ohjelma on rake
 merkki/merkkijono datan käsittelyä varten, jolloin ohjelman perimmäinen luonne  
 edellyttäisi käytännössä koko ohjelman keskeisten toimintojen uudelleen kirjoittamista,  
 että ne saisi toteutettu järkevimmällä mahdollisella tavalla koodissa (esimerkki  
-ongelmasta ks. [tavumoitoisen datan käsittelyyn vaihtamiskokeilu](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/tiralabra-pakkausalgoritmit/src/main/java/tiralabra/pakkausalgoritmit/tiedostot/Tiedostonlukija.java#L57-L101)). Tämä edellyttäisi  
+ongelmasta ks. [tavumoitoisen datan käsittelyyn vaihtamiskokeilu](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/a3040b8fc1354d53208d0a0e9d3cc60fd8b7a2dd/tiralabra-pakkausalgoritmit/src/main/java/tiralabra/pakkausalgoritmit/tiedostot/Tiedostonlukija.java#L57-L101)). Tämä edellyttäisi  
 niin paljon ohjelman uudelleen kirjoittamista, että siihen ei ole enää mielekästä  
 tässä vaiheessa lähteä, koska se vaarantaisi ohjelman valmistumisen deadlineen mennessä.  
 Ohjelma kuitenkin nykymuodossaan toimii ja tekee sen, mitä varten se on suunniteltu  
