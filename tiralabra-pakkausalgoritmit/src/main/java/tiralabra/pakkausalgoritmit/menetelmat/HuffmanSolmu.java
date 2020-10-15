@@ -131,13 +131,13 @@ public class HuffmanSolmu implements Comparable {
         }
         //System.out.println("o: " + o);
 
-        String V = "000000000000000000000000";
+        String w = "000000000000000000000000";
         if (this.vanhempi != null) {
-            V = this.vanhempi.tunnisteBinaarina;
+            w = this.vanhempi.tunnisteBinaarina;
         }
         //System.out.println("V: " + V);
 
-        String binaariMerkkijono = id + m + t + v + o + V;
+        String binaariMerkkijono = id + m + t + v + o + w;
 
         //System.out.println("binaariMerkkijono: " + binaariMerkkijono);
         return binaariMerkkijono;

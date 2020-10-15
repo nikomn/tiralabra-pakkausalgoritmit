@@ -39,7 +39,7 @@ public class TestiLempelZivWelch {
     }
     
     @Test
-    public void PurettuDataTulkitaanOikein() {
+    public void purettuDataTulkitaanOikein() {
         String syote = "1100011001100000010100011000000000000100011001000000011000011000000000011000011000000000001";
         LempelZivWelch lz = new LempelZivWelch(9);
         String tuloste = lz.pura(syote, "testidata/lz_pakkaus.txt");
@@ -50,7 +50,7 @@ public class TestiLempelZivWelch {
     }
     
     @Test
-    public void DatanKirjoitusToimii() {
+    public void datanKirjoitusToimii() {
         String syote = "aaaaabbbc\n";
         LempelZivWelch lz = new LempelZivWelch(18);
         lz.pakkaa(syote);

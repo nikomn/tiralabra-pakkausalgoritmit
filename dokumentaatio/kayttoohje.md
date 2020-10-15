@@ -1,5 +1,23 @@
 # Käyttöohje
 
+## Ohjelman lataaminen koneelle
+
+Uusimman version voi ladata joko zip-pakettina github repositorion Code painikkeella
+ja valitsemalla vaihtoehto Download as ZIP
+
+![ZIP paketti githubista](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kuvat/ohjekuva1.png)
+
+Vaihtoehtoisesti uusimmman version voi ladata komentoriviltä gitillä.
+
+Ohjelmasta on saatavilla myös jar-pakettina oleva julkaisuversio:
+[Ohjelman ensimmäinen loppupalautus-ehdokas versio](https://github.com/nikomn/tiralabra-pakkausalgoritmit/releases/tag/rc1)
+
+Ohjelman voi ladata jar-tiedostona ja suorittaa komennolla
+
+```console
+$ java -jar tiralabra-pakkausalgoritmit.jar
+```
+
 
 ## Käynnistäminen
 

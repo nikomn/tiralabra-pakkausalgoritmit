@@ -2,7 +2,16 @@
 
 Tekstitiedostojen pakkaamiseen suunniteltu sovellus.
 
-[Ohjelman määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
+## Loppupalautusversio
+
+[Ohjelman ensimmäinen loppupalautus-ehdokas versio](https://github.com/nikomn/tiralabra-pakkausalgoritmit/releases/tag/rc1)
+
+Ohjelman voi ladata jar-tiedostona ja suorittaa komennolla
+
+```console
+$ java -jar tiralabra-pakkausalgoritmit.jar
+```
+
 
 ## Viikkoraportit
 
@@ -20,6 +29,8 @@ Tekstitiedostojen pakkaamiseen suunniteltu sovellus.
 
 ## Dokumentaatiota
 
+[Ohjelman määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
+
 [Käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
 
 [Toteutukseen liittyvät tekniset rajoitukset](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tekniset_rajoitukset.md)
@@ -36,21 +47,4 @@ Tekstitiedostojen pakkaamiseen suunniteltu sovellus.
 
 [Algoritmien esittelyä](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/projektin_esittely.pdf)
 
-## Testauskattavuus
-
-![Jacoco-raportti 1](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco1.png)
-
-![Jacoco-raportti 2](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco2.png)
-
-![Jacoco-raportti 3](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco3.png)
-
-![Jacoco-raportti 4](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco4.png)
-
-![Jacoco-raportti 5](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco5.png)
-
-## Todo (päivitetty 2020-10-06)
-
-- [x] Omien tietorakenteiden käyttöönotto
-- [] Testaksen toteuttaminen kattasti
-- [] Dokumentaation täydentäminen
-- [] Koodin siivous
+[Testikattavuusraportit: jacoco ja checkstyle](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/testikattavuus.md)

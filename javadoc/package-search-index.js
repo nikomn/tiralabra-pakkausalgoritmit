@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"tiralabra.pakkausalgoritmit"},{"l":"tiralabra.pakkausalgoritmit.apuohjelmat"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"tiralabra.pakkausalgoritmit"},{"l":"tiralabra.pakkausalgoritmit.kayttoliittyma"},{"l":"tiralabra.pakkausalgoritmit.menetelmat"},{"l":"tiralabra.pakkausalgoritmit.tiedostot"},{"l":"tiralabra.pakkausalgoritmit.tietorakenteet"}]

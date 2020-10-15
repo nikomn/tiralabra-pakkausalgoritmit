@@ -75,7 +75,7 @@ public class Huffman {
         int s = -1;
         int o = -1;
         int v = -1;
-        int V = -1;
+        int w = -1;
         for (int i = 0; i < this.solmulista.length; i++) {
             //System.out.println("this.solmulista[i].tunnisteBinaarina " + this.solmulista[i].tunnisteBinaarina);
             if (this.solmulista[i].tunnisteBinaarina.equals(tunniste)) {
@@ -88,7 +88,7 @@ public class Huffman {
                 o = i;
             }
             if (this.solmulista[i].tunnisteBinaarina.equals(vanhempi)) {
-                V = i;
+                w = i;
             }
         }
 
@@ -102,8 +102,8 @@ public class Huffman {
         } else {
             solmulista[s].oikea = null;
         }
-        if (V != -1) {
-            solmulista[s].vanhempi = solmulista[V];
+        if (w != -1) {
+            solmulista[s].vanhempi = solmulista[w];
         } else {
             solmulista[s].vanhempi = null;
         }

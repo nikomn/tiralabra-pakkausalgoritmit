@@ -4,9 +4,11 @@ plugins {
     id 'application'
 
     id 'jacoco'
-    
+
     id 'checkstyle'
 }
+
+//configDir = file("$rootProject.projectDir")
 
 //def jacoco = project.extensions.getByName("jacoco")
 //jacoco.toolVersion = "0.8.3"
@@ -28,6 +30,7 @@ jacoco {
 //    sourceCompatibility = '1.8'
 //    targetCompatibility = '1.8'
 //}
+
 
 checkstyle {
     toolVersion '8.17';    // your choice here
@@ -67,19 +70,26 @@ run {
     standardOutput = System.out
 }
 
-test {
-    testLogging.showStandardStreams = true
-}
+// Testien debugausta varten tulostukset näkyviin...
+//test {
+//    testLogging.showStandardStreams = true
+//}
 
 //checkstyle {
 //    toolVersion "7.6.1"
 //}
-//
-//checkstyleMain {
-//    source = fileTree('.') {
-//        excludes = ['.*/**', 'gradle*', 'build/**', '*.iml', '*.log', '**/*.jar']
-//    }
-//}
+
+checkstyleMain {
+    source = fileTree('.') {
+        excludes = ['.*/**', 'gradle*', 'build/**', '*.iml', '*.log', '**/*.jar', '*.txt']
+    }
+}
 
 
 check.dependsOn jacocoTestReport
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'tiralabra.pakkausalgoritmit.Main'
+    }
+}
