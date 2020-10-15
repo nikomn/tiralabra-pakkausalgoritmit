@@ -5,18 +5,24 @@ import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonlukija;
 import tiralabra.pakkausalgoritmit.tietorakenteet.Hajautustaulu;
 
 /**
- *
- * @author nikoniem
+ * Luokka sisältää LZW algoritmiin liittyvät toiminnallisuudet.
  */
 public class LempelZivWelch {
 
     private Hajautustaulu<String, Integer> omaSanakirja;
     private Integer palojenKoko;
-    private String tuloste2;
+    private String tuloste;
 
+    /**
+     * Konstruktori.
+     *
+     * @param palojenKoko, kokonaisluku, joka määrittää sanakirjassa käytettävän 
+     * bittienmäärän
+     * 
+     */
     public LempelZivWelch(Integer palojenKoko) {
         this.omaSanakirja = new Hajautustaulu<>();
-        this.tuloste2 = "";
+        this.tuloste = "";
         if (palojenKoko < 9) {
             this.palojenKoko = 12;
         } else {
@@ -26,24 +32,62 @@ public class LempelZivWelch {
     }
 
 
+    /**
+     * Metodi, joka hakee koodatussa muodossa olevan tulosteen.
+     *
+     * @return Merkkijono, nollia ja ykkösiä
+     * 
+     */
     public String haeTuloste() {
-        return this.tuloste2;
+        return this.tuloste;
     }
-
+    
+    
+    /**
+     * Metodi, joka muuntaa merkin numerokoodin perusteella binäärimuotoon.
+     * 
+     * @param merkkiArvo, kokonaislukuna
+     * @param bittimaara, kokonaislukuna
+     *
+     * @return Merkkijono, nollia ja ykkösiä
+     * 
+     */
     public String muunnaBittijonoksi(Integer merkkiArvo, int bittimaara) {
         return String.format("%" + bittimaara + "s", Integer.toBinaryString(merkkiArvo)).replace(' ', '0');
     }
 
+    
+    /**
+     * Paluuarvoton metodi, joka tallentaa koodatun datan tiedostoon.
+     * 
+     * @param tiedostonNimi, merkkijono
+     *
+     * 
+     */
     public void tallenna(String tiedostonNimi) {
         Tiedostonkirjoittaja tk = new Tiedostonkirjoittaja();
-        tk.kirjoitaTiedostoon(this.tuloste2, tiedostonNimi);
+        tk.kirjoitaTiedostoon(this.tuloste, tiedostonNimi);
     }
 
+    /**
+     * Metodi, joka lukee koodatun datan tiedostosta.
+     * 
+     * @param tiedosto, merkkijono
+     *
+     * @return merkkijono, nollia ja ykkösiä
+     */
     public String lueTiedostosta(String tiedosto) throws Exception {
         Tiedostonlukija tl = new Tiedostonlukija();
         return tl.lueBinaaritiedosto(tiedosto);
     }
 
+    
+    /**
+     * Paluuarvoton metodi, joka pakkaa alkuperäisen datan lzw algortimilla.
+     * 
+     * @param merkkijono, merkkijono
+     *
+     */
     public void pakkaa(String merkkijono) {
         
         /*
@@ -124,14 +168,22 @@ public class LempelZivWelch {
 
         //System.out.println("Lopputulos:");
         //System.out.println(koodi);
-        //this.tuloste2 = koodi;
+        //this.tuloste = koodi;
         // Isoilla tiedostoilla indeksi voi virrata yli määritellyn palakoon,
         // esim. indeksi == 549827 -> 10000110001111000011 -> 20bittiä!
         //System.out.println("Indeksin koko: " + demoIndeksi);
-        this.tuloste2 = merkkijononKoostaja.toString();
+        this.tuloste = merkkijononKoostaja.toString();
 
     }
 
+    /**
+     * Metodi, joka purkaa lzw algortimilla pakatun datan takaisin.
+     * 
+     * @param data, merkkijono
+     * @param purettuNimi, merkkijono, nimi puretulle tiedostolle
+     *
+     * @return merkkijono
+     */
     public String pura(String data, String purettuNimi) {
         
         Hajautustaulu<Integer, String> omaSk = new Hajautustaulu<>();

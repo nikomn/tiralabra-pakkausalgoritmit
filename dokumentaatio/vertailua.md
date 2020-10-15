@@ -1,80 +1,84 @@
 # Algoritmien vertailua ja huomioita algortmien toiminnasta
 
-## Suoritusaikojen vertailua
+Testiaineistona käytetty 5 utf-8 muotoista tekstitiedostoa:
 
-Vertailu suoritettu satunnaisista suomenkielisistä sanoista muodostetulla n. 334kb  
-kokoisella tiedostolla.  
+1. Tiettyjä merkkejä: abcd.txt (sisältää vain merkkejä abcd, tiedosto projektin mukana)
+2. Satunnaisia sanoja: testi.txt (satunnaisista suomenkielisistä sanoista koostuva aineisto, tiedosto projektin mukana)
+3. Englanninkielinen "todellinen" teksti: The Adventures of Sherlock Holmes by Arthur Conan Doyle (https://www.gutenberg.org/ebooks/1661)
+4. Suomenkielinen "todellinen" teksti: Juha by Juhani Aho (https://www.gutenberg.org/ebooks/10863)
+5. Laajempi aineisto: Project Gutenberg Complete Works of Winston Churchill by Winston Churchill (https://www.gutenberg.org/ebooks/5400)
 
-- Alkuperäisen tiedoston koko: 333678.0 tavua
-- Alkuperäisen tiedoston lukeminen: 261 ms
-- Huffman pakkaus yht. 25846 ms
-   - Merkkitaulun muodostus: 47 ms
-   - Huffmanpuun muodostus 2 ms
-   - Datan muuntaminen koodattuun muotoon: 25231 ms
-   - Pakatun tiedoston kirjoittaminen: 563 ms
-   - Pakatun tiedoston koko: 167643.0 tavua
-   - Pakattu tiedosto on n. 50.0% alkuperäisestä.
-- Huffman datan purku yht. 21045 ms
-   - Huffman-tiedoston lukeminen: 12486 ms
-   - Koodatun datan tulkinta ja puretun tiedoston kirjoitus: 8559 ms
-- LZ pakkaus yht. 5931 ms
-   - Datan muuntaminen koodattuun muotoon: 5332 ms
-   - Pakatun datan tallennus: 594 ms
-   - Pakatun tiedoston koko: 205033.0 tavua
-   - Pakattu tiedosto on n. 61.0% alkuperäisestä.
-- LZ pakkatun datan purkaminen yht. 20612 ms
-   - Pakatun datan lukeminen: 19714 ms
-   - Purerun datan tulkinta ja puretun itedoston kirjoittaminen: 896 ms
+## Testien tulokset
 
-Lopputuloksena oli täsmälleen samanlaiset tiedostot:  
+### Pakkausteho
 
-```console
-$ diff -s testi.txt huffman_purettu.txt
-Files testi.txt and huffman_purettu.txt are identical
-$ diff -s testi.txt lz_purettu.txt
-Files testi.txt and lz_purettu.txt are identical
-```
+Tiedosto     | alkuperäinen (tavua) | huffman pakattu (tavua) | Huffman pakkaussuhde | lzw pakattu (tavua) | lzw pakkaussuhde
+-------------|----------------------|-------------------------|----------------------|---------------------|------------------
+abcd.txt     | 107743               | 34029                   | 31,58 %              | 80857               | 75,05 %
+testi.txt    | 1045396              | 519912                  | 49,73 %              | 631077              | 60,37 %
+pg5400.txt   | 9540229              | 5313255                 | 55,69 %              | 8475965             | 88,84 %
+1661-0.txt   | 607791               | 333981                  | 54,95 %              | 447702              | 73,66 %
+pg10863.txt  | 278954               | 149676                  | 53,66 %              | 225681              | 80,90 %
 
-## Huomioita
+Testien perusteella Huffman algoritmi näyttää tuottavan kaikilla aineistoilla
+paremman tuloksen kuin lzw. Huffman algoritmi pääsee n. 50% pakkaustulokseen,
+kun vastaavasti lzw n. 75%. Tämä on jossain määrin yllättävä tulos, koska huffman
+tiedostoissa puun tallennusta ei ole erityisen tehokkaasti optimoitu, jolloin se
+vie melko paljon tilaa, mutta siitä huolimatta lopputulos on pienempi kuin lzw
+tiedostoissa. Asiaan toki vaikuttaa paljon se, että lzw algoritmissa palan koko
+on 18 tavua. Jos dataa käsiteltäisiin tekstin sijaan tavuina, tätä voisi tiivistää.
+Toisaalta myös Huffman tiedoston muotoa voisi tällöin tiivistää, joten myös sen osalta
+tiedostonkoko pienenisi.
 
-Huffman pakkaus on tässä toteutuksessa hieman hitaampi kuin LZ, mutta toisaalta  
-Huffman pakkaus toimii tehokkaammin. Molemmat algoritmit joka tapauksessa pystyvät  
-pakkaamaan dataa n. 50-60% tehokkuudella.  
+![pakkaustehojen vertailu](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio1.png)
 
-Molempaan algoritmiin on vielä jäänyt tehostamismahdollisuuksia, joten pienellä  
-optimoinnilla nopeutta voitaneen vielä lisätä nykyisestä.  
+![abcd.txt pakkaus](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio2.png)
 
-Toteutuksessa on ongelmia isompien tiedostojen kanssa ja sellaisissa tapauksissa,  
-joissa tiedostot sisältävät harvinaisempia merkkejä. Tällöin lopputulos ei aina  
-ole oikea. Pienemmillä tiedostoilla (< 500kb) ja yleisiä merkkejä käyttäessä  
-algoritmit tuntuisivat toimivan kuitenkin luotettavasti.  
+![testi.txt pakkaus](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio3.png)
 
-## Merkistökoodauksista
+![pg5400.txt pakkaus](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio4.png)
 
-LZ algoritmin ongelma näyttää liittyvän utf-8 merkistökoodaukseen. Esim. iso-8859-1  
-merkistökoodauksella olevat tiedostot pakkautuvat ilman ongelmia. Käytännössä  
-LZ pakkauksen tässä toteutuksessa oletetaan, että lähdetiedoston merkistö on kiinteällä  
-tavumäärällä kuvattu. utf-8 tiedostojen osalta merkkien tavukoko vaihtelee ja  
-ilmeisesti pahimmassa tapauksessa tarvitaan esim. 4 tavua. Tässä toteutuksessa  
-ei kuitenkaan ole toiminnallisuutta, joka osaisi mukautua eri merkkien mukaan, joten  
-ainoa mahdollisuus on olettaa jokin maksimipituus ja käyttää sitä, mutta tällöin  
-tiedoston pakkaustiheys kärsii. Huffman algortimin nykyisen toteutuksen kohdalla  
-tätä ongelmaa ei ole, koska oletuksena käytetään 4 tavun kokoista tilaa merkkien  
-tallentamiseen.  
+![pg1661-0.txt pakkaus](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio5.png)
 
-LZ algoritmin osalta esim. 18 bitin toteutus näyttää toimivan suurimmalle osalle  
-tiedostoista, mutta tällöin päästään vain n. 70% pakkaukseen.  
+![pg10863.txt pakkaus](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio6.png)
 
-Myös iso-8859-1 tiedostoissa ei toteutuksessa päästä siihen ihanteelliseen tilaan  
-mitä lähdemateriaalien esimerkeissä mainosteaan, ts. että päästäisiin yhden bitin  
-laajennuksella hyviin lopputuloksiin, koska toteutuksessa indeksiin lisätään yhdistettyjä  
-merkkejä, käytännössä siis pohjimmainen idea lienee se, että esim. "aaba" voidaan  
-kuvata pelkkänä yhtenä 9 bittisenä merkkinä vrt. että se kuvattaisiin neljänä  
-8 bitin merkkinä. Totetutuksessa kuitenkin lähdetään liikkeelle siitä, että yhdistemerkkejä  
-lisätään indeksiin jonka arvo kasvaa koko ajan, tällöin siis 9 bitin toteutuksessa  
-ensimmäinen indeksi viittaa paikkaan 256 ts. 256 tarkoittaa mitä tahansa mitä kyseisessä  
-muistipaikassa on (esim. juuri "aaba" tms.) jne. Yhdeksän bitin toteutuksessa  
-rajat tulevat vastaan jo indeksin 511 jälkeen, jolloin tarvitaan jo uusi bitti käyttöön.  
-Eli käytännössä siis yhdenksän bitin toteutuksessa voidaan laajentaa ascii merkistöä  
-vain 255 uudella yhdistemerkillä, joka raja tulee hyvin pian vastaan laajemmissa  
-tekstimassoissa.  
+### Pakkausnopeus
+
+Tiedosto	  | huffman pakaus (ms) |	lzw pakkaus (ms)
+------------|---------------------|-----------------
+abcd.txt	  | 340	                | 318
+testi.txt	  | 1408	              | 1743
+pg5400.txt	| 12615	              | 23613
+1661-0.txt	| 971	                | 1228
+pg10863.txt |	474	                | 585
+
+Pakkausnopeudessa Huffman algoritmi on nopeampi kuin lzw, ero näkyy selkeiten
+isojen tiedostojen kohdalla. Pienillä tiedostoilla lzw voi olla jopa hieman nopeampi.
+
+![pakkausnopeuden vertailu tiedostoittain](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio7.png)
+
+![pakkausnopeuden vertailu kokonaisajassa](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio9.png)
+
+
+### Purkunopeus
+
+Tiedosto     | huffman purku (ms) | lzw purku (ms)
+-------------|--------------------|----------------
+abcd.txt     | 293                | 224
+testi.txt    | 486                | 596
+pg5400.txt   | 4447               | 8486
+1661-0.txt   | 315                | 386
+pg10863.txt  | 145                | 194
+
+Purkunopeudessa Huffman algoritmi on nopeampi kuin lzw, ero näkyy selkeiten
+isojen tiedostojen kohdalla. Pienillä tiedostoilla lzw voi olla jopa hieman nopeampi.
+
+![purkunopeuden vertailu tiedostoittain](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio8.png)
+
+![purkunopeuden vertailu kokonaisajassa](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kaaviot/kaavio10.png)
+
+
+## Huomiot
+
+Huffman pakkaus on nykyisessä toteutuksessa selkeästi lzw pakkausta luotettavampi,
+tehokaampi ja nopeampi.

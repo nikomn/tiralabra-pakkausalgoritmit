@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.pakkausalgoritmit.kayttoliittyma;
 
 import java.io.File;
@@ -13,10 +8,6 @@ import tiralabra.pakkausalgoritmit.tiedostot.TiedostonVertailija;
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonkirjoittaja;
 import tiralabra.pakkausalgoritmit.tiedostot.Tiedostonlukija;
 
-/**
- *
- * @author nikoniem
- */
 public class Kayttoliittyma {
 
     public void demo(Scanner lukija) throws Exception {
@@ -81,10 +72,6 @@ public class Kayttoliittyma {
             System.out.println("Puun muodostus kesti " + kesto + " ms");
 
             System.out.println("Koodataan data...");
-//        tyovaiheAjastin.kaynnista();
-//        String muunnettu = h.muunna();
-//        kesto = tyovaiheAjastin.pysayta();
-//        System.out.println("Datan koodaus uudella tavalla kesti " + kesto + " ms");
 
             tyovaiheAjastin.kaynnista();
             String koodattu = h.koodaa();
@@ -150,21 +137,6 @@ public class Kayttoliittyma {
             }
 
             LempelZivWelch lz = new LempelZivWelch(palankoko);
-            /*
-            Huom. LempelZivWelch argumenttina annetaan käytettävä bittikoko.
-            Perusidea on se, että normaaleihin kirjaimiin tarvittavaa 8 bitin kokoa
-            voidaan laajentaa esim. 9 ja näin saadaan iso määrä yhdiste merkkejä
-            käyttöön perusmerkistön lisäksi, ilman että tilaa kuitenkaan tarvitaan
-            paljo enempää.
-            Käytännössä homma toimii hyvin vain jos koodataan merkkejä a-zA-Z0-9
-            mutta muilla merkeillä asia on paljon vaikeampaa, eikä merkit 
-            normaalimuodossakaan mahdu 8 bittiin, esim. '—' (vrt. '-') on numeerisessa
-            muodossa 8212, ts. 10000000010100, eli tarvitaan 14 bittiä.
-
-            Perus ascii merkeillä arvoksi riittää 8-12, mutta jos käytössä on
-            utf-8 merkistö, niin 17-20 bittiä tuottaa oikean tuloksen. Tällä tietty
-            hintana tiedoston pakkaustiheyden heikkeneminen.
-             */
             tyovaiheAjastin.kaynnista();
             lz.pakkaa(sisalto);
             kesto = tyovaiheAjastin.pysayta();
@@ -276,7 +248,6 @@ public class Kayttoliittyma {
 
                     Tiedostonlukija tlukija = new Tiedostonlukija();
                     String sisalto = tlukija.lueTiedosto(tiedosto);
-                    //String sisalto = tlukija.lueTiedostoTavuina(tiedosto);
 
                     Huffman h = new Huffman();
                     h.muodostaTaulu(sisalto);

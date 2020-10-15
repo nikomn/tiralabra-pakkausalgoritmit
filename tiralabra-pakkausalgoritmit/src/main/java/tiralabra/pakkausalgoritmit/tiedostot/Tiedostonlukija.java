@@ -251,8 +251,6 @@ public class Tiedostonlukija {
 
         //String[] kentat = erotteleKentat(mjono);
         return merkkijononKoostaja.toString();
-        //return mjono;
-        //return mjono;
     }
 
 }

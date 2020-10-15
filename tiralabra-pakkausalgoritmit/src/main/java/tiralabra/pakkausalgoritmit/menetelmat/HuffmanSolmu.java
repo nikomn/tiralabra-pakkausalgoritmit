@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.pakkausalgoritmit.menetelmat;
-
 
 /**
  * Luokka kuvaa HuffmanSolmu-olion ominaisuudet.
@@ -44,7 +38,7 @@ public class HuffmanSolmu implements Comparable {
     }
 
     /**
-     * Konstruktori jota käytetään, kun pakattua merkkijona puretaan takaisin 
+     * Konstruktori jota käytetään, kun pakattua merkkijona puretaan takaisin
      * merkkijonoksi
      *
      * @param merkki, merkkijono, voi olla null
@@ -70,8 +64,6 @@ public class HuffmanSolmu implements Comparable {
     public Integer haeToistuvuus() {
         return this.toistuvuus;
     }
-    
-    
 
     /**
      * Metodi hakee HuffmanSolmun uniikin tunnisteen
@@ -122,13 +114,6 @@ public class HuffmanSolmu implements Comparable {
         if (this.merkki != null && this.merkki.length() == 1) {
             m = String.format("%24s", Integer.toBinaryString(this.merkki.charAt(0))).replace(' ', '0');
         }
-        
-//        // Tavumuotokokeilua varten!
-//        if (m.equals("000000000000000100000000")) {
-//            m = "000000000000000000000000";
-//        }
-//        
-//        // Tavumuotokokeilu päättyy!
 
         String t = String.format("%24s", Integer.toBinaryString(0)).replace(' ', '0');
         if (this.toistuvuus != null) {
@@ -168,12 +153,7 @@ public class HuffmanSolmu implements Comparable {
     public String toString() {
         String tuloste = "";
         String m = this.merkki;
-//        Integer t = this.toistuvuus;
-//        Character v = vasen.merkki;
-//        Character o = oikea.merkki;
-//        Character V = vanhempi.merkki;
         return m + "(" + this.toistuvuus + ")";
-        //return this.merkki + ";" + this.toistuvuus + ";" + vasen.merkki + ";" + oikea.merkki + ";" + vanhempi.merkki;
     }
 
     /**
@@ -194,15 +174,36 @@ public class HuffmanSolmu implements Comparable {
             return -1;
         }
     }
-    
+
+    /**
+     * Paluuarvoton metodi, joka lisää HufmanSolmulle vasemman solmun
+     *
+     * @param s, HuffmanSolmu
+     *
+     *
+     */
     public void lisaaVasen(HuffmanSolmu s) {
         this.vasen = s;
     }
-    
+
+    /**
+     * Paluuarvoton metodi, joka lisää HufmanSolmulle oikean solmun
+     *
+     * @param s, HuffmanSolmu
+     *
+     *
+     */
     public void lisaaOikea(HuffmanSolmu s) {
         this.oikea = s;
     }
-    
+
+    /**
+     * Paluuarvoton metodi, joka lisää HufmanSolmulle vanhemman solmun
+     *
+     * @param s, HuffmanSolmu
+     *
+     *
+     */
     public void lisaaVanhempi(HuffmanSolmu s) {
         this.vanhempi = s;
     }

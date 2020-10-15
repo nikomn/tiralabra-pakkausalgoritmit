@@ -135,125 +135,65 @@ public class Huffman {
         Integer t = Integer.parseInt(tiedostonSisalto[5], 2);
 
         HuffmanSolmu juuri = new HuffmanSolmu(m, t, tiedostonSisalto[3], null, null);
-        //System.out.println("Juuri: " + juuri);
-//        String[] testi = new String[8];
-//        testi[0] = "100000000000000000000000";  // headeri
-//        testi[1] = "000000000000000000000001";  // taulunpituus
-//        testi[2] = "000000000000000000000011";  // skippibitit
-//
-//        testi[3] = "000000000000000001100001";  // merkki
-//        testi[4] = "000000000000000000000010";  // toistuvuus
-//        testi[5] = "000000000000000000101101";  // vasen
-//        testi[5] = "000000000000000000101101";  // oikea
-//        testi[6] = "000000000000000000101101";  // vanhempi
+
         int tauluPituus = Integer.parseInt(tiedostonSisalto[1], 2);
         int skippiBitit = Integer.parseInt(tiedostonSisalto[2], 2);
-        //System.out.println("taulun pituus: " + tauluPituus);
+
         this.solmulista = new HuffmanSolmu[tauluPituus];
         Integer solmulistaIndeksi = 0;
-        //int edistymisIndeksi = 0;
         for (int i = 9; i < (tauluPituus * 6) + 7; i = i + 6) {
-            //edistymisIndeksi++;
-            //System.out.println("Käsitellään solmua " + edistymisIndeksi + "/" + tauluPituus);
 
-            //System.out.println("i: " + i);
             int merkkiNumero = Integer.parseInt(tiedostonSisalto[i + 1], 2);
             Character merkki = (char) merkkiNumero;
             //System.out.println("Merkki: " + merkki);
             int toistuvuus = Integer.parseInt(tiedostonSisalto[i + 2], 2);
-            // Character merkki, Integer toistuvuus, HuffmanSolmu vasen, HuffmanSolmu oikea
             HuffmanSolmu hs = muodostaSolmu(tiedostonSisalto[i], tiedostonSisalto[i + 1], tiedostonSisalto[i + 2]);
-            //HuffmanSolmu hs = new HuffmanSolmu(merkki + "", toistuvuus, tiedostonSisalto[i], null, null);
-            //System.out.println(hs.muunnaBinaariEsitysmuotoon());
             this.solmulista[solmulistaIndeksi] = hs;
             solmulistaIndeksi++;
         }
 
-        //int edistymisIndeksi = 0;
         int tiedostoIndeksi = 9;
         for (int i = 9; i < (tauluPituus * 6) + 7; i = i + 6) {
-            //edistymisIndeksi++;
-            //System.out.println("Käsitellään solmua " + edistymisIndeksi + "/" + tauluPituus);
+
             muodostaYhteys(tiedostonSisalto[i], tiedostonSisalto[i + 3], tiedostonSisalto[i + 4], tiedostonSisalto[i + 5]);
             tiedostoIndeksi = i + 6;
         }
 
         StringBuilder merkkijononKoostaja = new StringBuilder();
         String koodattu = "";
-        
+
         for (int i = tiedostoIndeksi; i < tiedostonSisalto.length; i++) {
-            
+
             //koodattu = koodattu + tiedostonSisalto[i];
+            // Paljon nopeampaa...
             merkkijononKoostaja.append(tiedostonSisalto[i]);
         }
-        
-        
 
         koodattu = merkkijononKoostaja.toString();
 
         String subString = koodattu.substring(skippiBitit, koodattu.length());
-        //System.out.println("Koodatun tiedoston data: " + subString);
-        
 
         asetaPuunjuuri(tiedostonSisalto[3]);
 
         String merkkijono = "";
-//        System.out.println("Puu:");
-//        HuffmanSolmu s = this.puunjuuri;
-//        System.out.println("\t\t" + s.vasen.merkki + " | " + s.oikea.merkki);
-//        s = s.vasen;
-//        System.out.println(s.vasen.merkki + " | " + s.oikea.merkki);
-//        s = s.oikea;
-//        System.out.println(s);
-//        //System.out.println(s.vasen.merkki);
-        HuffmanSolmu solmu = this.puunjuuri;
-        // 110001011101001011101
-        // abcdabcd
-        //
-        // aaaa\n == 01111
-        // a == 1, \n == 0?
 
-        // Pitäisi olla 11 == a
-        /*
-        11: a -> 11
-        00: b -> 00
-        01: c -> 10
-        101: d -> 101
-        100: \n -> 001
-         */
-        // 10011101010011101010011
-        //            d c b a  
-        //subString = "101100011"; //abcd
-        //subString = "10"; // c?
-        //subString = "00"; // b?
-        //subString = "11"; // a?
-        //subString = "01";
-//        String kaanteinensubString = "";
-//
-//        for (int i = subString.length() - 1; i >= 0; i--) {
-//            kaanteinensubString = kaanteinensubString + subString.charAt(i);
-//        }
+        HuffmanSolmu solmu = this.puunjuuri;
+
         String kaanteinenSubString = new StringBuilder(subString).reverse().toString();
 
-        //subString = kaanteinensubString;
-        //for (int i = subString.length() - 1; i > -1; i--) {
         StringBuilder merkkijononKoostaja2 = new StringBuilder();
         for (int i = 0; i < subString.length(); i++) {
-            //System.out.println("Nykyinen solmu loopin alussa " + solmu.merkki);
-            //System.out.println("solmu.vasen" + solmu.vasen);
 
             if (subString.charAt(i) == '0') {
-                //System.out.println("Vaihtuu vasempaan");
+
                 solmu = solmu.vasen;
             } else {
-                //System.out.println("Vaihtuu oikeaan");
+
                 solmu = solmu.oikea;
             }
-            //System.out.println("Käsiteltävänä: " + subString.charAt(i));
-            //System.out.println("Lehti " + solmu.merkki);
+
             if (solmu.vasen == null && solmu.oikea == null) {
-                //System.out.println("Lehti " + solmu.merkki);
-                
+
                 //merkkijono = merkkijono + solmu.merkki;
                 // Paljon nopeampaa...
                 merkkijononKoostaja2.append(solmu.merkki);
@@ -427,12 +367,6 @@ public class Huffman {
             this.solmut[this.indeksi] = this.omaTaulu.hae(avainLista.arvo(i));
             this.indeksi++;
         }
-//        for (Character avain : this.taulu.keySet()) {
-//            //System.out.println(avain + ": " + this.taulu.get(avain).toistuvuus);
-//            jono.add(this.taulu.get(avain));
-//            this.solmut[this.indeksi] = this.taulu.get(avain);
-//            this.indeksi++;
-//        }
 
         int solmunSuuruus = 0;
 
@@ -466,7 +400,7 @@ public class Huffman {
     }
 
     /**
-     * Paluuarvotn metodi joka tulostaa puuhun kuuluvat HuffmanSolmut.
+     * Paluuarvoton metodi joka tulostaa puuhun kuuluvat HuffmanSolmut.
      *
      * Enimmäkseen kehitysaikaisia debug tarkoituksia varten.
      *

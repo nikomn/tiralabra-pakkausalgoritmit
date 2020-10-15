@@ -2,6 +2,9 @@ package tiralabra.pakkausalgoritmit.tietorakenteet;
 
 import tiralabra.pakkausalgoritmit.menetelmat.HuffmanSolmu;
 
+/**
+ * Luokka sisältää prioriteettijonoon liittyvät toiminnallisuudet.
+ */
 public class Prioriteettijono {
 
     private HuffmanSolmu[] jono;
@@ -12,34 +15,32 @@ public class Prioriteettijono {
         this.viimeinen = 0;
     }
 
-
+    /**
+     * Paluuarvoton metodi lisää solmun listaan
+     *
+     * @param x, HuffmanSOlmu
+     *
+     *
+     */
     public void lisaa(HuffmanSolmu x) {
         // jono.add(); vastaava toiminnallisuus jotenkin toteutettuna...
         this.viimeinen++;
         int p = this.viimeinen;
-        while (p > 1 && x.haeToistuvuus() < this.jono[vanhempi(p)].haeToistuvuus() ) {
+        while (p > 1 && x.haeToistuvuus() < this.jono[vanhempi(p)].haeToistuvuus()) {
             this.jono[p] = this.jono[vanhempi(p)];
             p = vanhempi(p);
         }
         this.jono[p] = x;
-        
-    }
-    
-    
-    public void lisaa2(HuffmanSolmu x) {
-        // jono.add(); vastaava toiminnallisuus jotenkin toteutettuna...
-        this.viimeinen++;
-        this.jono[this.viimeinen] = x;
-        int p = this.viimeinen;
-        while (p > 1 && this.jono[p].haeToistuvuus() < this.jono[vanhempi(p)].haeToistuvuus()) {
-            HuffmanSolmu tmp1 = this.jono[p];
-            HuffmanSolmu tmp2 = this.jono[vanhempi(p)];
-            this.jono[p] = tmp2;
-            this.jono[vanhempi(p)] = tmp1;
-        }
-        
+
     }
 
+    /**
+     * Metodi hakee taulusta vasemman puoleisen objektin indeksin
+     *
+     * @param p, kokonaisluku
+     *
+     * @return kokonaisluku
+     */
     public int vasen(int p) {
         if (2 * p > this.viimeinen) {
             return 0;
@@ -48,6 +49,13 @@ public class Prioriteettijono {
         }
     }
 
+    /**
+     * Metodi hakee taulusta oikean puoleisen objektin indeksin
+     *
+     * @param p, kokonaisluku
+     *
+     * @return kokonaisluku
+     */
     public int oikea(int p) {
         if (2 * p + 1 > this.viimeinen) {
             return 0;
@@ -55,11 +63,24 @@ public class Prioriteettijono {
             return 2 * p + 1;
         }
     }
-    
+
+    /**
+     * Metodi hakee taulusta objektin vanhemman indeksin
+     *
+     * @param p, kokonaisluku
+     *
+     * @return kokonaisluku
+     */
     public int vanhempi(int p) {
         return p / 2;
     }
-    
+
+    /**
+     * Metodi hakee jonon ensimmäisen HuffmanSolmun
+     *
+     *
+     * @return HuffmanSolmu
+     */
     public HuffmanSolmu nouda() {
         //jono.poll(); vastaava toiminnallisuus...
         HuffmanSolmu a = this.jono[1];
@@ -68,7 +89,14 @@ public class Prioriteettijono {
         painaAlas(1);
         return a;
     }
-    
+
+    /**
+     * Paluuarvoton metodi korjaa jonon järjestyksen
+     *
+     * @param solmu, kokonaisluku, taulunindeksinumero
+     *
+     *
+     */
     public void painaAlas(int solmu) {
         int pienempiLapsi = -1;
         if (vasen(solmu) == 0) {
@@ -91,44 +119,5 @@ public class Prioriteettijono {
             painaAlas(pienempiLapsi);
         }
     }
-    
-//    public static void main(String[] args) {
-//        HuffmanSolmu a = new HuffmanSolmu("a", 10, null, null);
-//        HuffmanSolmu b = new HuffmanSolmu("b", 20, null, null);
-//        HuffmanSolmu c = new HuffmanSolmu("c", 30, null, null);
-//        HuffmanSolmu d = new HuffmanSolmu("d", 40, null, null);
-//        HuffmanSolmu e = new HuffmanSolmu("e", 50, null, null);
-//        HuffmanSolmu f = new HuffmanSolmu("f", 60, null, null);
-//        HuffmanSolmu g = new HuffmanSolmu("g", 70, null, null);
-//        
-//        g.lisaaOikea(f);
-//        g.lisaaVasen(e);
-//        f.lisaaVanhempi(g);
-//        e.lisaaVanhempi(g);
-//        
-//        Prioriteettijono p = new Prioriteettijono();
-//        p.lisaa(g);
-//        p.lisaa(f);
-//        p.lisaa(e);
-//        
-//        System.out.println(p.nouda());
-//        System.out.println(p.nouda());
-//        System.out.println(p.nouda());
-//        
-//        PriorityQueue<HuffmanSolmu> jono = new PriorityQueue<>();
-//        jono.add(g);
-//        jono.add(f);
-//        jono.add(e);
-//        System.out.println(jono.poll());
-//        System.out.println(jono.poll());
-//        System.out.println(jono.poll());
-//        
-//        // Näyttää toimivan :)
-//        
-//        
-//    }
-    
-    
-    
 
 }
