@@ -55,9 +55,9 @@ jacocoTestReport {
     }
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it,
+                fileTree(dir: it,
                     exclude: ['**/kayttoliittyma/**'])
-        })
+            })
     }
 }
 
@@ -68,8 +68,18 @@ run {
 }
 
 test {
-  testLogging.showStandardStreams = true
+    testLogging.showStandardStreams = true
 }
+
+//checkstyle {
+//    toolVersion "7.6.1"
+//}
+//
+//checkstyleMain {
+//    source = fileTree('.') {
+//        excludes = ['.*/**', 'gradle*', 'build/**', '*.iml', '*.log', '**/*.jar']
+//    }
+//}
 
 
 check.dependsOn jacocoTestReport

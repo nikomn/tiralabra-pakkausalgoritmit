@@ -7,7 +7,6 @@ package tiralabra.pakkausalgoritmit.kayttoliittyma;
 
 import java.io.File;
 import java.util.Scanner;
-import tiralabra.pakkausalgoritmit.Kello;
 import tiralabra.pakkausalgoritmit.menetelmat.Huffman;
 import tiralabra.pakkausalgoritmit.menetelmat.LempelZivWelch;
 import tiralabra.pakkausalgoritmit.tiedostot.TiedostonVertailija;
@@ -137,10 +136,17 @@ public class Kayttoliittyma {
             // Jos tosi iso tiedosto?
             // Demoa ajatellen on ehkä ihan hyvä, jos pystytään muuttamaan dynaamisemmin...
             // Muodostuu ongelmaksi, jos pakataan iso tiedosto demon yhteydessä ja yritetään
-            // Purkaa se myöhemmin erikseen erillisellä toiminnolla...
+            // Purkaa se myöhemmin erikseen erillisellä toiminnolla, jossa käytetään 
+            // kiinteää palankokoa......
             int palankoko = 18;
             if (lahdeKoko > 2000000) {
                 palankoko = 20;
+            }
+            if (lahdeKoko > 6000000) {
+                palankoko = 28;
+            }
+            if (lahdeKoko > 10000000) {
+                palankoko = 32;
             }
 
             LempelZivWelch lz = new LempelZivWelch(palankoko);
