@@ -27,6 +27,8 @@ $ java -jar tiralabra-pakkausalgoritmit.jar
 
 [Viikkoraportti 6](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti6.md)
 
+[Viikkoraportti 7](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti7.md)
+
 ## Dokumentaatio
 
 [Määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
