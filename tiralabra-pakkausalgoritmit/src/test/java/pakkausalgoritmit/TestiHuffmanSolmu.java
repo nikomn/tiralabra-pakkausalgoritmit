@@ -5,16 +5,20 @@
  */
 package pakkausalgoritmit;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import tiralabra.pakkausalgoritmit.menetelmat.HuffmanSolmu;
 
 /**
  * Huffman solmujen ominaisuuksia testaava luokka 
  */
 public class TestiHuffmanSolmu {
     @Test
-    public void testNothing() {
-        assertTrue(true);
+    public void huffmanSolmunMuodostusToimii() {
+        HuffmanSolmu a = new HuffmanSolmu("a", 0, null, null);
+        int solmunToistuvuus = a.haeToistuvuus();
+        assertEquals("Solmua ei voi muodostaa", 0, solmunToistuvuus);
     }
     
 }

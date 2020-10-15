@@ -27,24 +27,12 @@ $ java -jar tiralabra-pakkausalgoritmit.jar
 
 [Viikkoraportti 6](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti6.md)
 
-## Dokumentaatiota
+## Dokumentaatio
 
-[Ohjelman määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
+[Määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
+
+[Toteutusdokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/toteutusdokumentti.md)
 
 [Käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
 
-[Toteutukseen liittyvät tekniset rajoitukset](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tekniset_rajoitukset.md)
-
-[Tietorakenteet](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tietorakenteet.md)
-
-[Kirjastot](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kirjastot.md)
-
-[Ohjelman nopeudesta](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tehokkuudesta.md)
-
-[Algoritmien vertailua](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/vertailua.md)
-
-[Huffman tiedostoformaatti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/huffmantiedostonformaatti.md)
-
-[Algoritmien esittelyä](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/projektin_esittely.pdf)
-
-[Testikattavuusraportit: jacoco ja checkstyle](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/testikattavuus.md)
+[Testausdokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/testausdokumentti.md)
