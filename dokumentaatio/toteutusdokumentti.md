@@ -29,11 +29,11 @@ Esimerkki tiedoston rakenteesta:
 
 Puunjuuri  
 
-000000010011101000110001  | tunniste
+000000010011101000110001  | tunniste  
 000000000000000000101101  | merkki   
 000000000000000000001001  | toistuvuus   
 000000000000000000101101  | vasemmalla oleva merkki (tunniste)   
-000000000000000000101101  | oikealla oleva merkki (tunniste)
+000000000000000000101101  | oikealla oleva merkki (tunniste)  
 000000000000000000101101  | vanhempi merkki (tunniste)   
 
 Taulu/Puu, ts. Huffmansolmut   

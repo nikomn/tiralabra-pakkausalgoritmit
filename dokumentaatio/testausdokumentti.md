@@ -1,6 +1,9 @@
 # Ohjelman testauksesta
 
-## Automaattiset testit
+Ohjelman testaus on suoritettu automatisoiduilla JUnit testeillä, sekä manuaalisesti
+tehdyillä testauksella. Koodin laatua on testattu Checkstyle testeillä.
+
+## Automaattiset JUnit testit
 
 Ohjelman keskeiset toiminnallisuudet on testattavissa Junit-testeillä. Testit voi
 ajaa esim. netbeanssissa valikosta Run -> Test project (tai Alt+F6)
@@ -37,6 +40,8 @@ Automaattinen testaus sisältää seuraavat testit:
 6. TestiLista
    - listaanLisaysToimii: Testataan listan toiminta yleistapauksessa
 
+### Testikattavuus
+
 Testikattavuus on n. 80% tasolla:
 
 ![Jacoco-raportti 1](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/jacoco1.png)
@@ -54,3 +59,19 @@ Testikattavuus on n. 80% tasolla:
 Koodin laatu on tarkistettu checkstylellä, virheiden määrä on tällä hetkellä 0
 
 ![Checkstyle-raportti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/jacoco-kuvat/checkstyle1.png)
+
+## Järjestelmätestaus ja toiminnallisudet
+
+Järjestelmätestaus on suoritettu manuaalisesti, siten, että ohjelmassa on suoritettu
+erikseen kaikki käyttötarkoituksen mukaiset oleelliset toiminnallisuudet.
+
+Pakkaus ja purkaminen on testattu mahdollisimman erilaisilla tiedostoilla.
+Ohjelman sisäänrakennetun tiedostojen tarkistuksen lisäksi purkutoiminnon
+toimivuus on tarkistettu vertailemalla erikseen komentorivillä alkuperäistä ja
+pakatusta tiedostosta purettua tiedostoa keskenään komennolla
+
+```console
+$ diff -s alkuperäinen.txt purettu.txt
+```
+
+ja tarkistettu näin, että purettu tiedosto on identtinen alkuperäisen kanssa.

@@ -12,21 +12,31 @@ Vaihtoehtoisesti uusimmman version voi ladata komentoriviltä gitillä.
 Ohjelmasta on saatavilla myös jar-pakettina oleva julkaisuversio:
 [Ohjelman ensimmäinen loppupalautus-ehdokas versio](https://github.com/nikomn/tiralabra-pakkausalgoritmit/releases/tag/rc1)
 
-Ohjelman voi ladata jar-tiedostona ja suorittaa komennolla
+
+
+## Käynnistäminen
+
+### Jar versio
+
+Jos kyseessä on ladattu jar-tiedostona sen voi suorittaa komennolla
 
 ```console
 $ java -jar tiralabra-pakkausalgoritmit.jar
 ```
 
+### Githubista ladattu versio
 
-## Käynnistäminen
-
-Ohjelma käynnistetään ajamalla Main.java tiedosto esim. netbeansissa tai  
-komentoriviltä projektin kansiossa komennolla
+Gitistä ladatun version voi avata esim. netbeansissa ja käynnistää sieltä tai
+vaihtoehdoisesti komentoriviltä projektin kansiossa komennolla
 
 ```console
 $ gradle run --console=plain
 ```
+
+### Automaattisten testien ajaminen
+
+Automaattiset testit voi ajaa githubista ladatulle versiolle esim. netbeansissa
+valikosta Run -> Run tests (tai Alt+F6)
 
 Jacoco testiraporin saa generoitua komennolla:
 
