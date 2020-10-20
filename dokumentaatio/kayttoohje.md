@@ -10,7 +10,7 @@ ja valitsemalla vaihtoehto Download as ZIP
 Vaihtoehtoisesti uusimmman version voi ladata komentoriviltä gitillä.
 
 Ohjelmasta on saatavilla myös jar-pakettina oleva julkaisuversio:
-[Ohjelman ensimmäinen loppupalautus-ehdokas versio](https://github.com/nikomn/tiralabra-pakkausalgoritmit/releases/tag/rc1)
+[Ohjelman loppupalautus-versio](https://github.com/nikomn/tiralabra-pakkausalgoritmit/releases/tag/v1.0)
 
 
 

@@ -31,7 +31,7 @@ Automaattinen testaus sisältää seuraavat testit:
    - pakattuDataTulkitaanOikein: Tarkistetaan, että lzw koodattu data tulkitaan oikein
    takaisin merkkijonoksi
    - datanKirjoitusToimii: Tarkistetaan, että lzw tiedostojen kirjoitus onnistuu
-4.  TestiPrioriteettijono
+4. TestiPrioriteettijono
    - prioriteettijonoOikeassaJarjestyksessa: Tarkisteaan prioriteettijonon toiminta
    yleistapauksessa
 5. TestiHajautustaulu

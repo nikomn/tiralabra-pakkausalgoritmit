@@ -13,8 +13,6 @@ Tietojenkäsittelytieteen kandidaatti (TKT)
 
 Tavoitteena on toteuttaa pakkausalgoritmeista Huffmanin pakkausalgoritmi ja LZ zip pakkausalgoritmi tms. Näitä varten tarvitaan ainakin prioriteettijonoa. Molemman algoritmin toteutuksessa käytetään myös hajautustaulua.
 
-[Tarkempaa tietoa toteutetista tietorakenteista](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/tietorakenteet.md)
-
 ## Ongelma ja valitut algoritmit/tietorakenteet
 
 Tarkoituksen on ratkaista ongelma siitä, miten data saadaan pakattua pienempään muotoon ja vertailla eri pakkausalgoritmien tehokkuutta. Tavoitteena on päästä  40-60% alkuperäisestä koosta. Valitsin algoritmeiksi Huffmanin pakkausalgoritmin ja LZ zip pakkauksen, koska ne ovat kyseisen ongelmakentän klassisimpia ratkaisumalleja. Tarkoitus on toteuttaa pakkaus ja purkutoiminnallisuudet, ts. data voidaan pakata ja pakattu data palauttaa alkuperäiseen muotoon.
@@ -40,8 +38,6 @@ operaatiot vievät aikaa O(n). Aikavaativuuden kannalta kuitenkin joudutaan teke
 myös hakuja taulukosta, jolloin lopullinen aikavaativuus on O(n log n) luokkaa.
 
 ## Algoritmien vertailua
-
-[Algoritmien vertailua](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/vertailua.md)
 
 ## Lähteet
 
