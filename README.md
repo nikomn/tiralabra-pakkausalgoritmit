@@ -4,7 +4,7 @@ Tekstitiedostojen pakkaamiseen suunniteltu sovellus.
 
 ## Loppupalautusversio
 
-[Ohjelman ensimmäinen loppupalautus-ehdokas versio](https://github.com/nikomn/tiralabra-pakkausalgoritmit/releases/tag/rc1)
+[Ohjelman loppupalautus-versio](https://github.com/nikomn/tiralabra-pakkausalgoritmit/releases/tag/v1.0)
 
 Ohjelman voi ladata jar-tiedostona ja suorittaa komennolla
 
@@ -29,6 +29,8 @@ $ java -jar tiralabra-pakkausalgoritmit.jar
 
 [Viikkoraportti 7](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti7.md)
 
+[Viikkoraportti 8 / Loppuraportti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/viikkoraportti8_loppuraportti.md)
+
 ## Dokumentaatio
 
 [Määrittelydokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
@@ -38,3 +40,12 @@ $ java -jar tiralabra-pakkausalgoritmit.jar
 [Käyttöohje](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/kayttoohje.md)
 
 [Testausdokumentti](https://github.com/nikomn/tiralabra-pakkausalgoritmit/blob/master/dokumentaatio/testausdokumentti.md)
+
+### Javadoc
+
+Javadoc tiedostot voi generoida erikseen esim. avaamalla githubista ladattu projekti
+netbeanssissa ja klikkaamalla projektia hiiren toisella painikkeella ja valitsemalla
+"generate JavaDoc". Yksinkertaisuuden vuoksi mukana myös valmiiksi generoidut kopiot
+javadoc tiedostoista, jotka löytyvät projektin kansiosta "javadoc". JAvadocit ovat
+html tiedostoina ja selailu kannattanee aloittaa avaamalla tiedosto index.html esim.
+Chromessa.
